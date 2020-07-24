@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# compiled protos
+*pb2.py
+*pb2_grpc.py
