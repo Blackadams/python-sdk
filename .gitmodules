@@ -1,6 +1,0 @@
-[submodule "elarian/utils/elarian-proto"]
-	path = elarian/utils/elarian-proto
-	url = https://github.com/ElarianLtd/elarian-proto.git
-[submodule "elarian/utils/proto"]
-	path = elarian/utils/proto
-	url = https://github.com/ElarianLtd/elarian-proto.git
