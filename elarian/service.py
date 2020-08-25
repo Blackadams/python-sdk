@@ -22,7 +22,7 @@ def Elarian(sandbox, api_key, auth_token):
     channel = grpc.secure_channel(host, channel_credentials, options=[('grpc.keepalive_timeout_ms', 15000)])
 
     try:
-        grpc.channel_ready_future(channel).result(timeout=10)
+        grpc.channel_ready_future(channel).result(timeout=15)
     except grpc.FutureTimeoutError:
         sys.exit('Error connecting to server')
     else:

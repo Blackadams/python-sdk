@@ -1,7 +1,5 @@
 # Elarian Python SDK
 
-[![pypi](https://pypi.org/project/elarian)](https://pypi.org/project/elarian)
-
 > The wrapper provides convenient access to the Elarian APIs.
 
 ## Documentation
