@@ -1,10 +1,9 @@
 import elarian
 import unittest
 
-from . import \
-    sandbox, api_key, messaging_short_code, app_id, product_id
+from . import api_key, messaging_short_code, app_id, product_id
 
-elarian_service = elarian.initialize(sandbox, api_key)
+elarian_service = elarian.initialize(api_key)
 
 class TestSendSms(unittest.TestCase):
     def test_send_sms(self):       

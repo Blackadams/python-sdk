@@ -26,7 +26,7 @@ import elarian
 elarian_service = elarian.initialize(sandbox=True, api_key='test_api_key')
 
 # build request
-req = elarian.requests.GetCustomerStateRequest(app_id="fake-app-id", customer_id="el_cst_35f-fake")
+req = elarian.requests.GetCustomerStateRequest(org_id="fake-org-id", customer_id="el_cst_35f-fake")
 
 # get customer state
 resp = elarian_service.GetCustomerState(req)
@@ -37,37 +37,41 @@ print(resp)
 
 ## Methods
 
-- `AuthToken()`: Generate auth token
+```
+authToken(AuthTokenRequest) -> AuthTokenReply
 
-- `GetCustomerState()`:
-- `AdoptCustomerState()`: 
+getCustomerState(GetCustomerStateRequest) -> GetCustomerStateReply
+adoptCustomerState(AdoptCustomerStateRequest) -> UpdateCustomerStateReply
 
-- `AddCustomerReminder()`:
-- `AddCustomerReminderByTag()`:
-- `CancelCustomerReminder()`:
-- `CancelCustomerReminderByTag()`:
-  
-- `UpdateCustomerTag()`:
-- `DeleteCustomerTag()`:
+addCustomerReminder(AddCustomerReminderRequest) -> UpdateCustomerStateReply
+addCustomerReminderByTag(AddCustomerReminderTagRequest) -> TagCommandReply
+cancelCustomerReminder(CancelCustomerReminderRequest) -> UpdateCustomerStateReply
+cancelCustomerReminderByTag(CancelCustomerReminderTagRequest) -> TagCommandReply
 
-- `UpdateCustomerSecondaryId()`:
-- `DeleteCustomerSecondaryId()`:
+updateCustomerTag(UpdateCustomerTagRequest) -> UpdateCustomerStateReply
+deleteCustomerTag(DeleteCustomerTagRequest) -> UpdateCustomerStateReply
 
-- `UpdateCustomerMetadata()`:
-- `DeleteCustomerMetadata ()`:
+updateCustomerSecondaryId(UpdateCustomerSecondaryIdRequest) -> UpdateCustomerStateReply
+deleteCustomerSecondaryId(DeleteCustomerSecondaryIdRequest) -> UpdateCustomerStateReply
 
-- `SendMessage()`: Sending a message to your customer
-- `SendMessageByTag()`: Sending a message to a group of customers using tags
-- `ReplyToMessage()`: Replying to a message from your customer
-- `MessagingConsent()`: Opting a customer in or out of receiving messages from your app
+leaseCustomerMetadata(LeaseCustomerMetadataRequest) -> LeaseCustomerMetadataReply
+updateCustomerMetadata(UpdateCustomerMetadataRequest) -> UpdateCustomerStateReply
+deleteCustomerMetadata(DeleteCustomerMetadataRequest) -> UpdateCustomerStateReply
 
-- `SendPayment()`:
-- `CheckoutPayment()`:
+sendMessage(SendMessageRequest) -> SendMessageReply
+sendMessageByTag(SendMessageTagRequest) -> TagCommandReply
+replyToMessage(ReplyToMessageRequest) -> SendMessageReply
+messagingConsent(MessagingConsentRequest) -> MessagingConsentReply
 
-- `MakeVoiceCall()`:
-  
-- `StreamNotifications()`:
-- `SendWebhookResponse()`:
+sendPayment(SendPaymentRequest) -> InitiatePaymentReply
+checkoutPayment(CheckoutPaymentRequest) -> InitiatePaymentReply
+customerWalletPayment(CustomerWalletPaymentRequest) -> InitiatePaymentReply
+
+makeVoiceCall(MakeVoiceCallRequest) -> MakeVoiceCallReply
+
+streamNotifications(StreamNotificationRequest) -> WebhookRequest
+sendWebhookResponse(WebhookResponse) -> WebhookResponseReply
+```
 
 
 ## Development
