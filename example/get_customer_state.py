@@ -1,9 +1,8 @@
 import elarian
 
 # Initialize SDK
-sandbox = True
 api_key = 'fake_key'
-elarian_service = elarian.initialize(sandbox, api_key)
+elarian_service = elarian.initialize(api_key)
 
 # build request
 req = elarian.requests.GetCustomerStateRequest(

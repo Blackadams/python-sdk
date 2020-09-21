@@ -1,7 +1,6 @@
 import os
 
 # auth params
-sandbox = os.getenv('sandbox', True)
 api_key = os.getenv('api_key', 'fake')
 
 # product params

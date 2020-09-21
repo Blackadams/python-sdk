@@ -69,6 +69,11 @@ class GrpcWebServiceStub(object):
                 request_serializer=web__pb2.DeleteCustomerSecondaryIdRequest.SerializeToString,
                 response_deserializer=web__pb2.UpdateCustomerStateReply.FromString,
                 )
+        self.LeaseCustomerMetadata = channel.unary_unary(
+                '/com.elarian.hera.proto.GrpcWebService/LeaseCustomerMetadata',
+                request_serializer=web__pb2.LeaseCustomerMetadataRequest.SerializeToString,
+                response_deserializer=web__pb2.LeaseCustomerMetadataReply.FromString,
+                )
         self.UpdateCustomerMetadata = channel.unary_unary(
                 '/com.elarian.hera.proto.GrpcWebService/UpdateCustomerMetadata',
                 request_serializer=web__pb2.UpdateCustomerMetadataRequest.SerializeToString,
@@ -102,12 +107,17 @@ class GrpcWebServiceStub(object):
         self.SendPayment = channel.unary_unary(
                 '/com.elarian.hera.proto.GrpcWebService/SendPayment',
                 request_serializer=web__pb2.SendPaymentRequest.SerializeToString,
-                response_deserializer=web__pb2.SendPaymentReply.FromString,
+                response_deserializer=web__pb2.InitiatePaymentReply.FromString,
                 )
         self.CheckoutPayment = channel.unary_unary(
                 '/com.elarian.hera.proto.GrpcWebService/CheckoutPayment',
                 request_serializer=web__pb2.CheckoutPaymentRequest.SerializeToString,
-                response_deserializer=web__pb2.CheckoutPaymentReply.FromString,
+                response_deserializer=web__pb2.InitiatePaymentReply.FromString,
+                )
+        self.CustomerWalletPayment = channel.unary_unary(
+                '/com.elarian.hera.proto.GrpcWebService/CustomerWalletPayment',
+                request_serializer=web__pb2.CustomerWalletPaymentRequest.SerializeToString,
+                response_deserializer=web__pb2.InitiatePaymentReply.FromString,
                 )
         self.MakeVoiceCall = channel.unary_unary(
                 '/com.elarian.hera.proto.GrpcWebService/MakeVoiceCall',
@@ -195,6 +205,12 @@ class GrpcWebServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def LeaseCustomerMetadata(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def UpdateCustomerMetadata(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -238,6 +254,12 @@ class GrpcWebServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def CheckoutPayment(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CustomerWalletPayment(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -319,6 +341,11 @@ def add_GrpcWebServiceServicer_to_server(servicer, server):
                     request_deserializer=web__pb2.DeleteCustomerSecondaryIdRequest.FromString,
                     response_serializer=web__pb2.UpdateCustomerStateReply.SerializeToString,
             ),
+            'LeaseCustomerMetadata': grpc.unary_unary_rpc_method_handler(
+                    servicer.LeaseCustomerMetadata,
+                    request_deserializer=web__pb2.LeaseCustomerMetadataRequest.FromString,
+                    response_serializer=web__pb2.LeaseCustomerMetadataReply.SerializeToString,
+            ),
             'UpdateCustomerMetadata': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateCustomerMetadata,
                     request_deserializer=web__pb2.UpdateCustomerMetadataRequest.FromString,
@@ -352,12 +379,17 @@ def add_GrpcWebServiceServicer_to_server(servicer, server):
             'SendPayment': grpc.unary_unary_rpc_method_handler(
                     servicer.SendPayment,
                     request_deserializer=web__pb2.SendPaymentRequest.FromString,
-                    response_serializer=web__pb2.SendPaymentReply.SerializeToString,
+                    response_serializer=web__pb2.InitiatePaymentReply.SerializeToString,
             ),
             'CheckoutPayment': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckoutPayment,
                     request_deserializer=web__pb2.CheckoutPaymentRequest.FromString,
-                    response_serializer=web__pb2.CheckoutPaymentReply.SerializeToString,
+                    response_serializer=web__pb2.InitiatePaymentReply.SerializeToString,
+            ),
+            'CustomerWalletPayment': grpc.unary_unary_rpc_method_handler(
+                    servicer.CustomerWalletPayment,
+                    request_deserializer=web__pb2.CustomerWalletPaymentRequest.FromString,
+                    response_serializer=web__pb2.InitiatePaymentReply.SerializeToString,
             ),
             'MakeVoiceCall': grpc.unary_unary_rpc_method_handler(
                     servicer.MakeVoiceCall,
@@ -572,6 +604,23 @@ class GrpcWebService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def LeaseCustomerMetadata(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/com.elarian.hera.proto.GrpcWebService/LeaseCustomerMetadata',
+            web__pb2.LeaseCustomerMetadataRequest.SerializeToString,
+            web__pb2.LeaseCustomerMetadataReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def UpdateCustomerMetadata(request,
             target,
             options=(),
@@ -686,7 +735,7 @@ class GrpcWebService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/com.elarian.hera.proto.GrpcWebService/SendPayment',
             web__pb2.SendPaymentRequest.SerializeToString,
-            web__pb2.SendPaymentReply.FromString,
+            web__pb2.InitiatePaymentReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -703,7 +752,24 @@ class GrpcWebService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/com.elarian.hera.proto.GrpcWebService/CheckoutPayment',
             web__pb2.CheckoutPaymentRequest.SerializeToString,
-            web__pb2.CheckoutPaymentReply.FromString,
+            web__pb2.InitiatePaymentReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CustomerWalletPayment(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/com.elarian.hera.proto.GrpcWebService/CustomerWalletPayment',
+            web__pb2.CustomerWalletPaymentRequest.SerializeToString,
+            web__pb2.InitiatePaymentReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
