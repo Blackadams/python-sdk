@@ -104,19 +104,9 @@ class GrpcWebServiceStub(object):
                 request_serializer=web__pb2.MessagingConsentRequest.SerializeToString,
                 response_deserializer=web__pb2.MessagingConsentReply.FromString,
                 )
-        self.SendPayment = channel.unary_unary(
-                '/com.elarian.hera.proto.GrpcWebService/SendPayment',
-                request_serializer=web__pb2.SendPaymentRequest.SerializeToString,
-                response_deserializer=web__pb2.InitiatePaymentReply.FromString,
-                )
-        self.CheckoutPayment = channel.unary_unary(
-                '/com.elarian.hera.proto.GrpcWebService/CheckoutPayment',
-                request_serializer=web__pb2.CheckoutPaymentRequest.SerializeToString,
-                response_deserializer=web__pb2.InitiatePaymentReply.FromString,
-                )
-        self.CustomerWalletPayment = channel.unary_unary(
-                '/com.elarian.hera.proto.GrpcWebService/CustomerWalletPayment',
-                request_serializer=web__pb2.CustomerWalletPaymentRequest.SerializeToString,
+        self.InitiatePayment = channel.unary_unary(
+                '/com.elarian.hera.proto.GrpcWebService/InitiatePayment',
+                request_serializer=web__pb2.InitiatePaymentRequest.SerializeToString,
                 response_deserializer=web__pb2.InitiatePaymentReply.FromString,
                 )
         self.MakeVoiceCall = channel.unary_unary(
@@ -247,19 +237,7 @@ class GrpcWebServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SendPayment(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def CheckoutPayment(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def CustomerWalletPayment(self, request, context):
+    def InitiatePayment(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -376,19 +354,9 @@ def add_GrpcWebServiceServicer_to_server(servicer, server):
                     request_deserializer=web__pb2.MessagingConsentRequest.FromString,
                     response_serializer=web__pb2.MessagingConsentReply.SerializeToString,
             ),
-            'SendPayment': grpc.unary_unary_rpc_method_handler(
-                    servicer.SendPayment,
-                    request_deserializer=web__pb2.SendPaymentRequest.FromString,
-                    response_serializer=web__pb2.InitiatePaymentReply.SerializeToString,
-            ),
-            'CheckoutPayment': grpc.unary_unary_rpc_method_handler(
-                    servicer.CheckoutPayment,
-                    request_deserializer=web__pb2.CheckoutPaymentRequest.FromString,
-                    response_serializer=web__pb2.InitiatePaymentReply.SerializeToString,
-            ),
-            'CustomerWalletPayment': grpc.unary_unary_rpc_method_handler(
-                    servicer.CustomerWalletPayment,
-                    request_deserializer=web__pb2.CustomerWalletPaymentRequest.FromString,
+            'InitiatePayment': grpc.unary_unary_rpc_method_handler(
+                    servicer.InitiatePayment,
+                    request_deserializer=web__pb2.InitiatePaymentRequest.FromString,
                     response_serializer=web__pb2.InitiatePaymentReply.SerializeToString,
             ),
             'MakeVoiceCall': grpc.unary_unary_rpc_method_handler(
@@ -723,7 +691,7 @@ class GrpcWebService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def SendPayment(request,
+    def InitiatePayment(request,
             target,
             options=(),
             channel_credentials=None,
@@ -733,42 +701,8 @@ class GrpcWebService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/com.elarian.hera.proto.GrpcWebService/SendPayment',
-            web__pb2.SendPaymentRequest.SerializeToString,
-            web__pb2.InitiatePaymentReply.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def CheckoutPayment(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/com.elarian.hera.proto.GrpcWebService/CheckoutPayment',
-            web__pb2.CheckoutPaymentRequest.SerializeToString,
-            web__pb2.InitiatePaymentReply.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def CustomerWalletPayment(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/com.elarian.hera.proto.GrpcWebService/CustomerWalletPayment',
-            web__pb2.CustomerWalletPaymentRequest.SerializeToString,
+        return grpc.experimental.unary_unary(request, target, '/com.elarian.hera.proto.GrpcWebService/InitiatePayment',
+            web__pb2.InitiatePaymentRequest.SerializeToString,
             web__pb2.InitiatePaymentReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
