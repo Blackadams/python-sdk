@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"-\n\x04\x43\x61sh\x12\x15\n\rcurrency_code\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\"\x93\x01\n\x0e\x43ustomerNumber\x12@\n\x08provider\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerNumberProvider\x12\x0e\n\x06number\x18\x02 \x01(\t\x12/\n\tpartition\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"c\n\x16MessagingChannelNumber\x12\x39\n\x07\x63hannel\x18\x01 \x01(\x0e\x32(.com.elarian.hera.proto.MessagingChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"Y\n\x11UssdChannelNumber\x12\x34\n\x07\x63hannel\x18\x01 \x01(\x0e\x32#.com.elarian.hera.proto.UssdChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"_\n\x14PaymentChannelNumber\x12\x37\n\x07\x63hannel\x18\x01 \x01(\x0e\x32&.com.elarian.hera.proto.PaymentChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"[\n\x12VoiceChannelNumber\x12\x35\n\x07\x63hannel\x18\x01 \x01(\x0e\x32$.com.elarian.hera.proto.VoiceChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"3\n\x13TextMessageTemplate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06params\x18\x02 \x03(\t\"|\n\x0fTextMessageBody\x12*\n\x04text\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\x08template\x18\x02 \x01(\x0b\x32+.com.elarian.hera.proto.TextMessageTemplate\"Q\n\x10MediaMessageBody\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x30\n\x05media\x18\x02 \x01(\x0e\x32!.com.elarian.hera.proto.MediaType\":\n\x13LocationMessageBody\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"\xd3\x01\n\x13\x43ustomerMessageBody\x12\x37\n\x04text\x18\x01 \x01(\x0b\x32\'.com.elarian.hera.proto.TextMessageBodyH\x00\x12\x39\n\x05media\x18\x02 \x01(\x0b\x32(.com.elarian.hera.proto.MediaMessageBodyH\x00\x12?\n\x08location\x18\x03 \x01(\x0b\x32+.com.elarian.hera.proto.LocationMessageBodyH\x00\x42\x07\n\x05\x65ntry\"-\n\x08UssdMenu\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x13\n\x0bis_terminal\x18\x02 \x01(\x08\"\x96\x01\n\x07UssdHop\x12+\n\x05input\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12.\n\x04menu\x18\x02 \x01(\x0b\x32 .com.elarian.hera.proto.UssdMenu\x12.\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"B\n\x0c\x44\x61taMapValue\x12\x14\n\nstring_val\x18\x02 \x01(\tH\x00\x12\x13\n\tbytes_val\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05value\"\x8c\x01\n\x1aMessagingConsentStateEntry\x12>\n\x06status\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentStatus\x12.\n\nupdated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"|\n\x1aMessagingSessionStateEntry\x12.\n\nstarted_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nexpiration\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xbc\x02\n\x1aMessagingChannelStateEntry\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12I\n\rconsent_state\x18\x03 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingConsentStateEntry\x12J\n\x0e\x61\x63tive_session\x18\x04 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingSessionStateEntry\"\xa3\x05\n\x11MessageStateEntry\x12\x41\n\tdirection\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nmessage_id\x18\x04 \x01(\t\x12,\n\x06\x61pp_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12*\n\x04text\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\x08template\x18\x07 \x01(\x0b\x32+.com.elarian.hera.proto.TextMessageTemplate\x12\x37\n\x05media\x18\x08 \x03(\x0b\x32(.com.elarian.hera.proto.MediaMessageBody\x12=\n\x08location\x18\t \x01(\x0b\x32+.com.elarian.hera.proto.LocationMessageBody\x12.\n\ncreated_at\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06status\x18\x0c \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\"\xa3\x02\n\x0eMessagingState\x12I\n\rchannel_state\x18\x01 \x03(\x0b\x32\x32.com.elarian.hera.proto.MessagingChannelStateEntry\x12;\n\x08messages\x18\x02 \x03(\x0b\x32).com.elarian.hera.proto.MessageStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12G\n\x0f\x63hannel_numbers\x18\x04 \x03(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\"\xec\x02\n\x15UssdSessionStateEntry\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x41\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12-\n\x04hops\x18\x05 \x03(\x0b\x32\x1f.com.elarian.hera.proto.UssdHop\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xd2\x01\n\tUssdState\x12?\n\x08sessions\x18\x01 \x03(\x0b\x32-.com.elarian.hera.proto.UssdSessionStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x02 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0f\x63hannel_numbers\x18\x03 \x03(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\"\x8d\x01\n\x12VoiceCallDialInput\x12\x1a\n\x12\x64\x65stination_number\x18\x01 \x01(\t\x12.\n\nstarted_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x08\x64uration\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\"\xa1\x02\n\x13VoiceCallQueueInput\x12/\n\x0b\x65nqueued_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12/\n\x0b\x64\x65queued_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x38\n\x12\x64\x65queued_to_number\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12;\n\x15\x64\x65queued_to_sessionId\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0equeue_duration\x18\x05 \x01(\x0b\x32\x19.google.protobuf.Duration\"\xa8\x03\n\x11VoiceCallHopInput\x12\x37\n\x06status\x18\x01 \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\x12.\n\nstarted_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x42\n\x0changup_cause\x18\x03 \x01(\x0e\x32,.com.elarian.hera.proto.VoiceCallHangupCause\x12\x31\n\x0b\x64tmf_digits\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x33\n\rrecording_url\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\tdial_data\x18\x06 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceCallDialInput\x12?\n\nqueue_data\x18\x07 \x01(\x0b\x32+.com.elarian.hera.proto.VoiceCallQueueInput\"\xb2\x01\n\x0cVoiceCallHop\x12\x38\n\x05input\x18\x01 \x01(\x0b\x32).com.elarian.hera.proto.VoiceCallHopInput\x12\x38\n\x07\x61\x63tions\x18\x02 \x03(\x0b\x32\'.com.elarian.hera.proto.VoiceCallAction\x12.\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xc5\x04\n\x13VoiceCallStateEntry\x12\x41\n\tdirection\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x12\n\nsession_id\x18\x04 \x01(\t\x12,\n\x06\x61pp_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x06status\x18\x06 \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\x12\x32\n\x04hops\x18\x07 \x03(\x0b\x32$.com.elarian.hera.proto.VoiceCallHop\x12+\n\x08\x64uration\x18\x08 \x01(\x0b\x32\x19.google.protobuf.Duration\x12*\n\x04\x63ost\x18\t \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12.\n\ncreated_at\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xcf\x01\n\nVoiceState\x12:\n\x05\x63\x61lls\x18\x01 \x03(\x0b\x32+.com.elarian.hera.proto.VoiceCallStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x02 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x43\n\x0f\x63hannel_numbers\x18\x03 \x03(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\"\xa9\x01\n\x19PendingPaymentTransaction\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12/\n\tconverted\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xc4\x02\n\x0ePaymentBalance\x12\x15\n\rcurrency_code\x18\x01 \x01(\t\x12/\n\tavailable\x18\x02 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12,\n\x06\x61\x63tual\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x44\n\x07pending\x18\x04 \x03(\x0b\x32\x33.com.elarian.hera.proto.PaymentBalance.PendingEntry\x12\x13\n\x0bsequence_nr\x18\x05 \x01(\x04\x1a\x61\n\x0cPendingEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12@\n\x05value\x18\x02 \x01(\x0b\x32\x31.com.elarian.hera.proto.PendingPaymentTransaction:\x02\x38\x01\",\n\x18PaymentPurseCounterParty\x12\x10\n\x08purse_id\x18\x01 \x01(\t\"C\n\x19PaymentWalletCounterParty\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12\x11\n\twallet_id\x18\x02 \x01(\t\"\xa4\x01\n\x1bPaymentCustomerCounterParty\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x44\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\"\xef\x01\n\x13PaymentCounterParty\x12G\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\x33.com.elarian.hera.proto.PaymentCustomerCounterPartyH\x00\x12\x41\n\x05purse\x18\x02 \x01(\x0b\x32\x30.com.elarian.hera.proto.PaymentPurseCounterPartyH\x00\x12\x43\n\x06wallet\x18\x03 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentWalletCounterPartyH\x00\x42\x07\n\x05party\"\xa3\x03\n\x12PaymentTransaction\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12,\n\x06\x61pp_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12@\n\x0b\x64\x65\x62it_party\x18\x04 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x05 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12+\n\x05value\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x35\n\x06status\x18\x07 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12.\n\ncreated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xc2\x03\n\x0cPaymentState\x12@\n\x10\x63ustomer_numbers\x18\x01 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x45\n\x0f\x63hannel_numbers\x18\x02 \x03(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\x12\x43\n\x0ftransaction_log\x18\x03 \x03(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\x12H\n\x14pending_transactions\x18\x04 \x03(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\x12\x42\n\x07wallets\x18\x05 \x03(\x0b\x32\x31.com.elarian.hera.proto.PaymentState.WalletsEntry\x1aV\n\x0cWalletsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PaymentBalance:\x02\x38\x01\"H\n\x0cIndexMapping\x12\x0b\n\x03key\x18\x01 \x01(\t\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"v\n\rCustomerIndex\x12\x35\n\x07mapping\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12.\n\nexpiration\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xbb\x01\n\x10\x43ustomerReminder\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\x12.\n\nexpiration\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x08interval\x18\x04 \x01(\x0b\x32\x19.google.protobuf.Duration\x12-\n\x07payload\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"j\n\rSayCallAction\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x38\n\x05voice\x18\x02 \x01(\x0e\x32).com.elarian.hera.proto.TextToSpeechVoice\x12\x11\n\tplay_beep\x18\x03 \x01(\x08\"\x1d\n\x0ePlayCallAction\x12\x0b\n\x03url\x18\x01 \x01(\t\"\x9f\x02\n\x13GetDigitsCallAction\x12\x34\n\x03say\x18\x01 \x01(\x0b\x32%.com.elarian.hera.proto.SayCallActionH\x00\x12\x36\n\x04play\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PlayCallActionH\x00\x12*\n\x07timeout\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x33\n\rfinish_on_key\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12/\n\nnum_digits\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.Int32ValueB\x08\n\x06prompt\"\xc9\x02\n\x16GetRecordingCallAction\x12\x34\n\x03say\x18\x01 \x01(\x0b\x32%.com.elarian.hera.proto.SayCallActionH\x00\x12\x36\n\x04play\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PlayCallActionH\x00\x12*\n\x07timeout\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x12-\n\nmax_length\x18\x04 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x33\n\rfinish_on_key\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x11\n\tplay_beep\x18\x06 \x01(\x08\x12\x14\n\x0ctrim_silence\x18\x07 \x01(\x08\x42\x08\n\x06prompt\"\x19\n\x17RecordSessionCallAction\"\x8f\x02\n\x0e\x44ialCallAction\x12@\n\x10\x63ustomer_numbers\x18\x01 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x0e\n\x06record\x18\x02 \x01(\x08\x12\x12\n\nsequential\x18\x03 \x01(\x08\x12\x33\n\rringback_tone\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12/\n\tcaller_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0cmax_duration\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"w\n\x11\x45nqueueCallAction\x12\x30\n\nhold_music\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\nqueue_name\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\x99\x01\n\x11\x44\x65queueCallAction\x12\x42\n\x0e\x63hannel_number\x18\x01 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x0e\n\x06record\x18\x02 \x01(\x08\x12\x30\n\nqueue_name\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\x12\n\x10RejectCallAction\"!\n\x12RedirectCallAction\x12\x0b\n\x03url\x18\x01 \x01(\t\"\x8f\x05\n\x0fVoiceCallAction\x12\x34\n\x03say\x18\x01 \x01(\x0b\x32%.com.elarian.hera.proto.SayCallActionH\x00\x12\x36\n\x04play\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PlayCallActionH\x00\x12\x41\n\nget_digits\x18\x03 \x01(\x0b\x32+.com.elarian.hera.proto.GetDigitsCallActionH\x00\x12\x36\n\x04\x64ial\x18\x04 \x01(\x0b\x32&.com.elarian.hera.proto.DialCallActionH\x00\x12I\n\x0erecord_session\x18\x05 \x01(\x0b\x32/.com.elarian.hera.proto.RecordSessionCallActionH\x00\x12G\n\rget_recording\x18\x06 \x01(\x0b\x32..com.elarian.hera.proto.GetRecordingCallActionH\x00\x12<\n\x07\x65nqueue\x18\x07 \x01(\x0b\x32).com.elarian.hera.proto.EnqueueCallActionH\x00\x12<\n\x07\x64\x65queue\x18\x08 \x01(\x0b\x32).com.elarian.hera.proto.DequeueCallActionH\x00\x12:\n\x06reject\x18\t \x01(\x0b\x32(.com.elarian.hera.proto.RejectCallActionH\x00\x12>\n\x08redirect\x18\n \x01(\x0b\x32*.com.elarian.hera.proto.RedirectCallActionH\x00\x42\x07\n\x05\x65ntry*\xd6\x01\n\x10MessagingChannel\x12!\n\x1dMESSAGING_CHANNEL_UNSPECIFIED\x10\x00\x12 \n\x1cMESSAGING_CHANNEL_GOOGLE_RCS\x10\x01\x12\"\n\x1eMESSAGING_CHANNEL_FB_MESSENGER\x10\x02\x12\x19\n\x15MESSAGING_CHANNEL_SMS\x10\x03\x12\x1e\n\x1aMESSAGING_CHANNEL_TELEGRAM\x10\x04\x12\x1e\n\x1aMESSAGING_CHANNEL_WHATSAPP\x10\x05*L\n\x0ePaymentChannel\x12\x1f\n\x1bPAYMENT_CHANNEL_UNSPECIFIED\x10\x00\x12\x19\n\x15PAYMENT_CHANNEL_TELCO\x10\x01*C\n\x0bUssdChannel\x12\x1c\n\x18USSD_CHANNEL_UNSPECIFIED\x10\x00\x12\x16\n\x12USSD_CHANNEL_TELCO\x10\x01*F\n\x0cVoiceChannel\x12\x1d\n\x19VOICE_CHANNEL_UNSPECIFIED\x10\x00\x12\x17\n\x13VOICE_CHANNEL_TELCO\x10\x01*\xb4\x01\n\x16\x43ustomerNumberProvider\x12(\n$CUSTOMER_NUMBER_PROVIDER_UNSPECIFIED\x10\x00\x12%\n!CUSTOMER_NUMBER_PROVIDER_FACEBOOK\x10\x01\x12\"\n\x1e\x43USTOMER_NUMBER_PROVIDER_TELCO\x10\x02\x12%\n!CUSTOMER_NUMBER_PROVIDER_TELEGRAM\x10\x03*\xb0\x01\n\tMediaType\x12\x1a\n\x16MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\x14\n\x10MEDIA_TYPE_IMAGE\x10\x01\x12\x14\n\x10MEDIA_TYPE_AUDIO\x10\x02\x12\x14\n\x10MEDIA_TYPE_VIDEO\x10\x03\x12\x17\n\x13MEDIA_TYPE_DOCUMENT\x10\x04\x12\x14\n\x10MEDIA_TYPE_VOICE\x10\x05\x12\x16\n\x12MEDUA_TYPE_STICKER\x10\x06*\x8d\x01\n\x16MessagingConsentAction\x12(\n$MESSAGING_CONSENT_ACTION_UNSPECIFIED\x10\x00\x12#\n\x1fMESSAGING_CONSENT_ACTION_OPT_IN\x10\x01\x12$\n MESSAGING_CONSENT_ACTION_OPT_OUT\x10\x02*\xf6\x02\n\x16MessagingConsentStatus\x12(\n$MESSAGING_CONSENT_STATUS_UNSPECIFIED\x10\x00\x12\x30\n,MESSAGING_CONSENT_STATUS_OPT_IN_REQUEST_SENT\x10\x65\x12.\n)MESSAGING_CONSENT_STATUS_OPT_IN_COMPLETED\x10\xac\x02\x12/\n*MESSAGING_CONSENT_STATUS_OPT_OUT_COMPLETED\x10\xad\x02\x12\x34\n/MESSAGING_CONSENT_STATUS_INVALID_CHANNEL_NUMBER\x10\x91\x03\x12\x38\n3MESSAGING_CONSENT_STATUS_DECOMMISSIONED_CUSTOMER_ID\x10\x92\x03\x12/\n*MESSAGING_CONSENT_STATUS_APPLICATION_ERROR\x10\xf5\x03*\x91\x01\n\x16MessagingSessionStatus\x12)\n%MESSAGING_SESSION_STATUSN_UNSPECIFIED\x10\x00\x12$\n MESSAGING_SESSION_STATUSN_ACTIVE\x10\x64\x12&\n!MESSAGING_SESSION_STATUSN_EXPIRED\x10\xc8\x01*\x8f\x01\n\x16\x43ustomerEventDirection\x12(\n$CUSTOMER_EVENT_DIRECTION_UNSPECIFIED\x10\x00\x12$\n CUSTOMER_EVENT_DIRECTION_INBOUND\x10\x01\x12%\n!CUSTOMER_EVENT_DIRECTION_OUTBOUND\x10\x02*\x93\x01\n\x15\x43ustomerRequestOrigin\x12\'\n#CUSTOMER_REQUEST_ORIGIN_UNSPECIFIED\x10\x00\x12\'\n#CUSTOMER_REQUEST_ORIGIN_API_REQUEST\x10\x01\x12(\n$CUSTOMER_REQUEST_ORIGIN_CUSTOMER_TAG\x10\x02*\x9f\x07\n\x15MessageDeliveryStatus\x12\'\n#MESSAGE_DELIVERY_STATUS_UNSEPCIFIED\x10\x00\x12 \n\x1cMESSAGE_DELIVERY_STATUS_SENT\x10\x65\x12&\n!MESSAGE_DELIVERY_STATUS_DELIVERED\x10\xac\x02\x12!\n\x1cMESSAGE_DELIVERY_STATUS_READ\x10\xad\x02\x12%\n MESSAGE_DELIVERY_STATUS_RECEIVED\x10\xae\x02\x12#\n\x1eMESSAGE_DELIVERY_STATUS_FAILED\x10\x90\x03\x12\'\n\"MESSAGE_DELIVERY_STATUS_NO_CONSENT\x10\x91\x03\x12*\n%MESSAGE_DELIVERY_STATUS_NO_CAPABILITY\x10\x92\x03\x12$\n\x1fMESSAGE_DELIVERY_STATUS_EXPIRED\x10\x93\x03\x12\x32\n-MESSAGE_DELIVERY_STATUS_ONLY_TEMPLATE_ALLOWED\x10\x94\x03\x12\x33\n.MESSAGE_DELIVERY_STATUS_INVALID_CHANNEL_NUMBER\x10\x95\x03\x12*\n%MESSAGE_DELIVERY_STATUS_NOT_SUPPORTED\x10\x96\x03\x12\x38\n3MESSAGE_DELIVERY_STATUS_INVALID_REPLY_TO_MESSAGE_ID\x10\x97\x03\x12\x30\n+MESSAGE_DELIVERY_STATUS_INVALID_CUSTOMER_ID\x10\x98\x03\x12.\n)MESSAGE_DELIVERY_STATUS_DUPLICATE_REQUEST\x10\x99\x03\x12*\n%MESSAGE_DELIVERY_STATUS_TAG_NOT_FOUND\x10\x9a\x03\x12\x36\n1MESSAGE_DELIVERY_STATUS_CUSTOMER_NUMBER_NOT_FOUND\x10\x9b\x03\x12\x36\n1MESSAGE_DELIVERY_STATUS_DECOMMISSIONED_CUSTOMERID\x10\x9c\x03\x12,\n\'MESSAGE_DELIVERY_STATUS_INVALID_REQUEST\x10\x9d\x03\x12.\n)MESSAGE_DELIVERY_STATUS_APPLICATION_ERROR\x10\xf5\x03*\xc9\x05\n\x14VoiceCallHangupCause\x12\'\n#VOICE_CALL_HANGUP_CAUSE_UNSPECIFIED\x10\x00\x12.\n*VOICE_CALL_HANGUP_CAUSE_UNALLOCATED_NUMBER\x10\x01\x12%\n!VOICE_CALL_HANGUP_CAUSE_USER_BUSY\x10\x11\x12+\n\'VOICE_CALL_HANGUP_CAUSE_NORMAL_CLEARING\x10\x10\x12,\n(VOICE_CALL_HANGUP_CAUSE_NO_USER_RESPONSE\x10\x12\x12%\n!VOICE_CALL_HANGUP_CAUSE_NO_ANSWER\x10\x13\x12-\n)VOICE_CALL_HANGUP_CAUSE_SUBSCRIBER_ABSENT\x10\x14\x12)\n%VOICE_CALL_HANGUP_CAUSE_CALL_REJECTED\x10\x15\x12.\n*VOICE_CALL_HANGUP_CAUSE_NORMAL_UNSPECIFIED\x10\x1f\x12\x34\n0VOICE_CALL_HANGUP_CAUSE_NORMAL_TEMPORARY_FAILURE\x10)\x12/\n+VOICE_CALL_HANGUP_CAUSE_SERVICE_UNAVAILABLE\x10?\x12\x34\n0VOICE_CALL_HANGUP_CAUSE_RECOVERY_ON_TIMER_EXPIRE\x10\x66\x12.\n)VOICE_CALL_HANGUP_CAUSE_ORIGINATOR_CANCEL\x10\xe7\x03\x12&\n!VOICE_CALL_HANGUP_CAUSE_LOSE_RACE\x10\xf6\x03\x12\x30\n+VOICE_CALL_HANGUP_CAUSE_USER_NOT_REGISTERED\x10\xde\x04*\xf6\x05\n\x0fVoiceCallStatus\x12!\n\x1dVOICE_CALL_STATUS_UNSPECIFIED\x10\x00\x12\x1c\n\x18VOICE_CALL_STATUS_QUEUED\x10\x64\x12\x1e\n\x1aVOICE_CALL_STATUS_ANSWERED\x10\x65\x12\x1d\n\x19VOICE_CALL_STATUS_RINGING\x10\x66\x12\x1d\n\x18VOICE_CALL_STATUS_ACTIVE\x10\xc8\x01\x12\x1e\n\x19VOICE_CALL_STATUS_DIALING\x10\xc9\x01\x12%\n VOICE_CALL_STATUS_DIAL_COMPLETED\x10\xca\x01\x12\x1e\n\x19VOICE_CALL_STATUS_BRIDGED\x10\xcb\x01\x12\x1f\n\x1aVOICE_CALL_STATUS_ENQUEUED\x10\xcc\x01\x12\x1f\n\x1aVOICE_CALL_STATUS_DEQUEUED\x10\xcd\x01\x12\"\n\x1dVOICE_CALL_STATUS_TRANSFERRED\x10\xce\x01\x12)\n$VOICE_CALL_STATUS_TRANSFER_COMPLETED\x10\xcf\x01\x12 \n\x1bVOICE_CALL_STATUS_COMPLETED\x10\xac\x02\x12*\n%VOICE_CALL_STATUS_INSUFFICIENT_CREDIT\x10\x90\x03\x12#\n\x1eVOICE_CALL_STATUS_NOT_ANSWERED\x10\x91\x03\x12+\n&VOICE_CALL_STATUS_INVALID_PHONE_NUMBER\x10\x92\x03\x12\x30\n+VOICE_CALL_STATUS_DESTINATION_NOT_SUPPORTED\x10\x93\x03\x12\x30\n+VOICE_CALL_STATUS_DECOMMISSIONED_CUSTOMERID\x10\x94\x03\x12\x1e\n\x19VOICE_CALL_STATUS_EXPIRED\x10\x95\x03\x12(\n#VOICE_CALL_STATUS_APPLICATION_ERROR\x10\xf5\x03*\xe1\x05\n\rPaymentStatus\x12\x1e\n\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x00\x12\x19\n\x15PAYMENT_STATUS_QUEUED\x10\x65\x12\'\n#PAYMENT_STATUS_PENDING_CONFIRMATION\x10\x66\x12%\n!PAYMENT_STATUS_PENDING_VALIDATION\x10g\x12\x1c\n\x18PAYMENT_STATUS_VALIDATED\x10h\x12#\n\x1ePAYMENT_STATUS_INVALID_REQUEST\x10\xc8\x01\x12!\n\x1cPAYMENT_STATUS_NOT_SUPPORTED\x10\xc9\x01\x12&\n!PAYMENT_STATUS_INSUFFICIENT_FUNDS\x10\xca\x01\x12%\n PAYMENT_STATUS_APPLICATION_ERROR\x10\xcb\x01\x12\x1f\n\x1aPAYMENT_STATUS_NOT_ALLOWED\x10\xcc\x01\x12%\n PAYMENT_STATUS_DUPLICATE_REQUEST\x10\xcd\x01\x12!\n\x1cPAYMENT_STATUS_INVALID_PURSE\x10\xce\x01\x12\"\n\x1dPAYMENT_STATUS_INVALID_WALLET\x10\xcf\x01\x12.\n)PAYMENT_STATUS_DECOMMISSIONED_CUSTOMER_ID\x10\xab\x02\x12\x1b\n\x16PAYMENT_STATUS_SUCCESS\x10\xac\x02\x12 \n\x1bPAYMENT_STATUS_PASS_THROUGH\x10\xad\x02\x12\x1a\n\x15PAYMENT_STATUS_FAILED\x10\x90\x03\x12\x1d\n\x18PAYMENT_STATUS_THROTTLED\x10\x91\x03\x12\x1b\n\x16PAYMENT_STATUS_EXPIRED\x10\x92\x03\x12\x1c\n\x17PAYMENT_STATUS_REJECTED\x10\x93\x03\x12\x1c\n\x17PAYMENT_STATUS_REVERSED\x10\xf4\x03*{\n\x12PaymentAccountType\x12$\n PAYMENT_ACCOUNT_TYPE_UNSPECIFIED\x10\x00\x12\x1e\n\x1aPAYMENT_ACCOUNT_TYPE_PURSE\x10\x01\x12\x1f\n\x1bPAYMENT_ACCOUNT_TYPE_WALLET\x10\x02*y\n\x11TextToSpeechVoice\x12$\n TEXT_TO_SPEECH_VOICE_UNSPECIFIED\x10\x00\x12\x1d\n\x19TEXT_TO_SPEECH_VOICE_MALE\x10\x01\x12\x1f\n\x1bTEXT_TO_SPEECH_VOICE_FEMALE\x10\x02\x62\x06proto3'
+  serialized_pb=b'\n\x0c\x63ommon.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"-\n\x04\x43\x61sh\x12\x15\n\rcurrency_code\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\"\x93\x01\n\x0e\x43ustomerNumber\x12@\n\x08provider\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerNumberProvider\x12\x0e\n\x06number\x18\x02 \x01(\t\x12/\n\tpartition\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"c\n\x16MessagingChannelNumber\x12\x39\n\x07\x63hannel\x18\x01 \x01(\x0e\x32(.com.elarian.hera.proto.MessagingChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"Y\n\x11UssdChannelNumber\x12\x34\n\x07\x63hannel\x18\x01 \x01(\x0e\x32#.com.elarian.hera.proto.UssdChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"_\n\x14PaymentChannelNumber\x12\x37\n\x07\x63hannel\x18\x01 \x01(\x0e\x32&.com.elarian.hera.proto.PaymentChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"[\n\x12VoiceChannelNumber\x12\x35\n\x07\x63hannel\x18\x01 \x01(\x0e\x32$.com.elarian.hera.proto.VoiceChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"3\n\x13TextMessageTemplate\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06params\x18\x02 \x03(\t\"|\n\x0fTextMessageBody\x12*\n\x04text\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\x08template\x18\x02 \x01(\x0b\x32+.com.elarian.hera.proto.TextMessageTemplate\"Q\n\x10MediaMessageBody\x12\x0b\n\x03url\x18\x01 \x01(\t\x12\x30\n\x05media\x18\x02 \x01(\x0e\x32!.com.elarian.hera.proto.MediaType\":\n\x13LocationMessageBody\x12\x10\n\x08latitude\x18\x01 \x01(\x01\x12\x11\n\tlongitude\x18\x02 \x01(\x01\"\xd3\x01\n\x13\x43ustomerMessageBody\x12\x37\n\x04text\x18\x01 \x01(\x0b\x32\'.com.elarian.hera.proto.TextMessageBodyH\x00\x12\x39\n\x05media\x18\x02 \x01(\x0b\x32(.com.elarian.hera.proto.MediaMessageBodyH\x00\x12?\n\x08location\x18\x03 \x01(\x0b\x32+.com.elarian.hera.proto.LocationMessageBodyH\x00\x42\x07\n\x05\x65ntry\"-\n\x08UssdMenu\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x13\n\x0bis_terminal\x18\x02 \x01(\x08\"\x96\x01\n\x07UssdHop\x12+\n\x05input\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12.\n\x04menu\x18\x02 \x01(\x0b\x32 .com.elarian.hera.proto.UssdMenu\x12.\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"B\n\x0c\x44\x61taMapValue\x12\x14\n\nstring_val\x18\x02 \x01(\tH\x00\x12\x13\n\tbytes_val\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05value\"\x8c\x01\n\x1aMessagingConsentStateEntry\x12>\n\x06status\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentStatus\x12.\n\nupdated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xaa\x01\n\x1aMessagingSessionStateEntry\x12.\n\nstarted_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nexpiration\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xbc\x02\n\x1aMessagingChannelStateEntry\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12I\n\rconsent_state\x18\x03 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingConsentStateEntry\x12J\n\x0e\x61\x63tive_session\x18\x04 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingSessionStateEntry\"\xa3\x05\n\x11MessageStateEntry\x12\x41\n\tdirection\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nmessage_id\x18\x04 \x01(\t\x12,\n\x06\x61pp_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12*\n\x04text\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\x08template\x18\x07 \x01(\x0b\x32+.com.elarian.hera.proto.TextMessageTemplate\x12\x37\n\x05media\x18\x08 \x03(\x0b\x32(.com.elarian.hera.proto.MediaMessageBody\x12=\n\x08location\x18\t \x01(\x0b\x32+.com.elarian.hera.proto.LocationMessageBody\x12.\n\ncreated_at\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06status\x18\x0c \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\"\xa3\x02\n\x0eMessagingState\x12I\n\rchannel_state\x18\x01 \x03(\x0b\x32\x32.com.elarian.hera.proto.MessagingChannelStateEntry\x12;\n\x08messages\x18\x02 \x03(\x0b\x32).com.elarian.hera.proto.MessageStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12G\n\x0f\x63hannel_numbers\x18\x04 \x03(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\"\xec\x02\n\x15UssdSessionStateEntry\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x41\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12-\n\x04hops\x18\x05 \x03(\x0b\x32\x1f.com.elarian.hera.proto.UssdHop\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xd2\x01\n\tUssdState\x12?\n\x08sessions\x18\x01 \x03(\x0b\x32-.com.elarian.hera.proto.UssdSessionStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x02 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0f\x63hannel_numbers\x18\x03 \x03(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\"\x8d\x01\n\x12VoiceCallDialInput\x12\x1a\n\x12\x64\x65stination_number\x18\x01 \x01(\t\x12.\n\nstarted_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x08\x64uration\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\"\xa1\x02\n\x13VoiceCallQueueInput\x12/\n\x0b\x65nqueued_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12/\n\x0b\x64\x65queued_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x38\n\x12\x64\x65queued_to_number\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12;\n\x15\x64\x65queued_to_sessionId\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0equeue_duration\x18\x05 \x01(\x0b\x32\x19.google.protobuf.Duration\"\xa8\x03\n\x11VoiceCallHopInput\x12\x37\n\x06status\x18\x01 \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\x12.\n\nstarted_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x42\n\x0changup_cause\x18\x03 \x01(\x0e\x32,.com.elarian.hera.proto.VoiceCallHangupCause\x12\x31\n\x0b\x64tmf_digits\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x33\n\rrecording_url\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\tdial_data\x18\x06 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceCallDialInput\x12?\n\nqueue_data\x18\x07 \x01(\x0b\x32+.com.elarian.hera.proto.VoiceCallQueueInput\"\xb2\x01\n\x0cVoiceCallHop\x12\x38\n\x05input\x18\x01 \x01(\x0b\x32).com.elarian.hera.proto.VoiceCallHopInput\x12\x38\n\x07\x61\x63tions\x18\x02 \x03(\x0b\x32\'.com.elarian.hera.proto.VoiceCallAction\x12.\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xc5\x04\n\x13VoiceCallStateEntry\x12\x41\n\tdirection\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x12\n\nsession_id\x18\x04 \x01(\t\x12,\n\x06\x61pp_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x06status\x18\x06 \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\x12\x32\n\x04hops\x18\x07 \x03(\x0b\x32$.com.elarian.hera.proto.VoiceCallHop\x12+\n\x08\x64uration\x18\x08 \x01(\x0b\x32\x19.google.protobuf.Duration\x12*\n\x04\x63ost\x18\t \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12.\n\ncreated_at\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xcf\x01\n\nVoiceState\x12:\n\x05\x63\x61lls\x18\x01 \x03(\x0b\x32+.com.elarian.hera.proto.VoiceCallStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x02 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x43\n\x0f\x63hannel_numbers\x18\x03 \x03(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\"\xa9\x01\n\x19PendingPaymentTransaction\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12/\n\tconverted\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xc4\x02\n\x0ePaymentBalance\x12\x15\n\rcurrency_code\x18\x01 \x01(\t\x12/\n\tavailable\x18\x02 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12,\n\x06\x61\x63tual\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x44\n\x07pending\x18\x04 \x03(\x0b\x32\x33.com.elarian.hera.proto.PaymentBalance.PendingEntry\x12\x13\n\x0bsequence_nr\x18\x05 \x01(\x04\x1a\x61\n\x0cPendingEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12@\n\x05value\x18\x02 \x01(\x0b\x32\x31.com.elarian.hera.proto.PendingPaymentTransaction:\x02\x38\x01\",\n\x18PaymentPurseCounterParty\x12\x10\n\x08purse_id\x18\x01 \x01(\t\"C\n\x19PaymentWalletCounterParty\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12\x11\n\twallet_id\x18\x02 \x01(\t\"\xa4\x01\n\x1bPaymentCustomerCounterParty\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x44\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\"\xef\x01\n\x13PaymentCounterParty\x12G\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\x33.com.elarian.hera.proto.PaymentCustomerCounterPartyH\x00\x12\x41\n\x05purse\x18\x02 \x01(\x0b\x32\x30.com.elarian.hera.proto.PaymentPurseCounterPartyH\x00\x12\x43\n\x06wallet\x18\x03 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentWalletCounterPartyH\x00\x42\x07\n\x05party\"\xa3\x03\n\x12PaymentTransaction\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12,\n\x06\x61pp_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12@\n\x0b\x64\x65\x62it_party\x18\x04 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x05 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12+\n\x05value\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x35\n\x06status\x18\x07 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12.\n\ncreated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xc2\x03\n\x0cPaymentState\x12@\n\x10\x63ustomer_numbers\x18\x01 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x45\n\x0f\x63hannel_numbers\x18\x02 \x03(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\x12\x43\n\x0ftransaction_log\x18\x03 \x03(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\x12H\n\x14pending_transactions\x18\x04 \x03(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\x12\x42\n\x07wallets\x18\x05 \x03(\x0b\x32\x31.com.elarian.hera.proto.PaymentState.WalletsEntry\x1aV\n\x0cWalletsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PaymentBalance:\x02\x38\x01\"H\n\x0cIndexMapping\x12\x0b\n\x03key\x18\x01 \x01(\t\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"v\n\rCustomerIndex\x12\x35\n\x07mapping\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12.\n\nexpiration\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xbb\x01\n\x10\x43ustomerReminder\x12\x0e\n\x06\x61pp_id\x18\x01 \x01(\t\x12\x0b\n\x03key\x18\x02 \x01(\t\x12.\n\nexpiration\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x08interval\x18\x04 \x01(\x0b\x32\x19.google.protobuf.Duration\x12-\n\x07payload\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"j\n\rSayCallAction\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x38\n\x05voice\x18\x02 \x01(\x0e\x32).com.elarian.hera.proto.TextToSpeechVoice\x12\x11\n\tplay_beep\x18\x03 \x01(\x08\"\x1d\n\x0ePlayCallAction\x12\x0b\n\x03url\x18\x01 \x01(\t\"\x9f\x02\n\x13GetDigitsCallAction\x12\x34\n\x03say\x18\x01 \x01(\x0b\x32%.com.elarian.hera.proto.SayCallActionH\x00\x12\x36\n\x04play\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PlayCallActionH\x00\x12*\n\x07timeout\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x33\n\rfinish_on_key\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12/\n\nnum_digits\x18\x05 \x01(\x0b\x32\x1b.google.protobuf.Int32ValueB\x08\n\x06prompt\"\xc9\x02\n\x16GetRecordingCallAction\x12\x34\n\x03say\x18\x01 \x01(\x0b\x32%.com.elarian.hera.proto.SayCallActionH\x00\x12\x36\n\x04play\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PlayCallActionH\x00\x12*\n\x07timeout\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x12-\n\nmax_length\x18\x04 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x33\n\rfinish_on_key\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x11\n\tplay_beep\x18\x06 \x01(\x08\x12\x14\n\x0ctrim_silence\x18\x07 \x01(\x08\x42\x08\n\x06prompt\"\x19\n\x17RecordSessionCallAction\"\x8f\x02\n\x0e\x44ialCallAction\x12@\n\x10\x63ustomer_numbers\x18\x01 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x0e\n\x06record\x18\x02 \x01(\x08\x12\x12\n\nsequential\x18\x03 \x01(\x08\x12\x33\n\rringback_tone\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12/\n\tcaller_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0cmax_duration\x18\x06 \x01(\x0b\x32\x1b.google.protobuf.Int32Value\"w\n\x11\x45nqueueCallAction\x12\x30\n\nhold_music\x18\x01 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\nqueue_name\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\x99\x01\n\x11\x44\x65queueCallAction\x12\x42\n\x0e\x63hannel_number\x18\x01 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x0e\n\x06record\x18\x02 \x01(\x08\x12\x30\n\nqueue_name\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\x12\n\x10RejectCallAction\"!\n\x12RedirectCallAction\x12\x0b\n\x03url\x18\x01 \x01(\t\"\x8f\x05\n\x0fVoiceCallAction\x12\x34\n\x03say\x18\x01 \x01(\x0b\x32%.com.elarian.hera.proto.SayCallActionH\x00\x12\x36\n\x04play\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PlayCallActionH\x00\x12\x41\n\nget_digits\x18\x03 \x01(\x0b\x32+.com.elarian.hera.proto.GetDigitsCallActionH\x00\x12\x36\n\x04\x64ial\x18\x04 \x01(\x0b\x32&.com.elarian.hera.proto.DialCallActionH\x00\x12I\n\x0erecord_session\x18\x05 \x01(\x0b\x32/.com.elarian.hera.proto.RecordSessionCallActionH\x00\x12G\n\rget_recording\x18\x06 \x01(\x0b\x32..com.elarian.hera.proto.GetRecordingCallActionH\x00\x12<\n\x07\x65nqueue\x18\x07 \x01(\x0b\x32).com.elarian.hera.proto.EnqueueCallActionH\x00\x12<\n\x07\x64\x65queue\x18\x08 \x01(\x0b\x32).com.elarian.hera.proto.DequeueCallActionH\x00\x12:\n\x06reject\x18\t \x01(\x0b\x32(.com.elarian.hera.proto.RejectCallActionH\x00\x12>\n\x08redirect\x18\n \x01(\x0b\x32*.com.elarian.hera.proto.RedirectCallActionH\x00\x42\x07\n\x05\x65ntry*\xd6\x01\n\x10MessagingChannel\x12!\n\x1dMESSAGING_CHANNEL_UNSPECIFIED\x10\x00\x12 \n\x1cMESSAGING_CHANNEL_GOOGLE_RCS\x10\x01\x12\"\n\x1eMESSAGING_CHANNEL_FB_MESSENGER\x10\x02\x12\x19\n\x15MESSAGING_CHANNEL_SMS\x10\x03\x12\x1e\n\x1aMESSAGING_CHANNEL_TELEGRAM\x10\x04\x12\x1e\n\x1aMESSAGING_CHANNEL_WHATSAPP\x10\x05*L\n\x0ePaymentChannel\x12\x1f\n\x1bPAYMENT_CHANNEL_UNSPECIFIED\x10\x00\x12\x19\n\x15PAYMENT_CHANNEL_TELCO\x10\x01*C\n\x0bUssdChannel\x12\x1c\n\x18USSD_CHANNEL_UNSPECIFIED\x10\x00\x12\x16\n\x12USSD_CHANNEL_TELCO\x10\x01*F\n\x0cVoiceChannel\x12\x1d\n\x19VOICE_CHANNEL_UNSPECIFIED\x10\x00\x12\x17\n\x13VOICE_CHANNEL_TELCO\x10\x01*\xb4\x01\n\x16\x43ustomerNumberProvider\x12(\n$CUSTOMER_NUMBER_PROVIDER_UNSPECIFIED\x10\x00\x12%\n!CUSTOMER_NUMBER_PROVIDER_FACEBOOK\x10\x01\x12\"\n\x1e\x43USTOMER_NUMBER_PROVIDER_TELCO\x10\x02\x12%\n!CUSTOMER_NUMBER_PROVIDER_TELEGRAM\x10\x03*\xb0\x01\n\tMediaType\x12\x1a\n\x16MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\x14\n\x10MEDIA_TYPE_IMAGE\x10\x01\x12\x14\n\x10MEDIA_TYPE_AUDIO\x10\x02\x12\x14\n\x10MEDIA_TYPE_VIDEO\x10\x03\x12\x17\n\x13MEDIA_TYPE_DOCUMENT\x10\x04\x12\x14\n\x10MEDIA_TYPE_VOICE\x10\x05\x12\x16\n\x12MEDUA_TYPE_STICKER\x10\x06*\x8d\x01\n\x16MessagingConsentAction\x12(\n$MESSAGING_CONSENT_ACTION_UNSPECIFIED\x10\x00\x12#\n\x1fMESSAGING_CONSENT_ACTION_OPT_IN\x10\x01\x12$\n MESSAGING_CONSENT_ACTION_OPT_OUT\x10\x02*\xf6\x02\n\x16MessagingConsentStatus\x12(\n$MESSAGING_CONSENT_STATUS_UNSPECIFIED\x10\x00\x12\x30\n,MESSAGING_CONSENT_STATUS_OPT_IN_REQUEST_SENT\x10\x65\x12.\n)MESSAGING_CONSENT_STATUS_OPT_IN_COMPLETED\x10\xac\x02\x12/\n*MESSAGING_CONSENT_STATUS_OPT_OUT_COMPLETED\x10\xad\x02\x12\x34\n/MESSAGING_CONSENT_STATUS_INVALID_CHANNEL_NUMBER\x10\x91\x03\x12\x38\n3MESSAGING_CONSENT_STATUS_DECOMMISSIONED_CUSTOMER_ID\x10\x92\x03\x12/\n*MESSAGING_CONSENT_STATUS_APPLICATION_ERROR\x10\xf5\x03*\x91\x01\n\x16MessagingSessionStatus\x12)\n%MESSAGING_SESSION_STATUSN_UNSPECIFIED\x10\x00\x12$\n MESSAGING_SESSION_STATUSN_ACTIVE\x10\x64\x12&\n!MESSAGING_SESSION_STATUSN_EXPIRED\x10\xc8\x01*\x8f\x01\n\x16\x43ustomerEventDirection\x12(\n$CUSTOMER_EVENT_DIRECTION_UNSPECIFIED\x10\x00\x12$\n CUSTOMER_EVENT_DIRECTION_INBOUND\x10\x01\x12%\n!CUSTOMER_EVENT_DIRECTION_OUTBOUND\x10\x02*\x93\x01\n\x15\x43ustomerRequestOrigin\x12\'\n#CUSTOMER_REQUEST_ORIGIN_UNSPECIFIED\x10\x00\x12\'\n#CUSTOMER_REQUEST_ORIGIN_API_REQUEST\x10\x01\x12(\n$CUSTOMER_REQUEST_ORIGIN_CUSTOMER_TAG\x10\x02*\x9f\x07\n\x15MessageDeliveryStatus\x12\'\n#MESSAGE_DELIVERY_STATUS_UNSEPCIFIED\x10\x00\x12 \n\x1cMESSAGE_DELIVERY_STATUS_SENT\x10\x65\x12&\n!MESSAGE_DELIVERY_STATUS_DELIVERED\x10\xac\x02\x12!\n\x1cMESSAGE_DELIVERY_STATUS_READ\x10\xad\x02\x12%\n MESSAGE_DELIVERY_STATUS_RECEIVED\x10\xae\x02\x12#\n\x1eMESSAGE_DELIVERY_STATUS_FAILED\x10\x90\x03\x12\'\n\"MESSAGE_DELIVERY_STATUS_NO_CONSENT\x10\x91\x03\x12*\n%MESSAGE_DELIVERY_STATUS_NO_CAPABILITY\x10\x92\x03\x12$\n\x1fMESSAGE_DELIVERY_STATUS_EXPIRED\x10\x93\x03\x12\x32\n-MESSAGE_DELIVERY_STATUS_ONLY_TEMPLATE_ALLOWED\x10\x94\x03\x12\x33\n.MESSAGE_DELIVERY_STATUS_INVALID_CHANNEL_NUMBER\x10\x95\x03\x12*\n%MESSAGE_DELIVERY_STATUS_NOT_SUPPORTED\x10\x96\x03\x12\x38\n3MESSAGE_DELIVERY_STATUS_INVALID_REPLY_TO_MESSAGE_ID\x10\x97\x03\x12\x30\n+MESSAGE_DELIVERY_STATUS_INVALID_CUSTOMER_ID\x10\x98\x03\x12.\n)MESSAGE_DELIVERY_STATUS_DUPLICATE_REQUEST\x10\x99\x03\x12*\n%MESSAGE_DELIVERY_STATUS_TAG_NOT_FOUND\x10\x9a\x03\x12\x36\n1MESSAGE_DELIVERY_STATUS_CUSTOMER_NUMBER_NOT_FOUND\x10\x9b\x03\x12\x36\n1MESSAGE_DELIVERY_STATUS_DECOMMISSIONED_CUSTOMERID\x10\x9c\x03\x12,\n\'MESSAGE_DELIVERY_STATUS_INVALID_REQUEST\x10\x9d\x03\x12.\n)MESSAGE_DELIVERY_STATUS_APPLICATION_ERROR\x10\xf5\x03*\xc9\x05\n\x14VoiceCallHangupCause\x12\'\n#VOICE_CALL_HANGUP_CAUSE_UNSPECIFIED\x10\x00\x12.\n*VOICE_CALL_HANGUP_CAUSE_UNALLOCATED_NUMBER\x10\x01\x12%\n!VOICE_CALL_HANGUP_CAUSE_USER_BUSY\x10\x11\x12+\n\'VOICE_CALL_HANGUP_CAUSE_NORMAL_CLEARING\x10\x10\x12,\n(VOICE_CALL_HANGUP_CAUSE_NO_USER_RESPONSE\x10\x12\x12%\n!VOICE_CALL_HANGUP_CAUSE_NO_ANSWER\x10\x13\x12-\n)VOICE_CALL_HANGUP_CAUSE_SUBSCRIBER_ABSENT\x10\x14\x12)\n%VOICE_CALL_HANGUP_CAUSE_CALL_REJECTED\x10\x15\x12.\n*VOICE_CALL_HANGUP_CAUSE_NORMAL_UNSPECIFIED\x10\x1f\x12\x34\n0VOICE_CALL_HANGUP_CAUSE_NORMAL_TEMPORARY_FAILURE\x10)\x12/\n+VOICE_CALL_HANGUP_CAUSE_SERVICE_UNAVAILABLE\x10?\x12\x34\n0VOICE_CALL_HANGUP_CAUSE_RECOVERY_ON_TIMER_EXPIRE\x10\x66\x12.\n)VOICE_CALL_HANGUP_CAUSE_ORIGINATOR_CANCEL\x10\xe7\x03\x12&\n!VOICE_CALL_HANGUP_CAUSE_LOSE_RACE\x10\xf6\x03\x12\x30\n+VOICE_CALL_HANGUP_CAUSE_USER_NOT_REGISTERED\x10\xde\x04*\xf6\x05\n\x0fVoiceCallStatus\x12!\n\x1dVOICE_CALL_STATUS_UNSPECIFIED\x10\x00\x12\x1c\n\x18VOICE_CALL_STATUS_QUEUED\x10\x64\x12\x1e\n\x1aVOICE_CALL_STATUS_ANSWERED\x10\x65\x12\x1d\n\x19VOICE_CALL_STATUS_RINGING\x10\x66\x12\x1d\n\x18VOICE_CALL_STATUS_ACTIVE\x10\xc8\x01\x12\x1e\n\x19VOICE_CALL_STATUS_DIALING\x10\xc9\x01\x12%\n VOICE_CALL_STATUS_DIAL_COMPLETED\x10\xca\x01\x12\x1e\n\x19VOICE_CALL_STATUS_BRIDGED\x10\xcb\x01\x12\x1f\n\x1aVOICE_CALL_STATUS_ENQUEUED\x10\xcc\x01\x12\x1f\n\x1aVOICE_CALL_STATUS_DEQUEUED\x10\xcd\x01\x12\"\n\x1dVOICE_CALL_STATUS_TRANSFERRED\x10\xce\x01\x12)\n$VOICE_CALL_STATUS_TRANSFER_COMPLETED\x10\xcf\x01\x12 \n\x1bVOICE_CALL_STATUS_COMPLETED\x10\xac\x02\x12*\n%VOICE_CALL_STATUS_INSUFFICIENT_CREDIT\x10\x90\x03\x12#\n\x1eVOICE_CALL_STATUS_NOT_ANSWERED\x10\x91\x03\x12+\n&VOICE_CALL_STATUS_INVALID_PHONE_NUMBER\x10\x92\x03\x12\x30\n+VOICE_CALL_STATUS_DESTINATION_NOT_SUPPORTED\x10\x93\x03\x12\x30\n+VOICE_CALL_STATUS_DECOMMISSIONED_CUSTOMERID\x10\x94\x03\x12\x1e\n\x19VOICE_CALL_STATUS_EXPIRED\x10\x95\x03\x12(\n#VOICE_CALL_STATUS_APPLICATION_ERROR\x10\xf5\x03*\xe1\x05\n\rPaymentStatus\x12\x1e\n\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x00\x12\x19\n\x15PAYMENT_STATUS_QUEUED\x10\x65\x12\'\n#PAYMENT_STATUS_PENDING_CONFIRMATION\x10\x66\x12%\n!PAYMENT_STATUS_PENDING_VALIDATION\x10g\x12\x1c\n\x18PAYMENT_STATUS_VALIDATED\x10h\x12#\n\x1ePAYMENT_STATUS_INVALID_REQUEST\x10\xc8\x01\x12!\n\x1cPAYMENT_STATUS_NOT_SUPPORTED\x10\xc9\x01\x12&\n!PAYMENT_STATUS_INSUFFICIENT_FUNDS\x10\xca\x01\x12%\n PAYMENT_STATUS_APPLICATION_ERROR\x10\xcb\x01\x12\x1f\n\x1aPAYMENT_STATUS_NOT_ALLOWED\x10\xcc\x01\x12%\n PAYMENT_STATUS_DUPLICATE_REQUEST\x10\xcd\x01\x12!\n\x1cPAYMENT_STATUS_INVALID_PURSE\x10\xce\x01\x12\"\n\x1dPAYMENT_STATUS_INVALID_WALLET\x10\xcf\x01\x12.\n)PAYMENT_STATUS_DECOMMISSIONED_CUSTOMER_ID\x10\xab\x02\x12\x1b\n\x16PAYMENT_STATUS_SUCCESS\x10\xac\x02\x12 \n\x1bPAYMENT_STATUS_PASS_THROUGH\x10\xad\x02\x12\x1a\n\x15PAYMENT_STATUS_FAILED\x10\x90\x03\x12\x1d\n\x18PAYMENT_STATUS_THROTTLED\x10\x91\x03\x12\x1b\n\x16PAYMENT_STATUS_EXPIRED\x10\x92\x03\x12\x1c\n\x17PAYMENT_STATUS_REJECTED\x10\x93\x03\x12\x1c\n\x17PAYMENT_STATUS_REVERSED\x10\xf4\x03*{\n\x12PaymentAccountType\x12$\n PAYMENT_ACCOUNT_TYPE_UNSPECIFIED\x10\x00\x12\x1e\n\x1aPAYMENT_ACCOUNT_TYPE_PURSE\x10\x01\x12\x1f\n\x1bPAYMENT_ACCOUNT_TYPE_WALLET\x10\x02*y\n\x11TextToSpeechVoice\x12$\n TEXT_TO_SPEECH_VOICE_UNSPECIFIED\x10\x00\x12\x1d\n\x19TEXT_TO_SPEECH_VOICE_MALE\x10\x01\x12\x1f\n\x1bTEXT_TO_SPEECH_VOICE_FEMALE\x10\x02\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -67,8 +67,8 @@ _MESSAGINGCHANNEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=9833,
-  serialized_end=10047,
+  serialized_start=9880,
+  serialized_end=10094,
 )
 _sym_db.RegisterEnumDescriptor(_MESSAGINGCHANNEL)
 
@@ -93,8 +93,8 @@ _PAYMENTCHANNEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=10049,
-  serialized_end=10125,
+  serialized_start=10096,
+  serialized_end=10172,
 )
 _sym_db.RegisterEnumDescriptor(_PAYMENTCHANNEL)
 
@@ -119,8 +119,8 @@ _USSDCHANNEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=10127,
-  serialized_end=10194,
+  serialized_start=10174,
+  serialized_end=10241,
 )
 _sym_db.RegisterEnumDescriptor(_USSDCHANNEL)
 
@@ -145,8 +145,8 @@ _VOICECHANNEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=10196,
-  serialized_end=10266,
+  serialized_start=10243,
+  serialized_end=10313,
 )
 _sym_db.RegisterEnumDescriptor(_VOICECHANNEL)
 
@@ -181,8 +181,8 @@ _CUSTOMERNUMBERPROVIDER = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=10269,
-  serialized_end=10449,
+  serialized_start=10316,
+  serialized_end=10496,
 )
 _sym_db.RegisterEnumDescriptor(_CUSTOMERNUMBERPROVIDER)
 
@@ -232,8 +232,8 @@ _MEDIATYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=10452,
-  serialized_end=10628,
+  serialized_start=10499,
+  serialized_end=10675,
 )
 _sym_db.RegisterEnumDescriptor(_MEDIATYPE)
 
@@ -263,8 +263,8 @@ _MESSAGINGCONSENTACTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=10631,
-  serialized_end=10772,
+  serialized_start=10678,
+  serialized_end=10819,
 )
 _sym_db.RegisterEnumDescriptor(_MESSAGINGCONSENTACTION)
 
@@ -314,8 +314,8 @@ _MESSAGINGCONSENTSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=10775,
-  serialized_end=11149,
+  serialized_start=10822,
+  serialized_end=11196,
 )
 _sym_db.RegisterEnumDescriptor(_MESSAGINGCONSENTSTATUS)
 
@@ -345,8 +345,8 @@ _MESSAGINGSESSIONSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=11152,
-  serialized_end=11297,
+  serialized_start=11199,
+  serialized_end=11344,
 )
 _sym_db.RegisterEnumDescriptor(_MESSAGINGSESSIONSTATUS)
 
@@ -376,8 +376,8 @@ _CUSTOMEREVENTDIRECTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=11300,
-  serialized_end=11443,
+  serialized_start=11347,
+  serialized_end=11490,
 )
 _sym_db.RegisterEnumDescriptor(_CUSTOMEREVENTDIRECTION)
 
@@ -407,8 +407,8 @@ _CUSTOMERREQUESTORIGIN = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=11446,
-  serialized_end=11593,
+  serialized_start=11493,
+  serialized_end=11640,
 )
 _sym_db.RegisterEnumDescriptor(_CUSTOMERREQUESTORIGIN)
 
@@ -523,8 +523,8 @@ _MESSAGEDELIVERYSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=11596,
-  serialized_end=12523,
+  serialized_start=11643,
+  serialized_end=12570,
 )
 _sym_db.RegisterEnumDescriptor(_MESSAGEDELIVERYSTATUS)
 
@@ -614,8 +614,8 @@ _VOICECALLHANGUPCAUSE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=12526,
-  serialized_end=13239,
+  serialized_start=12573,
+  serialized_end=13286,
 )
 _sym_db.RegisterEnumDescriptor(_VOICECALLHANGUPCAUSE)
 
@@ -730,8 +730,8 @@ _VOICECALLSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=13242,
-  serialized_end=14000,
+  serialized_start=13289,
+  serialized_end=14047,
 )
 _sym_db.RegisterEnumDescriptor(_VOICECALLSTATUS)
 
@@ -851,8 +851,8 @@ _PAYMENTSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=14003,
-  serialized_end=14740,
+  serialized_start=14050,
+  serialized_end=14787,
 )
 _sym_db.RegisterEnumDescriptor(_PAYMENTSTATUS)
 
@@ -882,8 +882,8 @@ _PAYMENTACCOUNTTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=14742,
-  serialized_end=14865,
+  serialized_start=14789,
+  serialized_end=14912,
 )
 _sym_db.RegisterEnumDescriptor(_PAYMENTACCOUNTTYPE)
 
@@ -913,8 +913,8 @@ _TEXTTOSPEECHVOICE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=14867,
-  serialized_end=14988,
+  serialized_start=14914,
+  serialized_end=15035,
 )
 _sym_db.RegisterEnumDescriptor(_TEXTTOSPEECHVOICE)
 
@@ -1684,6 +1684,13 @@ _MESSAGINGSESSIONSTATEENTRY = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='app_id', full_name='com.elarian.hera.proto.MessagingSessionStateEntry.app_id', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -1696,8 +1703,8 @@ _MESSAGINGSESSIONSTATEENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1663,
-  serialized_end=1787,
+  serialized_start=1664,
+  serialized_end=1834,
 )
 
 
@@ -1749,8 +1756,8 @@ _MESSAGINGCHANNELSTATEENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1790,
-  serialized_end=2106,
+  serialized_start=1837,
+  serialized_end=2153,
 )
 
 
@@ -1858,8 +1865,8 @@ _MESSAGESTATEENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2109,
-  serialized_end=2784,
+  serialized_start=2156,
+  serialized_end=2831,
 )
 
 
@@ -1911,8 +1918,8 @@ _MESSAGINGSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2787,
-  serialized_end=3078,
+  serialized_start=2834,
+  serialized_end=3125,
 )
 
 
@@ -1985,8 +1992,8 @@ _USSDSESSIONSTATEENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3081,
-  serialized_end=3445,
+  serialized_start=3128,
+  serialized_end=3492,
 )
 
 
@@ -2031,8 +2038,8 @@ _USSDSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3448,
-  serialized_end=3658,
+  serialized_start=3495,
+  serialized_end=3705,
 )
 
 
@@ -2077,8 +2084,8 @@ _VOICECALLDIALINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3661,
-  serialized_end=3802,
+  serialized_start=3708,
+  serialized_end=3849,
 )
 
 
@@ -2137,8 +2144,8 @@ _VOICECALLQUEUEINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3805,
-  serialized_end=4094,
+  serialized_start=3852,
+  serialized_end=4141,
 )
 
 
@@ -2211,8 +2218,8 @@ _VOICECALLHOPINPUT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4097,
-  serialized_end=4521,
+  serialized_start=4144,
+  serialized_end=4568,
 )
 
 
@@ -2257,8 +2264,8 @@ _VOICECALLHOP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4524,
-  serialized_end=4702,
+  serialized_start=4571,
+  serialized_end=4749,
 )
 
 
@@ -2359,8 +2366,8 @@ _VOICECALLSTATEENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4705,
-  serialized_end=5286,
+  serialized_start=4752,
+  serialized_end=5333,
 )
 
 
@@ -2405,8 +2412,8 @@ _VOICESTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5289,
-  serialized_end=5496,
+  serialized_start=5336,
+  serialized_end=5543,
 )
 
 
@@ -2451,8 +2458,8 @@ _PENDINGPAYMENTTRANSACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5499,
-  serialized_end=5668,
+  serialized_start=5546,
+  serialized_end=5715,
 )
 
 
@@ -2490,8 +2497,8 @@ _PAYMENTBALANCE_PENDINGENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5898,
-  serialized_end=5995,
+  serialized_start=5945,
+  serialized_end=6042,
 )
 
 _PAYMENTBALANCE = _descriptor.Descriptor(
@@ -2549,8 +2556,8 @@ _PAYMENTBALANCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5671,
-  serialized_end=5995,
+  serialized_start=5718,
+  serialized_end=6042,
 )
 
 
@@ -2581,8 +2588,8 @@ _PAYMENTPURSECOUNTERPARTY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5997,
-  serialized_end=6041,
+  serialized_start=6044,
+  serialized_end=6088,
 )
 
 
@@ -2620,8 +2627,8 @@ _PAYMENTWALLETCOUNTERPARTY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6043,
-  serialized_end=6110,
+  serialized_start=6090,
+  serialized_end=6157,
 )
 
 
@@ -2659,8 +2666,8 @@ _PAYMENTCUSTOMERCOUNTERPARTY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6113,
-  serialized_end=6277,
+  serialized_start=6160,
+  serialized_end=6324,
 )
 
 
@@ -2710,8 +2717,8 @@ _PAYMENTCOUNTERPARTY = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=6280,
-  serialized_end=6519,
+  serialized_start=6327,
+  serialized_end=6566,
 )
 
 
@@ -2791,8 +2798,8 @@ _PAYMENTTRANSACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6522,
-  serialized_end=6941,
+  serialized_start=6569,
+  serialized_end=6988,
 )
 
 
@@ -2830,8 +2837,8 @@ _PAYMENTSTATE_WALLETSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7308,
-  serialized_end=7394,
+  serialized_start=7355,
+  serialized_end=7441,
 )
 
 _PAYMENTSTATE = _descriptor.Descriptor(
@@ -2889,8 +2896,8 @@ _PAYMENTSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6944,
-  serialized_end=7394,
+  serialized_start=6991,
+  serialized_end=7441,
 )
 
 
@@ -2928,8 +2935,8 @@ _INDEXMAPPING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7396,
-  serialized_end=7468,
+  serialized_start=7443,
+  serialized_end=7515,
 )
 
 
@@ -2967,8 +2974,8 @@ _CUSTOMERINDEX = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7470,
-  serialized_end=7588,
+  serialized_start=7517,
+  serialized_end=7635,
 )
 
 
@@ -3027,8 +3034,8 @@ _CUSTOMERREMINDER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7591,
-  serialized_end=7778,
+  serialized_start=7638,
+  serialized_end=7825,
 )
 
 
@@ -3073,8 +3080,8 @@ _SAYCALLACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7780,
-  serialized_end=7886,
+  serialized_start=7827,
+  serialized_end=7933,
 )
 
 
@@ -3105,8 +3112,8 @@ _PLAYCALLACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7888,
-  serialized_end=7917,
+  serialized_start=7935,
+  serialized_end=7964,
 )
 
 
@@ -3170,8 +3177,8 @@ _GETDIGITSCALLACTION = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=7920,
-  serialized_end=8207,
+  serialized_start=7967,
+  serialized_end=8254,
 )
 
 
@@ -3249,8 +3256,8 @@ _GETRECORDINGCALLACTION = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=8210,
-  serialized_end=8539,
+  serialized_start=8257,
+  serialized_end=8586,
 )
 
 
@@ -3274,8 +3281,8 @@ _RECORDSESSIONCALLACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8541,
-  serialized_end=8566,
+  serialized_start=8588,
+  serialized_end=8613,
 )
 
 
@@ -3341,8 +3348,8 @@ _DIALCALLACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8569,
-  serialized_end=8840,
+  serialized_start=8616,
+  serialized_end=8887,
 )
 
 
@@ -3380,8 +3387,8 @@ _ENQUEUECALLACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8842,
-  serialized_end=8961,
+  serialized_start=8889,
+  serialized_end=9008,
 )
 
 
@@ -3426,8 +3433,8 @@ _DEQUEUECALLACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8964,
-  serialized_end=9117,
+  serialized_start=9011,
+  serialized_end=9164,
 )
 
 
@@ -3451,8 +3458,8 @@ _REJECTCALLACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9119,
-  serialized_end=9137,
+  serialized_start=9166,
+  serialized_end=9184,
 )
 
 
@@ -3483,8 +3490,8 @@ _REDIRECTCALLACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9139,
-  serialized_end=9172,
+  serialized_start=9186,
+  serialized_end=9219,
 )
 
 
@@ -3583,8 +3590,8 @@ _VOICECALLACTION = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=9175,
-  serialized_end=9830,
+  serialized_start=9222,
+  serialized_end=9877,
 )
 
 _CUSTOMERNUMBER.fields_by_name['provider'].enum_type = _CUSTOMERNUMBERPROVIDER
@@ -3621,6 +3628,7 @@ _MESSAGINGCONSENTSTATEENTRY.fields_by_name['status'].enum_type = _MESSAGINGCONSE
 _MESSAGINGCONSENTSTATEENTRY.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _MESSAGINGSESSIONSTATEENTRY.fields_by_name['started_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _MESSAGINGSESSIONSTATEENTRY.fields_by_name['expiration'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_MESSAGINGSESSIONSTATEENTRY.fields_by_name['app_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _MESSAGINGCHANNELSTATEENTRY.fields_by_name['customer_number'].message_type = _CUSTOMERNUMBER
 _MESSAGINGCHANNELSTATEENTRY.fields_by_name['channel_number'].message_type = _MESSAGINGCHANNELNUMBER
 _MESSAGINGCHANNELSTATEENTRY.fields_by_name['consent_state'].message_type = _MESSAGINGCONSENTSTATEENTRY
