@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0bvoice.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\xc5\x04\n\x13VoiceCallStateEntry\x12\x41\n\tdirection\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x12\n\nsession_id\x18\x04 \x01(\t\x12,\n\x06\x61pp_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x06status\x18\x06 \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\x12\x32\n\x04hops\x18\x07 \x03(\x0b\x32$.com.elarian.hera.proto.VoiceCallHop\x12+\n\x08\x64uration\x18\x08 \x01(\x0b\x32\x19.google.protobuf.Duration\x12*\n\x04\x63ost\x18\t \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12.\n\ncreated_at\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xcf\x01\n\nVoiceState\x12:\n\x05\x63\x61lls\x18\x01 \x03(\x0b\x32+.com.elarian.hera.proto.VoiceCallStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x02 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x43\n\x0f\x63hannel_numbers\x18\x03 \x03(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\"\xb0\x03\n\nVoiceEvent\x12G\n\rstate_adopted\x18\x01 \x01(\x0b\x32..com.elarian.hera.proto.VoiceStateAdoptedEventH\x00\x12W\n\x15\x65ntity_decommissioned\x18\x02 \x01(\x0b\x32\x36.com.elarian.hera.proto.VoiceEntityDecommissionedEventH\x00\x12\x45\n\x0fvoice_call_made\x18\x03 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceCallMadeEventH\x00\x12X\n\x19voice_call_status_updated\x18\x04 \x01(\x0b\x32\x33.com.elarian.hera.proto.VoiceCallStatusUpdatedEventH\x00\x12V\n\x18voice_call_hop_completed\x18\x05 \x01(\x0b\x32\x32.com.elarian.hera.proto.VoiceCallHopCompletedEventH\x00\x42\x07\n\x05\x65vent\"\xff\x01\n\x16VoiceStateAdoptedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x0b\x61pp_headers\x18\x04 \x01(\x0b\x32\".com.elarian.hera.proto.AppHeaders\x12\x19\n\x11other_customer_id\x18\x05 \x01(\t\x12=\n\x11other_voice_state\x18\x06 \x01(\x0b\x32\".com.elarian.hera.proto.VoiceState\"\xc6\x01\n\x1eVoiceEntityDecommissionedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x0b\x61pp_headers\x18\x04 \x01(\x0b\x32\".com.elarian.hera.proto.AppHeaders\x12\x17\n\x0fnew_customer_id\x18\x05 \x01(\t\"\x83\x03\n\x12VoiceCallMadeEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x0b\x61pp_headers\x18\x04 \x01(\x0b\x32\".com.elarian.hera.proto.AppHeaders\x12\x0e\n\x06\x61pp_id\x18\x05 \x01(\t\x12\x12\n\nsession_id\x18\x06 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x07 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0e\x63hannel_number\x18\x08 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x37\n\x06status\x18\t \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\"\xbe\x01\n\x1bVoiceCallStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nsession_id\x18\x04 \x01(\t\x12\x37\n\x06status\x18\x05 \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\"\x86\x04\n\x1aVoiceCallHopCompletedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nsession_id\x18\x05 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0e\x63hannel_number\x18\x07 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x41\n\tdirection\x18\x08 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12\x31\n\x03hop\x18\t \x01(\x0b\x32$.com.elarian.hera.proto.VoiceCallHop\x12+\n\x08\x64uration\x18\n \x01(\x0b\x32\x19.google.protobuf.Duration\x12*\n\x04\x63ost\x18\x0b \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cashb\x06proto3'
+  serialized_pb=b'\n\x0bvoice.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\xc5\x04\n\x13VoiceCallStateEntry\x12\x41\n\tdirection\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x12\n\nsession_id\x18\x04 \x01(\t\x12,\n\x06\x61pp_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x06status\x18\x06 \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\x12\x32\n\x04hops\x18\x07 \x03(\x0b\x32$.com.elarian.hera.proto.VoiceCallHop\x12+\n\x08\x64uration\x18\x08 \x01(\x0b\x32\x19.google.protobuf.Duration\x12*\n\x04\x63ost\x18\t \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12.\n\ncreated_at\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xcf\x01\n\nVoiceState\x12:\n\x05\x63\x61lls\x18\x01 \x03(\x0b\x32+.com.elarian.hera.proto.VoiceCallStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x02 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x43\n\x0f\x63hannel_numbers\x18\x03 \x03(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\"\xb0\x03\n\nVoiceEvent\x12G\n\rstate_adopted\x18\x01 \x01(\x0b\x32..com.elarian.hera.proto.VoiceStateAdoptedEventH\x00\x12W\n\x15\x65ntity_decommissioned\x18\x02 \x01(\x0b\x32\x36.com.elarian.hera.proto.VoiceEntityDecommissionedEventH\x00\x12\x45\n\x0fvoice_call_made\x18\x03 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceCallMadeEventH\x00\x12X\n\x19voice_call_status_updated\x18\x04 \x01(\x0b\x32\x33.com.elarian.hera.proto.VoiceCallStatusUpdatedEventH\x00\x12V\n\x18voice_call_hop_completed\x18\x05 \x01(\x0b\x32\x32.com.elarian.hera.proto.VoiceCallHopCompletedEventH\x00\x42\x07\n\x05\x65vent\"\x83\x02\n\x16VoiceStateAdoptedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x1b\n\x13\x61\x64opted_customer_id\x18\x05 \x01(\t\x12\x39\n\radopted_state\x18\x06 \x01(\x0b\x32\".com.elarian.hera.proto.VoiceState\"\xcc\x01\n\x1eVoiceEntityDecommissionedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x17\n\x0fnew_customer_id\x18\x05 \x01(\t\"\x89\x03\n\x12VoiceCallMadeEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x0e\n\x06\x61pp_id\x18\x05 \x01(\t\x12\x12\n\nsession_id\x18\x06 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x07 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0e\x63hannel_number\x18\x08 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x37\n\x06status\x18\t \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\"\xbe\x01\n\x1bVoiceCallStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nsession_id\x18\x04 \x01(\t\x12\x37\n\x06status\x18\x05 \x01(\x0e\x32\'.com.elarian.hera.proto.VoiceCallStatus\"\x86\x04\n\x1aVoiceCallHopCompletedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nsession_id\x18\x05 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0e\x63hannel_number\x18\x07 \x01(\x0b\x32*.com.elarian.hera.proto.VoiceChannelNumber\x12\x41\n\tdirection\x18\x08 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12\x31\n\x03hop\x18\t \x01(\x0b\x32$.com.elarian.hera.proto.VoiceCallHop\x12+\n\x08\x64uration\x18\n \x01(\x0b\x32\x19.google.protobuf.Duration\x12*\n\x04\x63ost\x18\x0b \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cashb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,common__pb2.DESCRIPTOR,])
 
@@ -273,21 +273,21 @@ _VOICESTATEADOPTEDEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_headers', full_name='com.elarian.hera.proto.VoiceStateAdoptedEvent.app_headers', index=3,
+      name='cxn_props', full_name='com.elarian.hera.proto.VoiceStateAdoptedEvent.cxn_props', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='other_customer_id', full_name='com.elarian.hera.proto.VoiceStateAdoptedEvent.other_customer_id', index=4,
+      name='adopted_customer_id', full_name='com.elarian.hera.proto.VoiceStateAdoptedEvent.adopted_customer_id', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='other_voice_state', full_name='com.elarian.hera.proto.VoiceStateAdoptedEvent.other_voice_state', index=5,
+      name='adopted_state', full_name='com.elarian.hera.proto.VoiceStateAdoptedEvent.adopted_state', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -306,7 +306,7 @@ _VOICESTATEADOPTEDEVENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1380,
-  serialized_end=1635,
+  serialized_end=1639,
 )
 
 
@@ -340,7 +340,7 @@ _VOICEENTITYDECOMMISSIONEDEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_headers', full_name='com.elarian.hera.proto.VoiceEntityDecommissionedEvent.app_headers', index=3,
+      name='cxn_props', full_name='com.elarian.hera.proto.VoiceEntityDecommissionedEvent.cxn_props', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -365,8 +365,8 @@ _VOICEENTITYDECOMMISSIONEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1638,
-  serialized_end=1836,
+  serialized_start=1642,
+  serialized_end=1846,
 )
 
 
@@ -400,7 +400,7 @@ _VOICECALLMADEEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_headers', full_name='com.elarian.hera.proto.VoiceCallMadeEvent.app_headers', index=3,
+      name='cxn_props', full_name='com.elarian.hera.proto.VoiceCallMadeEvent.cxn_props', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -453,8 +453,8 @@ _VOICECALLMADEEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1839,
-  serialized_end=2226,
+  serialized_start=1849,
+  serialized_end=2242,
 )
 
 
@@ -513,8 +513,8 @@ _VOICECALLSTATUSUPDATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2229,
-  serialized_end=2419,
+  serialized_start=2245,
+  serialized_end=2435,
 )
 
 
@@ -615,8 +615,8 @@ _VOICECALLHOPCOMPLETEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2422,
-  serialized_end=2940,
+  serialized_start=2438,
+  serialized_end=2956,
 )
 
 _VOICECALLSTATEENTRY.fields_by_name['direction'].enum_type = common__pb2._CUSTOMEREVENTDIRECTION
@@ -653,12 +653,12 @@ _VOICEEVENT.oneofs_by_name['event'].fields.append(
   _VOICEEVENT.fields_by_name['voice_call_hop_completed'])
 _VOICEEVENT.fields_by_name['voice_call_hop_completed'].containing_oneof = _VOICEEVENT.oneofs_by_name['event']
 _VOICESTATEADOPTEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_VOICESTATEADOPTEDEVENT.fields_by_name['app_headers'].message_type = common__pb2._APPHEADERS
-_VOICESTATEADOPTEDEVENT.fields_by_name['other_voice_state'].message_type = _VOICESTATE
+_VOICESTATEADOPTEDEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
+_VOICESTATEADOPTEDEVENT.fields_by_name['adopted_state'].message_type = _VOICESTATE
 _VOICEENTITYDECOMMISSIONEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_VOICEENTITYDECOMMISSIONEDEVENT.fields_by_name['app_headers'].message_type = common__pb2._APPHEADERS
+_VOICEENTITYDECOMMISSIONEDEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
 _VOICECALLMADEEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_VOICECALLMADEEVENT.fields_by_name['app_headers'].message_type = common__pb2._APPHEADERS
+_VOICECALLMADEEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
 _VOICECALLMADEEVENT.fields_by_name['customer_number'].message_type = common__pb2._CUSTOMERNUMBER
 _VOICECALLMADEEVENT.fields_by_name['channel_number'].message_type = common__pb2._VOICECHANNELNUMBER
 _VOICECALLMADEEVENT.fields_by_name['status'].enum_type = common__pb2._VOICECALLSTATUS

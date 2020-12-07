@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rpayment.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\xa3\x03\n\x12PaymentTransaction\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12,\n\x06\x61pp_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12@\n\x0b\x64\x65\x62it_party\x18\x04 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x05 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12+\n\x05value\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x35\n\x06status\x18\x07 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12.\n\ncreated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xc2\x03\n\x0cPaymentState\x12@\n\x10\x63ustomer_numbers\x18\x01 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x45\n\x0f\x63hannel_numbers\x18\x02 \x03(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\x12\x43\n\x0ftransaction_log\x18\x03 \x03(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\x12H\n\x14pending_transactions\x18\x04 \x03(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\x12\x42\n\x07wallets\x18\x05 \x03(\x0b\x32\x31.com.elarian.hera.proto.PaymentState.WalletsEntry\x1aV\n\x0cWalletsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PaymentBalance:\x02\x38\x01\"\xb3\x03\n\x0cPaymentEvent\x12I\n\rstate_adopted\x18\x01 \x01(\x0b\x32\x30.com.elarian.hera.proto.PaymentStateAdoptedEventH\x00\x12Y\n\x15\x65ntity_decommissioned\x18\x02 \x01(\x0b\x32\x38.com.elarian.hera.proto.PaymentEntityDecommissionedEventH\x00\x12J\n\x11payment_initiated\x18\x03 \x01(\x0b\x32-.com.elarian.hera.proto.PaymentInitiatedEventH\x00\x12S\n\x16payment_status_updated\x18\x04 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentStatusUpdatedEventH\x00\x12S\n\x16payment_wallet_updated\x18\x05 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentWalletUpdatedEventH\x00\x42\x07\n\x05\x65vent\"\x85\x02\n\x18PaymentStateAdoptedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x0b\x61pp_headers\x18\x04 \x01(\x0b\x32\".com.elarian.hera.proto.AppHeaders\x12\x19\n\x11other_customer_id\x18\x05 \x01(\t\x12\x41\n\x13other_payment_state\x18\x06 \x01(\x0b\x32$.com.elarian.hera.proto.PaymentState\"\xc8\x01\n PaymentEntityDecommissionedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x0b\x61pp_headers\x18\x04 \x01(\x0b\x32\".com.elarian.hera.proto.AppHeaders\x12\x17\n\x0fnew_customer_id\x18\x05 \x01(\t\"\xe5\x01\n\x15PaymentInitiatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x0b\x61pp_headers\x18\x04 \x01(\x0b\x32\".com.elarian.hera.proto.AppHeaders\x12?\n\x0btransaction\x18\x05 \x01(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\"\xbe\x01\n\x19PaymentStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x16\n\x0etransaction_id\x18\x04 \x01(\t\x12\x35\n\x06status\x18\x05 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"\xe6\x01\n\x19PaymentWalletUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x11\n\twallet_id\x18\x04 \x01(\t\x12\x16\n\x0etransaction_id\x18\x05 \x01(\t\x12\x37\n\x07\x62\x61lance\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.PaymentBalance\x12\x11\n\tnarration\x18\x07 \x01(\tb\x06proto3'
+  serialized_pb=b'\n\rpayment.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\xa3\x03\n\x12PaymentTransaction\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12,\n\x06\x61pp_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12@\n\x0b\x64\x65\x62it_party\x18\x04 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x05 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12+\n\x05value\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x35\n\x06status\x18\x07 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12.\n\ncreated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xc2\x03\n\x0cPaymentState\x12@\n\x10\x63ustomer_numbers\x18\x01 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x45\n\x0f\x63hannel_numbers\x18\x02 \x03(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\x12\x43\n\x0ftransaction_log\x18\x03 \x03(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\x12H\n\x14pending_transactions\x18\x04 \x03(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\x12\x42\n\x07wallets\x18\x05 \x03(\x0b\x32\x31.com.elarian.hera.proto.PaymentState.WalletsEntry\x1aV\n\x0cWalletsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x35\n\x05value\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.PaymentBalance:\x02\x38\x01\"\xb3\x03\n\x0cPaymentEvent\x12I\n\rstate_adopted\x18\x01 \x01(\x0b\x32\x30.com.elarian.hera.proto.PaymentStateAdoptedEventH\x00\x12Y\n\x15\x65ntity_decommissioned\x18\x02 \x01(\x0b\x32\x38.com.elarian.hera.proto.PaymentEntityDecommissionedEventH\x00\x12J\n\x11payment_initiated\x18\x03 \x01(\x0b\x32-.com.elarian.hera.proto.PaymentInitiatedEventH\x00\x12S\n\x16payment_status_updated\x18\x04 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentStatusUpdatedEventH\x00\x12S\n\x16payment_wallet_updated\x18\x05 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentWalletUpdatedEventH\x00\x42\x07\n\x05\x65vent\"\x87\x02\n\x18PaymentStateAdoptedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x1b\n\x13\x61\x64opted_customer_id\x18\x05 \x01(\t\x12;\n\radopted_state\x18\x06 \x01(\x0b\x32$.com.elarian.hera.proto.PaymentState\"\xce\x01\n PaymentEntityDecommissionedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x17\n\x0fnew_customer_id\x18\x05 \x01(\t\"\xeb\x01\n\x15PaymentInitiatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12?\n\x0btransaction\x18\x05 \x01(\x0b\x32*.com.elarian.hera.proto.PaymentTransaction\"\xbe\x01\n\x19PaymentStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x16\n\x0etransaction_id\x18\x04 \x01(\t\x12\x35\n\x06status\x18\x05 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"\xe6\x01\n\x19PaymentWalletUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x11\n\twallet_id\x18\x04 \x01(\t\x12\x16\n\x0etransaction_id\x18\x05 \x01(\t\x12\x37\n\x07\x62\x61lance\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.PaymentBalance\x12\x11\n\tnarration\x18\x07 \x01(\tb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,common__pb2.DESCRIPTOR,])
 
@@ -303,21 +303,21 @@ _PAYMENTSTATEADOPTEDEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_headers', full_name='com.elarian.hera.proto.PaymentStateAdoptedEvent.app_headers', index=3,
+      name='cxn_props', full_name='com.elarian.hera.proto.PaymentStateAdoptedEvent.cxn_props', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='other_customer_id', full_name='com.elarian.hera.proto.PaymentStateAdoptedEvent.other_customer_id', index=4,
+      name='adopted_customer_id', full_name='com.elarian.hera.proto.PaymentStateAdoptedEvent.adopted_customer_id', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='other_payment_state', full_name='com.elarian.hera.proto.PaymentStateAdoptedEvent.other_payment_state', index=5,
+      name='adopted_state', full_name='com.elarian.hera.proto.PaymentStateAdoptedEvent.adopted_state', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -336,7 +336,7 @@ _PAYMENTSTATEADOPTEDEVENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1434,
-  serialized_end=1695,
+  serialized_end=1697,
 )
 
 
@@ -370,7 +370,7 @@ _PAYMENTENTITYDECOMMISSIONEDEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_headers', full_name='com.elarian.hera.proto.PaymentEntityDecommissionedEvent.app_headers', index=3,
+      name='cxn_props', full_name='com.elarian.hera.proto.PaymentEntityDecommissionedEvent.cxn_props', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -395,8 +395,8 @@ _PAYMENTENTITYDECOMMISSIONEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1698,
-  serialized_end=1898,
+  serialized_start=1700,
+  serialized_end=1906,
 )
 
 
@@ -430,7 +430,7 @@ _PAYMENTINITIATEDEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_headers', full_name='com.elarian.hera.proto.PaymentInitiatedEvent.app_headers', index=3,
+      name='cxn_props', full_name='com.elarian.hera.proto.PaymentInitiatedEvent.cxn_props', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -455,8 +455,8 @@ _PAYMENTINITIATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1901,
-  serialized_end=2130,
+  serialized_start=1909,
+  serialized_end=2144,
 )
 
 
@@ -515,8 +515,8 @@ _PAYMENTSTATUSUPDATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2133,
-  serialized_end=2323,
+  serialized_start=2147,
+  serialized_end=2337,
 )
 
 
@@ -589,8 +589,8 @@ _PAYMENTWALLETUPDATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2326,
-  serialized_end=2556,
+  serialized_start=2340,
+  serialized_end=2570,
 )
 
 _PAYMENTTRANSACTION.fields_by_name['app_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
@@ -628,12 +628,12 @@ _PAYMENTEVENT.oneofs_by_name['event'].fields.append(
   _PAYMENTEVENT.fields_by_name['payment_wallet_updated'])
 _PAYMENTEVENT.fields_by_name['payment_wallet_updated'].containing_oneof = _PAYMENTEVENT.oneofs_by_name['event']
 _PAYMENTSTATEADOPTEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_PAYMENTSTATEADOPTEDEVENT.fields_by_name['app_headers'].message_type = common__pb2._APPHEADERS
-_PAYMENTSTATEADOPTEDEVENT.fields_by_name['other_payment_state'].message_type = _PAYMENTSTATE
+_PAYMENTSTATEADOPTEDEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
+_PAYMENTSTATEADOPTEDEVENT.fields_by_name['adopted_state'].message_type = _PAYMENTSTATE
 _PAYMENTENTITYDECOMMISSIONEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_PAYMENTENTITYDECOMMISSIONEDEVENT.fields_by_name['app_headers'].message_type = common__pb2._APPHEADERS
+_PAYMENTENTITYDECOMMISSIONEDEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
 _PAYMENTINITIATEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_PAYMENTINITIATEDEVENT.fields_by_name['app_headers'].message_type = common__pb2._APPHEADERS
+_PAYMENTINITIATEDEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
 _PAYMENTINITIATEDEVENT.fields_by_name['transaction'].message_type = _PAYMENTTRANSACTION
 _PAYMENTSTATUSUPDATEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _PAYMENTSTATUSUPDATEDEVENT.fields_by_name['status'].enum_type = common__pb2._PAYMENTSTATUS

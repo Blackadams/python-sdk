@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nussd.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\xec\x02\n\x15UssdSessionStateEntry\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x41\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12-\n\x04hops\x18\x05 \x03(\x0b\x32\x1f.com.elarian.hera.proto.UssdHop\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xd2\x01\n\tUssdState\x12?\n\x08sessions\x18\x01 \x03(\x0b\x32-.com.elarian.hera.proto.UssdSessionStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x02 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0f\x63hannel_numbers\x18\x03 \x03(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\"\x81\x02\n\tUssdEvent\x12\x46\n\rstate_adopted\x18\x01 \x01(\x0b\x32-.com.elarian.hera.proto.UssdStateAdoptedEventH\x00\x12V\n\x15\x65ntity_decommissioned\x18\x02 \x01(\x0b\x32\x35.com.elarian.hera.proto.UssdEntityDecommissionedEventH\x00\x12K\n\x12ussd_hop_completed\x18\x03 \x01(\x0b\x32-.com.elarian.hera.proto.UssdHopCompletedEventH\x00\x42\x07\n\x05\x65vent\"\xfc\x01\n\x15UssdStateAdoptedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x0b\x61pp_headers\x18\x04 \x01(\x0b\x32\".com.elarian.hera.proto.AppHeaders\x12\x19\n\x11other_customer_id\x18\x05 \x01(\t\x12;\n\x10other_ussd_state\x18\x06 \x01(\x0b\x32!.com.elarian.hera.proto.UssdState\"\xc5\x01\n\x1dUssdEntityDecommissionedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x0b\x61pp_headers\x18\x04 \x01(\x0b\x32\".com.elarian.hera.proto.AppHeaders\x12\x17\n\x0fnew_customer_id\x18\x05 \x01(\t\"\xdf\x02\n\x15UssdHopCompletedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nsession_id\x18\x05 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x41\n\x0e\x63hannel_number\x18\x07 \x01(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\x12,\n\x03hop\x18\x08 \x01(\x0b\x32\x1f.com.elarian.hera.proto.UssdHopb\x06proto3'
+  serialized_pb=b'\n\nussd.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\xec\x02\n\x15UssdSessionStateEntry\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x41\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12-\n\x04hops\x18\x05 \x03(\x0b\x32\x1f.com.elarian.hera.proto.UssdHop\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xd2\x01\n\tUssdState\x12?\n\x08sessions\x18\x01 \x03(\x0b\x32-.com.elarian.hera.proto.UssdSessionStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x02 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x42\n\x0f\x63hannel_numbers\x18\x03 \x03(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\"\x81\x02\n\tUssdEvent\x12\x46\n\rstate_adopted\x18\x01 \x01(\x0b\x32-.com.elarian.hera.proto.UssdStateAdoptedEventH\x00\x12V\n\x15\x65ntity_decommissioned\x18\x02 \x01(\x0b\x32\x35.com.elarian.hera.proto.UssdEntityDecommissionedEventH\x00\x12K\n\x12ussd_hop_completed\x18\x03 \x01(\x0b\x32-.com.elarian.hera.proto.UssdHopCompletedEventH\x00\x42\x07\n\x05\x65vent\"\x81\x02\n\x15UssdStateAdoptedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x1b\n\x13\x61\x64opted_customer_id\x18\x05 \x01(\t\x12\x38\n\radopted_state\x18\x06 \x01(\x0b\x32!.com.elarian.hera.proto.UssdState\"\xcb\x01\n\x1dUssdEntityDecommissionedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x17\n\x0fnew_customer_id\x18\x05 \x01(\t\"\xdf\x02\n\x15UssdHopCompletedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nsession_id\x18\x05 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x41\n\x0e\x63hannel_number\x18\x07 \x01(\x0b\x32).com.elarian.hera.proto.UssdChannelNumber\x12,\n\x03hop\x18\x08 \x01(\x0b\x32\x1f.com.elarian.hera.proto.UssdHopb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,common__pb2.DESCRIPTOR,])
 
@@ -230,21 +230,21 @@ _USSDSTATEADOPTEDEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_headers', full_name='com.elarian.hera.proto.UssdStateAdoptedEvent.app_headers', index=3,
+      name='cxn_props', full_name='com.elarian.hera.proto.UssdStateAdoptedEvent.cxn_props', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='other_customer_id', full_name='com.elarian.hera.proto.UssdStateAdoptedEvent.other_customer_id', index=4,
+      name='adopted_customer_id', full_name='com.elarian.hera.proto.UssdStateAdoptedEvent.adopted_customer_id', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='other_ussd_state', full_name='com.elarian.hera.proto.UssdStateAdoptedEvent.other_ussd_state', index=5,
+      name='adopted_state', full_name='com.elarian.hera.proto.UssdStateAdoptedEvent.adopted_state', index=5,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -263,7 +263,7 @@ _USSDSTATEADOPTEDEVENT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=958,
-  serialized_end=1210,
+  serialized_end=1215,
 )
 
 
@@ -297,7 +297,7 @@ _USSDENTITYDECOMMISSIONEDEVENT = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_headers', full_name='com.elarian.hera.proto.UssdEntityDecommissionedEvent.app_headers', index=3,
+      name='cxn_props', full_name='com.elarian.hera.proto.UssdEntityDecommissionedEvent.cxn_props', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -322,8 +322,8 @@ _USSDENTITYDECOMMISSIONEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1213,
-  serialized_end=1410,
+  serialized_start=1218,
+  serialized_end=1421,
 )
 
 
@@ -403,8 +403,8 @@ _USSDHOPCOMPLETEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1413,
-  serialized_end=1764,
+  serialized_start=1424,
+  serialized_end=1775,
 )
 
 _USSDSESSIONSTATEENTRY.fields_by_name['customer_number'].message_type = common__pb2._CUSTOMERNUMBER
@@ -429,10 +429,10 @@ _USSDEVENT.oneofs_by_name['event'].fields.append(
   _USSDEVENT.fields_by_name['ussd_hop_completed'])
 _USSDEVENT.fields_by_name['ussd_hop_completed'].containing_oneof = _USSDEVENT.oneofs_by_name['event']
 _USSDSTATEADOPTEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_USSDSTATEADOPTEDEVENT.fields_by_name['app_headers'].message_type = common__pb2._APPHEADERS
-_USSDSTATEADOPTEDEVENT.fields_by_name['other_ussd_state'].message_type = _USSDSTATE
+_USSDSTATEADOPTEDEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
+_USSDSTATEADOPTEDEVENT.fields_by_name['adopted_state'].message_type = _USSDSTATE
 _USSDENTITYDECOMMISSIONEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
-_USSDENTITYDECOMMISSIONEDEVENT.fields_by_name['app_headers'].message_type = common__pb2._APPHEADERS
+_USSDENTITYDECOMMISSIONEDEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
 _USSDHOPCOMPLETEDEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _USSDHOPCOMPLETEDEVENT.fields_by_name['app_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _USSDHOPCOMPLETEDEVENT.fields_by_name['customer_number'].message_type = common__pb2._CUSTOMERNUMBER
