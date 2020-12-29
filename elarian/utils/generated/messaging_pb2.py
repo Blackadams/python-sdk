@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0fmessaging.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\x8c\x01\n\x1aMessagingConsentStateEntry\x12>\n\x06status\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentStatus\x12.\n\nupdated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xaa\x01\n\x1aMessagingSessionStateEntry\x12.\n\nstarted_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nexpiration\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xbc\x02\n\x1aMessagingChannelStateEntry\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12I\n\rconsent_state\x18\x03 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingConsentStateEntry\x12J\n\x0e\x61\x63tive_session\x18\x04 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingSessionStateEntry\"\xa3\x05\n\x11MessageStateEntry\x12\x41\n\tdirection\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nmessage_id\x18\x04 \x01(\t\x12,\n\x06\x61pp_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12*\n\x04text\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\x08template\x18\x07 \x01(\x0b\x32+.com.elarian.hera.proto.TextMessageTemplate\x12\x37\n\x05media\x18\x08 \x03(\x0b\x32(.com.elarian.hera.proto.MediaMessageBody\x12=\n\x08location\x18\t \x01(\x0b\x32+.com.elarian.hera.proto.LocationMessageBody\x12.\n\ncreated_at\x18\n \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06status\x18\x0c \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\"\xa3\x02\n\x0eMessagingState\x12I\n\rchannel_state\x18\x01 \x03(\x0b\x32\x32.com.elarian.hera.proto.MessagingChannelStateEntry\x12;\n\x08messages\x18\x02 \x03(\x0b\x32).com.elarian.hera.proto.MessageStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12G\n\x0f\x63hannel_numbers\x18\x04 \x03(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\"\xd3\x05\n\x0eMessagingEvent\x12K\n\rstate_adopted\x18\x01 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingStateAdoptedEventH\x00\x12[\n\x15\x65ntity_decommissioned\x18\x02 \x01(\x0b\x32:.com.elarian.hera.proto.MessagingEntityDecommissionedEventH\x00\x12]\n\x1bmessaging_consent_requested\x18\x03 \x01(\x0b\x32\x36.com.elarian.hera.proto.MessagingConsentRequestedEventH\x00\x12\x66\n messaging_consent_status_updated\x18\x04 \x01(\x0b\x32:.com.elarian.hera.proto.MessagingConsentStatusUpdatedEventH\x00\x12\x66\n messaging_session_status_updated\x18\x05 \x01(\x0b\x32:.com.elarian.hera.proto.MessagingSessionStatusUpdatedEventH\x00\x12H\n\x10message_received\x18\x06 \x01(\x0b\x32,.com.elarian.hera.proto.MessageReceivedEventH\x00\x12@\n\x0cmessage_sent\x18\x07 \x01(\x0b\x32(.com.elarian.hera.proto.MessageSentEventH\x00\x12S\n\x16message_status_updated\x18\x08 \x01(\x0b\x32\x31.com.elarian.hera.proto.MessageStatusUpdatedEventH\x00\x42\x07\n\x05\x65vent\"\x8b\x02\n\x1aMessagingStateAdoptedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x1b\n\x13\x61\x64opted_customer_id\x18\x05 \x01(\t\x12=\n\radopted_state\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.MessagingState\"\xd0\x01\n\"MessagingEntityDecommissionedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x17\n\x0fnew_customer_id\x18\x05 \x01(\t\"\xcc\x03\n\x1eMessagingConsentRequestedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x0e\n\x06\x61pp_id\x18\x05 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x07 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06status\x18\x08 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentStatus\x12>\n\x06\x61\x63tion\x18\t \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentAction\"\xd1\x02\n\"MessagingConsentStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06\x61pp_id\x18\x04 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x05 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x06 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06status\x18\x07 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentStatus\"\x9f\x03\n\"MessagingSessionStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x0f\x63ustomer_number\x18\x05 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x06 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06status\x18\x07 \x01(\x0e\x32..com.elarian.hera.proto.MessagingSessionStatus\x12.\n\nexpiration\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xd9\x03\n\x14MessageReceivedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nmessage_id\x18\x05 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x07 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12*\n\x04text\x18\x08 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x05media\x18\t \x03(\x0b\x32(.com.elarian.hera.proto.MediaMessageBody\x12=\n\x08location\x18\n \x01(\x0b\x32+.com.elarian.hera.proto.LocationMessageBody\"\xa9\x05\n\x10MessageSentEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x0e\n\x06\x61pp_id\x18\x05 \x01(\t\x12\x12\n\nmessage_id\x18\x06 \x01(\t\x12\x39\n\x13reply_to_message_id\x18\x07 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x0f\x63ustomer_number\x18\x08 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\t \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x04\x62ody\x18\n \x01(\x0b\x32+.com.elarian.hera.proto.CustomerMessageBody\x12=\n\x06origin\x18\x0b \x01(\x0e\x32-.com.elarian.hera.proto.CustomerRequestOrigin\x12=\n\x06status\x18\x0c \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12\x32\n\x03tag\x18\r \x01(\x0b\x32%.com.elarian.hera.proto.CustomerIndex\x12-\n\x07work_id\x18\x0e \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xd2\x01\n\x19MessageStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06\x61pp_id\x18\x04 \x01(\t\x12\x12\n\nmessage_id\x18\x05 \x01(\t\x12=\n\x06status\x18\x06 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatusb\x06proto3'
+  serialized_pb=b'\n\x0fmessaging.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x0c\x63ommon.proto\"\x8c\x01\n\x1aMessagingConsentStateEntry\x12>\n\x06status\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentStatus\x12.\n\nupdated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xaa\x01\n\x1aMessagingSessionStateEntry\x12.\n\nstarted_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nexpiration\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xbc\x02\n\x1aMessagingChannelStateEntry\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12I\n\rconsent_state\x18\x03 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingConsentStateEntry\x12J\n\x0e\x61\x63tive_session\x18\x04 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingSessionStateEntry\"\xdc\x05\n\x11MessageStateEntry\x12\x41\n\tdirection\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerEventDirection\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nmessage_id\x18\x04 \x01(\t\x12,\n\x06\x61pp_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12*\n\x04text\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\x08template\x18\x07 \x01(\x0b\x32+.com.elarian.hera.proto.TextMessageTemplate\x12\x37\n\x05media\x18\x08 \x03(\x0b\x32(.com.elarian.hera.proto.MediaMessageBody\x12=\n\x08location\x18\t \x01(\x0b\x32+.com.elarian.hera.proto.LocationMessageBody\x12\x37\n\x05\x65mail\x18\n \x01(\x0b\x32(.com.elarian.hera.proto.EmailMessageBody\x12.\n\ncreated_at\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06status\x18\r \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\"\xa3\x02\n\x0eMessagingState\x12I\n\rchannel_state\x18\x01 \x03(\x0b\x32\x32.com.elarian.hera.proto.MessagingChannelStateEntry\x12;\n\x08messages\x18\x02 \x03(\x0b\x32).com.elarian.hera.proto.MessageStateEntry\x12@\n\x10\x63ustomer_numbers\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12G\n\x0f\x63hannel_numbers\x18\x04 \x03(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\"\xd3\x05\n\x0eMessagingEvent\x12K\n\rstate_adopted\x18\x01 \x01(\x0b\x32\x32.com.elarian.hera.proto.MessagingStateAdoptedEventH\x00\x12[\n\x15\x65ntity_decommissioned\x18\x02 \x01(\x0b\x32:.com.elarian.hera.proto.MessagingEntityDecommissionedEventH\x00\x12]\n\x1bmessaging_consent_requested\x18\x03 \x01(\x0b\x32\x36.com.elarian.hera.proto.MessagingConsentRequestedEventH\x00\x12\x66\n messaging_consent_status_updated\x18\x04 \x01(\x0b\x32:.com.elarian.hera.proto.MessagingConsentStatusUpdatedEventH\x00\x12\x66\n messaging_session_status_updated\x18\x05 \x01(\x0b\x32:.com.elarian.hera.proto.MessagingSessionStatusUpdatedEventH\x00\x12H\n\x10message_received\x18\x06 \x01(\x0b\x32,.com.elarian.hera.proto.MessageReceivedEventH\x00\x12@\n\x0cmessage_sent\x18\x07 \x01(\x0b\x32(.com.elarian.hera.proto.MessageSentEventH\x00\x12S\n\x16message_status_updated\x18\x08 \x01(\x0b\x32\x31.com.elarian.hera.proto.MessageStatusUpdatedEventH\x00\x42\x07\n\x05\x65vent\"\x8b\x02\n\x1aMessagingStateAdoptedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x1b\n\x13\x61\x64opted_customer_id\x18\x05 \x01(\t\x12=\n\radopted_state\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.MessagingState\"\xd0\x01\n\"MessagingEntityDecommissionedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x17\n\x0fnew_customer_id\x18\x05 \x01(\t\"\xcc\x03\n\x1eMessagingConsentRequestedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x0e\n\x06\x61pp_id\x18\x05 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x07 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06status\x18\x08 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentStatus\x12>\n\x06\x61\x63tion\x18\t \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentAction\"\xd1\x02\n\"MessagingConsentStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06\x61pp_id\x18\x04 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x05 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x06 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06status\x18\x07 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentStatus\"\x9f\x03\n\"MessagingSessionStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x0f\x63ustomer_number\x18\x05 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x06 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06status\x18\x07 \x01(\x0e\x32..com.elarian.hera.proto.MessagingSessionStatus\x12.\n\nexpiration\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x92\x04\n\x14MessageReceivedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x06\x61pp_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x12\n\nmessage_id\x18\x05 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x06 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x07 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12*\n\x04text\x18\x08 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x05media\x18\t \x03(\x0b\x32(.com.elarian.hera.proto.MediaMessageBody\x12=\n\x08location\x18\n \x01(\x0b\x32+.com.elarian.hera.proto.LocationMessageBody\x12\x37\n\x05\x65mail\x18\x0b \x01(\x0b\x32(.com.elarian.hera.proto.EmailMessageBody\"\xa9\x05\n\x10MessageSentEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\tcxn_props\x18\x04 \x01(\x0b\x32*.com.elarian.hera.proto.AppConnectionProps\x12\x0e\n\x06\x61pp_id\x18\x05 \x01(\t\x12\x12\n\nmessage_id\x18\x06 \x01(\t\x12\x39\n\x13reply_to_message_id\x18\x07 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x0f\x63ustomer_number\x18\x08 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\t \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x04\x62ody\x18\n \x01(\x0b\x32+.com.elarian.hera.proto.CustomerMessageBody\x12=\n\x06origin\x18\x0b \x01(\x0e\x32-.com.elarian.hera.proto.CustomerRequestOrigin\x12=\n\x06status\x18\x0c \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12\x32\n\x03tag\x18\r \x01(\x0b\x32%.com.elarian.hera.proto.CustomerIndex\x12-\n\x07work_id\x18\x0e \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xd2\x01\n\x19MessageStatusUpdatedEvent\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0e\n\x06\x61pp_id\x18\x04 \x01(\t\x12\x12\n\nmessage_id\x18\x05 \x01(\t\x12=\n\x06status\x18\x06 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatusb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,common__pb2.DESCRIPTOR,])
 
@@ -239,22 +239,29 @@ _MESSAGESTATEENTRY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='created_at', full_name='com.elarian.hera.proto.MessageStateEntry.created_at', index=9,
+      name='email', full_name='com.elarian.hera.proto.MessageStateEntry.email', index=9,
       number=10, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='updated_at', full_name='com.elarian.hera.proto.MessageStateEntry.updated_at', index=10,
+      name='created_at', full_name='com.elarian.hera.proto.MessageStateEntry.created_at', index=10,
       number=11, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='status', full_name='com.elarian.hera.proto.MessageStateEntry.status', index=11,
-      number=12, type=14, cpp_type=8, label=1,
+      name='updated_at', full_name='com.elarian.hera.proto.MessageStateEntry.updated_at', index=11,
+      number=12, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='com.elarian.hera.proto.MessageStateEntry.status', index=12,
+      number=13, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -272,7 +279,7 @@ _MESSAGESTATEENTRY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=758,
-  serialized_end=1433,
+  serialized_end=1490,
 )
 
 
@@ -324,8 +331,8 @@ _MESSAGINGSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1436,
-  serialized_end=1727,
+  serialized_start=1493,
+  serialized_end=1784,
 )
 
 
@@ -410,8 +417,8 @@ _MESSAGINGEVENT = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1730,
-  serialized_end=2453,
+  serialized_start=1787,
+  serialized_end=2510,
 )
 
 
@@ -477,8 +484,8 @@ _MESSAGINGSTATEADOPTEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2456,
-  serialized_end=2723,
+  serialized_start=2513,
+  serialized_end=2780,
 )
 
 
@@ -537,8 +544,8 @@ _MESSAGINGENTITYDECOMMISSIONEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2726,
-  serialized_end=2934,
+  serialized_start=2783,
+  serialized_end=2991,
 )
 
 
@@ -625,8 +632,8 @@ _MESSAGINGCONSENTREQUESTEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2937,
-  serialized_end=3397,
+  serialized_start=2994,
+  serialized_end=3454,
 )
 
 
@@ -699,8 +706,8 @@ _MESSAGINGCONSENTSTATUSUPDATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3400,
-  serialized_end=3737,
+  serialized_start=3457,
+  serialized_end=3794,
 )
 
 
@@ -780,8 +787,8 @@ _MESSAGINGSESSIONSTATUSUPDATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3740,
-  serialized_end=4155,
+  serialized_start=3797,
+  serialized_end=4212,
 )
 
 
@@ -863,6 +870,13 @@ _MESSAGERECEIVEDEVENT = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='email', full_name='com.elarian.hera.proto.MessageReceivedEvent.email', index=10,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -875,8 +889,8 @@ _MESSAGERECEIVEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4158,
-  serialized_end=4631,
+  serialized_start=4215,
+  serialized_end=4745,
 )
 
 
@@ -998,8 +1012,8 @@ _MESSAGESENTEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4634,
-  serialized_end=5315,
+  serialized_start=4748,
+  serialized_end=5429,
 )
 
 
@@ -1065,8 +1079,8 @@ _MESSAGESTATUSUPDATEDEVENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5318,
-  serialized_end=5528,
+  serialized_start=5432,
+  serialized_end=5642,
 )
 
 _MESSAGINGCONSENTSTATEENTRY.fields_by_name['status'].enum_type = common__pb2._MESSAGINGCONSENTSTATUS
@@ -1086,6 +1100,7 @@ _MESSAGESTATEENTRY.fields_by_name['text'].message_type = google_dot_protobuf_dot
 _MESSAGESTATEENTRY.fields_by_name['template'].message_type = common__pb2._TEXTMESSAGETEMPLATE
 _MESSAGESTATEENTRY.fields_by_name['media'].message_type = common__pb2._MEDIAMESSAGEBODY
 _MESSAGESTATEENTRY.fields_by_name['location'].message_type = common__pb2._LOCATIONMESSAGEBODY
+_MESSAGESTATEENTRY.fields_by_name['email'].message_type = common__pb2._EMAILMESSAGEBODY
 _MESSAGESTATEENTRY.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _MESSAGESTATEENTRY.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _MESSAGESTATEENTRY.fields_by_name['status'].enum_type = common__pb2._MESSAGEDELIVERYSTATUS
@@ -1153,6 +1168,7 @@ _MESSAGERECEIVEDEVENT.fields_by_name['channel_number'].message_type = common__pb
 _MESSAGERECEIVEDEVENT.fields_by_name['text'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _MESSAGERECEIVEDEVENT.fields_by_name['media'].message_type = common__pb2._MEDIAMESSAGEBODY
 _MESSAGERECEIVEDEVENT.fields_by_name['location'].message_type = common__pb2._LOCATIONMESSAGEBODY
+_MESSAGERECEIVEDEVENT.fields_by_name['email'].message_type = common__pb2._EMAILMESSAGEBODY
 _MESSAGESENTEVENT.fields_by_name['timestamp'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _MESSAGESENTEVENT.fields_by_name['cxn_props'].message_type = common__pb2._APPCONNECTIONPROPS
 _MESSAGESENTEVENT.fields_by_name['reply_to_message_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
