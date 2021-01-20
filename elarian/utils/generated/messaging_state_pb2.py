@@ -24,7 +24,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x15messaging_state.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x12\x63ommon_model.proto\x1a\x15messaging_model.proto\"\xe4\x02\n\x0fReceivedMessage\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\nsession_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0bin_reply_to\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x08provider\x18\x05 \x01(\x0e\x32-.com.elarian.hera.proto.ChannelNumberProvider\x12,\n\x06\x61pp_id\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x39\n\x05parts\x18\x07 \x03(\x0b\x32*.com.elarian.hera.proto.InboundMessageBody\"\x81\x04\n\x0bSentMessage\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\nsession_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0bin_reply_to\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x08provider\x18\x05 \x01(\x0e\x32-.com.elarian.hera.proto.ChannelNumberProvider\x12\x0e\n\x06\x61pp_id\x18\x06 \x01(\t\x12\x0e\n\x06labels\x18\x07 \x03(\t\x12.\n\nupdated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06status\x18\t \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12?\n\treactions\x18\n \x03(\x0b\x32,.com.elarian.hera.proto.MessageReactionState\x12\x38\n\x07message\x18\x0b \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"\x81\x01\n\x14MessageReactionState\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x39\n\x08reaction\x18\x02 \x01(\x0e\x32\'.com.elarian.hera.proto.MessageReaction\"R\n\x11MessageReplyToken\x12\r\n\x05token\x18\x01 \x01(\t\x12.\n\nexpires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x8b\x01\n\x0e\x43hannelMessage\x12;\n\x08received\x18\x01 \x01(\x0b\x32\'.com.elarian.hera.proto.ReceivedMessageH\x00\x12\x33\n\x04sent\x18\x02 \x01(\x0b\x32#.com.elarian.hera.proto.SentMessageH\x00\x42\x07\n\x05\x65ntry\"\xe3\x01\n\x18\x43ompleteMessagingSession\x12\x12\n\nsession_id\x18\x01 \x01(\t\x12.\n\nstarted_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x08\x64uration\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x0f\n\x07\x61pp_ids\x18\x04 \x03(\t\x12\x45\n\nend_reason\x18\x05 \x01(\x0e\x32\x31.com.elarian.hera.proto.MessagingSessionEndReason\"\x95\x03\n\x1c\x42lockedMessagingChannelState\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x08messages\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.ChannelMessage\x12>\n\x0breply_token\x18\x04 \x01(\x0b\x32).com.elarian.hera.proto.MessageReplyToken\x12\x42\n\x08sessions\x18\x05 \x03(\x0b\x32\x30.com.elarian.hera.proto.CompleteMessagingSession\x12.\n\nblocked_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xe4\x02\n\x1b\x41\x63tiveMessagingChannelState\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x08messages\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.ChannelMessage\x12>\n\x0breply_token\x18\x04 \x01(\x0b\x32).com.elarian.hera.proto.MessageReplyToken\x12\x42\n\x08sessions\x18\x05 \x03(\x0b\x32\x30.com.elarian.hera.proto.CompleteMessagingSession\"\xec\x03\n\x1eInSessionMessagingChannelState\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x08messages\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.ChannelMessage\x12>\n\x0breply_token\x18\x04 \x01(\x0b\x32).com.elarian.hera.proto.MessageReplyToken\x12\x42\n\x08sessions\x18\x05 \x03(\x0b\x32\x30.com.elarian.hera.proto.CompleteMessagingSession\x12\x12\n\nsession_id\x18\x06 \x01(\t\x12.\n\nstarted_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nexpires_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07\x61pp_ids\x18\t \x03(\t\"\xfe\x01\n\x15MessagingChannelState\x12G\n\x07\x62locked\x18\x01 \x01(\x0b\x32\x34.com.elarian.hera.proto.BlockedMessagingChannelStateH\x00\x12\x45\n\x06\x61\x63tive\x18\x02 \x01(\x0b\x32\x33.com.elarian.hera.proto.ActiveMessagingChannelStateH\x00\x12L\n\nin_session\x18\x03 \x01(\x0b\x32\x36.com.elarian.hera.proto.InSessionMessagingChannelStateH\x00\x42\x07\n\x05state\"Q\n\x0eMessagingState\x12?\n\x08\x63hannels\x18\x01 \x03(\x0b\x32-.com.elarian.hera.proto.MessagingChannelStateb\x06proto3'
+  serialized_pb=b'\n\x15messaging_state.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x12\x63ommon_model.proto\x1a\x15messaging_model.proto\"\xe4\x02\n\x0fReceivedMessage\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\nsession_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0bin_reply_to\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x08provider\x18\x05 \x01(\x0e\x32-.com.elarian.hera.proto.ChannelNumberProvider\x12,\n\x06\x61pp_id\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x39\n\x05parts\x18\x07 \x03(\x0b\x32*.com.elarian.hera.proto.InboundMessageBody\"\x8f\x04\n\x0bSentMessage\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\nsession_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0bin_reply_to\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x08provider\x18\x05 \x01(\x0e\x32-.com.elarian.hera.proto.ChannelNumberProvider\x12,\n\x06\x61pp_id\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x06status\x18\x08 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12?\n\treactions\x18\t \x03(\x0b\x32,.com.elarian.hera.proto.MessageReactionState\x12\x38\n\x07message\x18\n \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"\x81\x01\n\x14MessageReactionState\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x39\n\x08reaction\x18\x02 \x01(\x0e\x32\'.com.elarian.hera.proto.MessageReaction\"R\n\x11MessageReplyToken\x12\r\n\x05token\x18\x01 \x01(\t\x12.\n\nexpires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x8b\x01\n\x0e\x43hannelMessage\x12;\n\x08received\x18\x01 \x01(\x0b\x32\'.com.elarian.hera.proto.ReceivedMessageH\x00\x12\x33\n\x04sent\x18\x02 \x01(\x0b\x32#.com.elarian.hera.proto.SentMessageH\x00\x42\x07\n\x05\x65ntry\"\xe3\x01\n\x18\x43ompleteMessagingSession\x12\x12\n\nsession_id\x18\x01 \x01(\t\x12.\n\nstarted_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x08\x64uration\x18\x03 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x0f\n\x07\x61pp_ids\x18\x04 \x03(\t\x12\x45\n\nend_reason\x18\x05 \x01(\x0e\x32\x31.com.elarian.hera.proto.MessagingSessionEndReason\"\x95\x03\n\x1c\x42lockedMessagingChannelState\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x08messages\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.ChannelMessage\x12>\n\x0breply_token\x18\x04 \x01(\x0b\x32).com.elarian.hera.proto.MessageReplyToken\x12\x42\n\x08sessions\x18\x05 \x03(\x0b\x32\x30.com.elarian.hera.proto.CompleteMessagingSession\x12.\n\nblocked_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x94\x03\n\x1b\x41\x63tiveMessagingChannelState\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x08messages\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.ChannelMessage\x12>\n\x0breply_token\x18\x04 \x01(\x0b\x32).com.elarian.hera.proto.MessageReplyToken\x12\x42\n\x08sessions\x18\x05 \x03(\x0b\x32\x30.com.elarian.hera.proto.CompleteMessagingSession\x12.\n\nallowed_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x9c\x04\n\x1eInSessionMessagingChannelState\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x08messages\x18\x03 \x03(\x0b\x32&.com.elarian.hera.proto.ChannelMessage\x12>\n\x0breply_token\x18\x04 \x01(\x0b\x32).com.elarian.hera.proto.MessageReplyToken\x12\x42\n\x08sessions\x18\x05 \x03(\x0b\x32\x30.com.elarian.hera.proto.CompleteMessagingSession\x12.\n\nallowed_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x12\n\nsession_id\x18\x07 \x01(\t\x12.\n\nstarted_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nexpires_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07\x61pp_ids\x18\n \x03(\t\"\xfe\x01\n\x15MessagingChannelState\x12G\n\x07\x62locked\x18\x01 \x01(\x0b\x32\x34.com.elarian.hera.proto.BlockedMessagingChannelStateH\x00\x12\x45\n\x06\x61\x63tive\x18\x02 \x01(\x0b\x32\x33.com.elarian.hera.proto.ActiveMessagingChannelStateH\x00\x12L\n\nin_session\x18\x03 \x01(\x0b\x32\x36.com.elarian.hera.proto.InSessionMessagingChannelStateH\x00\x42\x07\n\x05state\"Q\n\x0eMessagingState\x12?\n\x08\x63hannels\x18\x01 \x03(\x0b\x32-.com.elarian.hera.proto.MessagingChannelStateb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,common__model__pb2.DESCRIPTOR,messaging__model__pb2.DESCRIPTOR,])
 
@@ -150,42 +150,35 @@ _SENTMESSAGE = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='app_id', full_name='com.elarian.hera.proto.SentMessage.app_id', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='labels', full_name='com.elarian.hera.proto.SentMessage.labels', index=6,
-      number=7, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='updated_at', full_name='com.elarian.hera.proto.SentMessage.updated_at', index=7,
-      number=8, type=11, cpp_type=10, label=1,
+      number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='status', full_name='com.elarian.hera.proto.SentMessage.status', index=8,
-      number=9, type=14, cpp_type=8, label=1,
+      name='updated_at', full_name='com.elarian.hera.proto.SentMessage.updated_at', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='com.elarian.hera.proto.SentMessage.status', index=7,
+      number=8, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='reactions', full_name='com.elarian.hera.proto.SentMessage.reactions', index=9,
-      number=10, type=11, cpp_type=10, label=3,
+      name='reactions', full_name='com.elarian.hera.proto.SentMessage.reactions', index=8,
+      number=9, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='message', full_name='com.elarian.hera.proto.SentMessage.message', index=10,
-      number=11, type=11, cpp_type=10, label=1,
+      name='message', full_name='com.elarian.hera.proto.SentMessage.message', index=9,
+      number=10, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -203,7 +196,7 @@ _SENTMESSAGE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=549,
-  serialized_end=1062,
+  serialized_end=1076,
 )
 
 
@@ -241,8 +234,8 @@ _MESSAGEREACTIONSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1065,
-  serialized_end=1194,
+  serialized_start=1079,
+  serialized_end=1208,
 )
 
 
@@ -280,8 +273,8 @@ _MESSAGEREPLYTOKEN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1196,
-  serialized_end=1278,
+  serialized_start=1210,
+  serialized_end=1292,
 )
 
 
@@ -324,8 +317,8 @@ _CHANNELMESSAGE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=1281,
-  serialized_end=1420,
+  serialized_start=1295,
+  serialized_end=1434,
 )
 
 
@@ -384,8 +377,8 @@ _COMPLETEMESSAGINGSESSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1423,
-  serialized_end=1650,
+  serialized_start=1437,
+  serialized_end=1664,
 )
 
 
@@ -451,8 +444,8 @@ _BLOCKEDMESSAGINGCHANNELSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1653,
-  serialized_end=2058,
+  serialized_start=1667,
+  serialized_end=2072,
 )
 
 
@@ -499,6 +492,13 @@ _ACTIVEMESSAGINGCHANNELSTATE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='allowed_at', full_name='com.elarian.hera.proto.ActiveMessagingChannelState.allowed_at', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -511,8 +511,8 @@ _ACTIVEMESSAGINGCHANNELSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2061,
-  serialized_end=2417,
+  serialized_start=2075,
+  serialized_end=2479,
 )
 
 
@@ -560,29 +560,36 @@ _INSESSIONMESSAGINGCHANNELSTATE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='session_id', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.session_id', index=5,
-      number=6, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='started_at', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.started_at', index=6,
-      number=7, type=11, cpp_type=10, label=1,
+      name='allowed_at', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.allowed_at', index=5,
+      number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='expires_at', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.expires_at', index=7,
+      name='session_id', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.session_id', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='started_at', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.started_at', index=7,
       number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='app_ids', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.app_ids', index=8,
-      number=9, type=9, cpp_type=9, label=3,
+      name='expires_at', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.expires_at', index=8,
+      number=9, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='app_ids', full_name='com.elarian.hera.proto.InSessionMessagingChannelState.app_ids', index=9,
+      number=10, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -599,8 +606,8 @@ _INSESSIONMESSAGINGCHANNELSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2420,
-  serialized_end=2912,
+  serialized_start=2482,
+  serialized_end=3022,
 )
 
 
@@ -650,8 +657,8 @@ _MESSAGINGCHANNELSTATE = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=2915,
-  serialized_end=3169,
+  serialized_start=3025,
+  serialized_end=3279,
 )
 
 
@@ -682,8 +689,8 @@ _MESSAGINGSTATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3171,
-  serialized_end=3252,
+  serialized_start=3281,
+  serialized_end=3362,
 )
 
 _RECEIVEDMESSAGE.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -696,6 +703,7 @@ _SENTMESSAGE.fields_by_name['created_at'].message_type = google_dot_protobuf_dot
 _SENTMESSAGE.fields_by_name['session_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _SENTMESSAGE.fields_by_name['in_reply_to'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _SENTMESSAGE.fields_by_name['provider'].enum_type = common__model__pb2._CHANNELNUMBERPROVIDER
+_SENTMESSAGE.fields_by_name['app_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _SENTMESSAGE.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _SENTMESSAGE.fields_by_name['status'].enum_type = messaging__model__pb2._MESSAGEDELIVERYSTATUS
 _SENTMESSAGE.fields_by_name['reactions'].message_type = _MESSAGEREACTIONSTATE
@@ -725,11 +733,13 @@ _ACTIVEMESSAGINGCHANNELSTATE.fields_by_name['channel_number'].message_type = mes
 _ACTIVEMESSAGINGCHANNELSTATE.fields_by_name['messages'].message_type = _CHANNELMESSAGE
 _ACTIVEMESSAGINGCHANNELSTATE.fields_by_name['reply_token'].message_type = _MESSAGEREPLYTOKEN
 _ACTIVEMESSAGINGCHANNELSTATE.fields_by_name['sessions'].message_type = _COMPLETEMESSAGINGSESSION
+_ACTIVEMESSAGINGCHANNELSTATE.fields_by_name['allowed_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _INSESSIONMESSAGINGCHANNELSTATE.fields_by_name['customer_number'].message_type = common__model__pb2._CUSTOMERNUMBER
 _INSESSIONMESSAGINGCHANNELSTATE.fields_by_name['channel_number'].message_type = messaging__model__pb2._MESSAGINGCHANNELNUMBER
 _INSESSIONMESSAGINGCHANNELSTATE.fields_by_name['messages'].message_type = _CHANNELMESSAGE
 _INSESSIONMESSAGINGCHANNELSTATE.fields_by_name['reply_token'].message_type = _MESSAGEREPLYTOKEN
 _INSESSIONMESSAGINGCHANNELSTATE.fields_by_name['sessions'].message_type = _COMPLETEMESSAGINGSESSION
+_INSESSIONMESSAGINGCHANNELSTATE.fields_by_name['allowed_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _INSESSIONMESSAGINGCHANNELSTATE.fields_by_name['started_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _INSESSIONMESSAGINGCHANNELSTATE.fields_by_name['expires_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _MESSAGINGCHANNELSTATE.fields_by_name['blocked'].message_type = _BLOCKEDMESSAGINGCHANNELSTATE
