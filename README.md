@@ -25,8 +25,11 @@ from elarian import Elarian, Customer
 
 elarian = Elarian(api_key="test_api_key", org_id="test_org", app_id="test_app_id")
 customer = Customer(client=elarian, number="+254709759881", provider="cellular")
+
+await elarian.connect()
+
 # get customer state
-resp = customer.getState()
+resp = await customer.getState()
 
 print(resp)
 
@@ -43,14 +46,10 @@ $ python setup.py
 
 Run all tests:
 
-update the following params in your .env file then run python -m unittest discover -v
+Update the following params in your `.env` file then `run python -m unittest discover -v`
 
 ```bash
-sandbox = True
-api_key = 
-app_id = 
-product_id = 
-messaging_short_code = 
+# TODO
 ```
 
 ## Issues
