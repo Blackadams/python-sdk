@@ -5,7 +5,32 @@ from elarian.utils.generated.app_socket_pb2 import AppToServerCommand, AppToServ
 class Elarian(Client):
 
     def __init__(self, org_id, api_key, app_id, options=Client.default_options):
-        super().__init__(org_id, api_key, app_id, options)
+        super().__init__(
+            org_id,
+            api_key,
+            app_id,
+            [
+                'reminder',
+                'messagingSessionStarted',
+                'messagingSessionRenewed',
+                'messagingSessionEnded',
+                'messagingConsentUpdate'
+                'receivedSms',
+                'receivedFbMessenger',
+                'receivedTelegram',
+                'receivedWhatsapp',
+                'receivedEmail',
+                'voiceCall',
+                'ussdSession',
+                'messageStatus',
+                'sentMessageReaction',
+                'receivedPayment',
+                'paymentStatus',
+                'walletPaymentStatus',
+                'customerActivity'
+            ],
+            options,
+        )
 
     @staticmethod
     def _parse_reply(payload):
