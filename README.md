@@ -21,66 +21,23 @@ $ pip install elarian
 
 
 ```python
-import elarian
+from elarian import Elarian, Customer
 
-elarian_service = elarian.initialize(sandbox=True, api_key='test_api_key')
-
-# build request
-req = elarian.requests.GetCustomerStateRequest(org_id="fake-org-id", customer_id="el_cst_35f-fake")
-
+elarian = Elarian(api_key="test_api_key", org_id="test_org", app_id="test_app_id")
+customer = Customer(client=elarian, number="+254709759881", provider="cellular")
 # get customer state
-resp = elarian_service.GetCustomerState(req)
+resp = customer.getState()
 
 print(resp)
 
 ```
 
-## Methods
-
-```
-authToken(AuthTokenRequest) -> AuthTokenReply
-
-getCustomerState(GetCustomerStateRequest) -> GetCustomerStateReply
-adoptCustomerState(AdoptCustomerStateRequest) -> UpdateCustomerStateReply
-
-addCustomerReminder(AddCustomerReminderRequest) -> UpdateCustomerStateReply
-addCustomerReminderByTag(AddCustomerReminderTagRequest) -> TagCommandReply
-cancelCustomerReminder(CancelCustomerReminderRequest) -> UpdateCustomerStateReply
-cancelCustomerReminderByTag(CancelCustomerReminderTagRequest) -> TagCommandReply
-
-updateCustomerTag(UpdateCustomerTagRequest) -> UpdateCustomerStateReply
-deleteCustomerTag(DeleteCustomerTagRequest) -> UpdateCustomerStateReply
-
-updateCustomerSecondaryId(UpdateCustomerSecondaryIdRequest) -> UpdateCustomerStateReply
-deleteCustomerSecondaryId(DeleteCustomerSecondaryIdRequest) -> UpdateCustomerStateReply
-
-leaseCustomerMetadata(LeaseCustomerMetadataRequest) -> LeaseCustomerMetadataReply
-updateCustomerMetadata(UpdateCustomerMetadataRequest) -> UpdateCustomerStateReply
-deleteCustomerMetadata(DeleteCustomerMetadataRequest) -> UpdateCustomerStateReply
-
-sendMessage(SendMessageRequest) -> SendMessageReply
-sendMessageByTag(SendMessageTagRequest) -> TagCommandReply
-replyToMessage(ReplyToMessageRequest) -> SendMessageReply
-messagingConsent(MessagingConsentRequest) -> MessagingConsentReply
-
-sendPayment(SendPaymentRequest) -> InitiatePaymentReply
-checkoutPayment(CheckoutPaymentRequest) -> InitiatePaymentReply
-customerWalletPayment(CustomerWalletPaymentRequest) -> InitiatePaymentReply
-
-makeVoiceCall(MakeVoiceCallRequest) -> MakeVoiceCallReply
-
-streamNotifications(StreamNotificationRequest) -> WebhookRequest
-sendWebhookResponse(WebhookResponse) -> WebhookResponseReply
-```
-
-
 ## Development
 
 ```bash
-$ pip install grpcio grpcio-tools protobuf>=3.12.2
-$ git clone --recurse-submodules https://github.com/ElarianLtd/python-sdk.git
+$ git clone https://github.com/ElarianLtd/python-sdk.git
 $ cd python-sdk
-$ python -m grpc_tools.protoc -I./elarian/utils/proto --python_out=./elarian/utils/generated --grpc_python_out=./elarian/utils/generated web.proto common.proto
+$ python setup.py
 ```
 
 

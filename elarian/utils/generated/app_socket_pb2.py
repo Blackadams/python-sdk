@@ -14,15 +14,15 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
-import common_model_pb2 as common__model__pb2
-import app_model_pb2 as app__model__pb2
-import identity_state_pb2 as identity__state__pb2
-import messaging_model_pb2 as messaging__model__pb2
-import messaging_state_pb2 as messaging__state__pb2
-import payment_model_pb2 as payment__model__pb2
-import payment_state_pb2 as payment__state__pb2
-import activity_state_pb2 as activity__state__pb2
-import activity_model_pb2 as activity__model__pb2
+from . import common_model_pb2 as common__model__pb2
+from . import app_model_pb2 as app__model__pb2
+from . import identity_state_pb2 as identity__state__pb2
+from . import messaging_model_pb2 as messaging__model__pb2
+from . import messaging_state_pb2 as messaging__state__pb2
+from . import payment_model_pb2 as payment__model__pb2
+from . import payment_state_pb2 as payment__state__pb2
+from . import activity_state_pb2 as activity__state__pb2
+from . import activity_model_pb2 as activity__model__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
