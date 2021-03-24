@@ -25,5 +25,8 @@ setup(
     ],
     packages=find_packages(exclude=("test",)),
     include_package_data=True,
-    install_requires=["grpcio"],
+    install_requires=[
+        'protobuf==3.15.6',
+        'rsocket @ git+ssh://git@github.com/aksalj/rsocket-py@master#egg=rsocket',
+    ],
 )
