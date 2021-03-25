@@ -1,11 +1,6 @@
 from elarian.client import Client
 from elarian.models import PaymentStatus
 from elarian.utils import fill_in_outgoing_message, has_key
-from elarian.utils.generated.payment_model_pb2 import PaymentCounterParty,\
-    PaymentChannelCounterParty,\
-    PaymentWalletCounterParty,\
-    PaymentPurseCounterParty,\
-    PaymentCustomerCounterParty
 from elarian.utils.generated.app_socket_pb2 import AppToServerCommand,\
     AppToServerCommandReply,\
     GenerateAuthTokenCommand
