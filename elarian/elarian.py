@@ -1,5 +1,8 @@
 from elarian.client import Client
-from elarian.utils.generated.app_socket_pb2 import AppToServerCommand, AppToServerCommandReply, GenerateAuthTokenCommand
+from elarian.utils import fill_in_outgoing_message
+from elarian.utils.generated.app_socket_pb2 import AppToServerCommand,\
+    AppToServerCommandReply,\
+    GenerateAuthTokenCommand
 
 
 class Elarian(Client):
@@ -99,15 +102,50 @@ class Elarian(Client):
 
     async def add_customer_reminder_by_tag(self, tag: dict, reminder: dict):
         """ Set a reminder to be triggered at the specified time for customers with the particular tag """
-        pass
+        req = AppToServerCommand()
+        req.add_customer_reminder_tag.tag.key = tag['key']
+        req.add_customer_reminder_tag.tag.value.value = tag['value']
+        req.add_customer_reminder_tag.reminder.key = reminder['key']
+        req.add_customer_reminder_tag.reminder.remind_at.seconds = reminder['remind_at']
+        req.add_customer_reminder_tag.reminder.interval.seconds = reminder['interval']
+        req.add_customer_reminder_tag.reminder.payload.value = reminder['payload']
+        data = await self._send_command(req)
+        res = self._parse_reply(data).tag_command
+        return {
+            "status": res.status,
+            "description": res.description,
+            "work_id": res.work_id.value
+        }
 
     async def cancel_customer_reminder_by_tag(self, tag: dict, reminder_key: str):
         """ Cancels a previously set reminder with tag and key """
-        pass
+        req = AppToServerCommand()
+        req.cancel_customer_reminder_tag.key = reminder_key
+        req.cancel_customer_reminder_tag.tag.key = tag['key']
+        req.cancel_customer_reminder_tag.tag.value.value = tag['value']
+        data = await self._send_command(req)
+        res = self._parse_reply(data).tag_command
+        return {
+            "status": res.status,
+            "description": res.description,
+            "work_id": res.work_id.value
+        }
 
-    async def send_message_by_tag(self, tag: dict, message: dict):
+    async def send_message_by_tag(self, tag: dict, messaging_channel: dict, message: dict):
         """ Send a message by tag """
-        pass
+        req = AppToServerCommand()
+        req.send_message_tag.channel_number.number = messaging_channel['number']
+        req.send_message_tag.channel_number.channel = messaging_channel['channel'].value
+        req.send_message_tag.tag.key = tag['key']
+        req.send_message_tag.tag.value.value = tag['value']
+        req.send_message_tag.message = fill_in_outgoing_message(message)
+        data = await self._send_command(req)
+        res = self._parse_reply(data).tag_command
+        return {
+            "status": res.status,
+            "description": res.description,
+            "work_id": res.work_id.value
+        }
 
     async def initiate_payment(self, debit_party: dict, credit_party: dict, value: dict):
         """ Initiate a payment transaction """
