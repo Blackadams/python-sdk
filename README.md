@@ -29,7 +29,7 @@ customer = Customer(client=elarian, number="+254709759881", provider="cellular")
 await elarian.connect()
 
 # get customer state
-resp = await customer.getState()
+resp = await customer.get_state()
 
 print(resp)
 

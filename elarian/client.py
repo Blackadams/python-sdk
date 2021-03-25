@@ -4,11 +4,16 @@ import asyncio
 import atexit
 from abc import ABCMeta
 from rsocket import Payload, RSocket, BaseRequestHandler
-from elarian.utils.generated.app_socket_pb2 import AppConnectionMetadata
+from elarian.customer import Customer
+from elarian.utils.generated.app_socket_pb2 import AppConnectionMetadata, ServerToAppNotification, ServerToAppNotificationReply
+from elarian.utils.generated.simulator_socket_pb2 import ServerToSimulatorNotification, ServerToSimulatorNotificationReply
+from elarian.utils.generated.messaging_model_pb2 import MessagingChannel
 
 
 class _RequestHandler(BaseRequestHandler):
     _handlers = dict()
+    _is_simulator = False
+    _client = None
 
     def register_handler(self, event, handler):
         self._handlers[event] = handler
@@ -25,9 +30,72 @@ class _RequestHandler(BaseRequestHandler):
     def get_handlers(self):
         return self._handlers
 
-    def request_response(self, payload: Payload) -> asyncio.Future:
+    @staticmethod
+    async def _default_handler(notif, customer, app_data, callback):
+        print(notif, customer, app_data)
+        callback(data_update=app_data, response=None)
+
+    async def request_response(self, payload: Payload) -> asyncio.Future:
         future = asyncio.Future()
-        future.set_exception(RuntimeError("Not implemented"))
+        data = ServerToSimulatorNotification() if self._is_simulator else ServerToAppNotification()
+        data.ParseFromString(payload.data)
+        event = data.WhichOneof("entry")
+        notif = data[event]
+
+        customer_number = None
+        if event == 'received_message':
+            customer_number = notif.customer_number
+            channel = notif.channel_number.channel
+            if channel is MessagingChannel.MESSAGING_CHANNEL_SMS:
+                event = 'received_sms'
+            if channel is MessagingChannel.MESSAGING_CHANNEL_VOICE:
+                event = 'voice_call'
+            if channel is MessagingChannel.MESSAGING_CHANNEL_USSD:
+                event = 'ussd_session'
+            if channel is MessagingChannel.MESSAGING_CHANNEL_FB_MESSENGER:
+                event = 'received_fb_messenger'
+            if channel is MessagingChannel.MESSAGING_CHANNEL_TELEGRAM:
+                event = 'received_telegram'
+            if channel is MessagingChannel.MESSAGING_CHANNEL_WHATSAPP:
+                event = 'received_whatsapp'
+            if channel is MessagingChannel.MESSAGING_CHANNEL_EMAIL:
+                event = 'received_email'
+
+        if event in self._handlers.keys():
+            handler = self._handlers[event]
+        else:
+            handler = self._default_handler
+
+        if self._is_simulator:  # ServerToSimulator
+            app_data = None
+            customer = None
+        else:  # ServerToApp
+            app_data = data.app_data
+            customer = Customer(client=self._client, id=data.customer_id)
+            if customer_number is not None:
+                customer = Customer(
+                    client=self._client,
+                    id=data.customer_id,
+                    number=customer_number.number,
+                    provider=customer_number.provider)
+            # FIXME: Format notification data
+            notif['org_id'] = data.org_id
+            notif['app_id'] = data.app_id
+            notif['customer_id'] = customer.customer_id
+            notif['created_at'] = data.created_at.seconds
+
+        def callback(response, data_update):
+            res = ServerToSimulatorNotificationReply() if self._is_simulator else ServerToAppNotificationReply()
+            if not self._is_simulator:
+                res.data_update = data_update
+                res.message = response  # FIXME: Format response properly for voice and ussd
+            future.set_result(Payload(data=res.SerializeToString()))
+
+        if asyncio.iscoroutinefunction(handler):
+            await handler(notif, customer, app_data, callback)
+        else:
+            handler(notif, customer, app_data, callback)
+
         return future
 
 
@@ -57,9 +125,10 @@ class Client(metaclass=ABCMeta):
         self._org_id = org_id
         self._expected_events = events + ['pending', 'error', 'connecting', 'connected', 'closed']
         if options is not None:
-            self._options = options
+            self._options.update(options)
 
     async def connect(self):
+        """ Connect to Elarian """
         setup = AppConnectionMetadata()
         setup.org_id = self._org_id
         setup.app_id = self._app_id
@@ -99,6 +168,7 @@ class Client(metaclass=ABCMeta):
         return self
 
     async def disconnect(self):
+        """ Disconnect from Elarian """
         self._is_connected = False
         self._connection[1].close()
         await self._socket.close()
@@ -107,7 +177,22 @@ class Client(metaclass=ABCMeta):
     def is_connected(self):
         return self._is_connected
 
-    def on(self, event, handler):
+    def set_on_connection_pending(self, handler):
+        return self._on('pending', handler)
+
+    def set_on_connection_error(self, handler):
+        return self._on('error', handler)
+
+    def set_on_connection_closed(self, handler):
+        return self._on('closed', handler)
+
+    def set_on_connecting(self, handler):
+        return self._on('connecting', handler)
+
+    def set_on_connected(self, handler):
+        return self._on('connected', handler)
+
+    def _on(self, event, handler):
         if event in self._expected_events:
             self._request_handler.register_handler(event, handler)
         else:
@@ -117,6 +202,7 @@ class Client(metaclass=ABCMeta):
     def _make_request_handler(self, socket):
         registered = self._request_handler.get_handlers()
         self._request_handler = _RequestHandler(socket)
+        self._request_handler._is_simulator = self._is_simulator
         for event in registered.keys():
             self._request_handler.register_handler(event, registered[event])
         self._request_handler.handle("connecting")
@@ -127,10 +213,11 @@ class Client(metaclass=ABCMeta):
         self._loop.create_task(self.disconnect())
 
     def __clean_up(self):
-        if self._loop.is_running():
-            self._loop.create_task(self.disconnect())
-        else:
-            asyncio.run(self.disconnect())
+        if self.is_connected():
+            if self._loop.is_running():
+                self._loop.create_task(self.disconnect())
+            else:
+                asyncio.run(self.disconnect())
 
     async def __keep_running(self):
         while self.is_connected():
