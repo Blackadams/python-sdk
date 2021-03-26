@@ -24,7 +24,7 @@ $ pip install elarian
 from elarian import Elarian, Customer
 
 elarian = Elarian(api_key="test_api_key", org_id="test_org", app_id="test_app_id")
-customer = Customer(client=elarian, number="+254709759881", provider="cellular")
+customer = Customer(client=elarian, number="+254709759881")
 
 await elarian.connect()
 
