@@ -17,6 +17,27 @@ class PaymentChannel(enum.Enum):
     CELLULAR = 1
 
 
+class ActivityChannel(enum.Enum):
+    UNKNOWN = 0
+    MOBILE = 1
+    WEB = 2
+
+
+class MessagingConsentAction(enum.Enum):
+    UNKNOWN = 0
+    ALLOW = 1
+    BLOCK = 2
+
+
+class CustomerNumberProvider(enum.Enum):
+    UNKNOWN = 0
+    FACEBOOK = 1
+    CELLULAR = 2
+    TELEGRAM = 3
+    WEB = 4
+    EMAIL = 5
+
+
 class MediaType(enum.Enum):
     UNKNOWN = 0
     IMAGE = 1
@@ -104,3 +125,31 @@ class PaymentStatus(enum.Enum):
     EXPIRED = 402
     REJECTED = 403
     REVERSED = 500
+
+
+class MessageDeliveryStatus(enum.Enum):
+    UNKNOWN = 0
+    QUEUED = 100
+    SENT = 101
+    DELIVERED = 300
+    READ = 301
+    RECEIVED = 302
+    SESSION_INITIATED = 303
+    FAILED = 400
+    NO_CONSENT = 401
+    NO_CAPABILITY = 402
+    EXPIRED = 403
+    NO_SESSION_IN_PROGRESS = 404
+    OTHER_SESSION_IN_PROGRESS = 405
+    INVALID_REPLY_TOKEN = 406
+    INVALID_CHANNEL_NUMBER = 407
+    NOT_SUPPORTED = 408
+    INVALID_REPLY_TO_MESSAGE_ID = 409
+    INVALID_CUSTOMER_ID = 410
+    DUPLICATE_REQUEST = 411
+    TAG_NOT_FOUND = 412
+    CUSTOMER_NUMBER_NOT_FOUND = 413
+    DECOMMISSIONED_CUSTOMER_ID = 414
+    REJECTED = 415
+    INVALID_REQUEST = 416
+    APPLICATION_ERROR = 501

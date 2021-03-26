@@ -1,5 +1,6 @@
 from elarian.client import Client
-from elarian.utils import fill_in_outgoing_message
+from elarian.models import PaymentStatus
+from elarian.utils.helpers import fill_in_outgoing_message, has_key
 from elarian.utils.generated.app_socket_pb2 import AppToServerCommand,\
     AppToServerCommandReply,\
     GenerateAuthTokenCommand
@@ -111,6 +112,8 @@ class Elarian(Client):
         req.add_customer_reminder_tag.reminder.payload.value = reminder['payload']
         data = await self._send_command(req)
         res = self._parse_reply(data).tag_command
+        if not res.status:
+            raise RuntimeError(res.description)
         return {
             "status": res.status,
             "description": res.description,
@@ -125,6 +128,8 @@ class Elarian(Client):
         req.cancel_customer_reminder_tag.tag.value.value = tag['value']
         data = await self._send_command(req)
         res = self._parse_reply(data).tag_command
+        if not res.status:
+            raise RuntimeError(res.description)
         return {
             "status": res.status,
             "description": res.description,
@@ -141,6 +146,8 @@ class Elarian(Client):
         req.send_message_tag.message = fill_in_outgoing_message(message)
         data = await self._send_command(req)
         res = self._parse_reply(data).tag_command
+        if not res.status:
+            raise RuntimeError(res.description)
         return {
             "status": res.status,
             "description": res.description,
@@ -149,7 +156,53 @@ class Elarian(Client):
 
     async def initiate_payment(self, debit_party: dict, credit_party: dict, value: dict):
         """ Initiate a payment transaction """
-        pass
+        req = AppToServerCommand()
+
+        if has_key('purse', debit_party):
+            req.initiate_payment.debit_party.purse.purse_id = debit_party['purse']['purse_id']
+        elif has_key('customer', debit_party):
+            req.initiate_payment.debit_party.customer.customer_number.number = debit_party['customer']['customer_number']['number']
+            req.initiate_payment.debit_party.customer.customer_number.provider = debit_party['customer']['customer_number']['provider'].value
+            req.initiate_payment.debit_party.customer.customer_number.partition = debit_party['customer']['customer_number']['partition']
+            req.initiate_payment.debit_party.customer.channel_number.number = debit_party['customer']['channel_number']['number']
+            req.initiate_payment.debit_party.customer.channel_number.number = debit_party['customer']['channel_number']['channel'].value
+        elif has_key('wallet', debit_party):
+            req.initiate_payment.debit_party.wallet.wallet_id = debit_party['wallet']['wallet_id']
+            req.initiate_payment.debit_party.wallet.customer_id = debit_party['wallet']['customer_id']
+        elif has_key('channel', debit_party):
+            req.initiate_payment.debit_party.channel.channel_number.number = debit_party['channel']['channel_number']['number']
+            req.initiate_payment.debit_party.channel.channel_number.number = debit_party['channel']['channel_number']['channel'].value
+            req.initiate_payment.debit_party.channel.channel_code = debit_party['channel']['network_code']
+            req.initiate_payment.debit_party.channel.account.value = debit_party['channel']['account'].value
+            
+        if has_key('purse', credit_party):
+            req.initiate_payment.credit_party.purse.purse_id = credit_party['purse']['purse_id']
+        elif has_key('customer', credit_party):
+            req.initiate_payment.credit_party.customer.customer_number.number = credit_party['customer']['customer_number']['number']
+            req.initiate_payment.credit_party.customer.customer_number.provider = credit_party['customer']['customer_number']['provider'].value
+            req.initiate_payment.credit_party.customer.customer_number.partition = credit_party['customer']['customer_number']['partition']
+            req.initiate_payment.credit_party.customer.channel_number.number = credit_party['customer']['channel_number']['number']
+            req.initiate_payment.credit_party.customer.channel_number.number = credit_party['customer']['channel_number']['channel'].value
+        elif has_key('wallet', credit_party):
+            req.initiate_payment.credit_party.wallet.wallet_id = credit_party['wallet']['wallet_id']
+            req.initiate_payment.credit_party.wallet.customer_id = credit_party['wallet']['customer_id']
+        elif has_key('channel', credit_party):
+            req.initiate_payment.credit_party.channel.channel_number.number = credit_party['channel']['channel_number']['number']
+            req.initiate_payment.credit_party.channel.channel_number.number = credit_party['channel']['channel_number']['channel'].value
+            req.initiate_payment.credit_party.channel.channel_code = credit_party['channel']['network_code']
+            req.initiate_payment.credit_party.channel.account.value = credit_party['channel']['account'].value
+
+        req.initiate_payment.value.amount = value['amount']
+        req.initiate_payment.value.currency_code = value['currency_code']
+        data = await self._send_command(req)
+        res = self._parse_reply(data).initiate_payment
+        return {
+            "status": PaymentStatus(res.status),
+            "description": res.description,
+            "transaction_id": res.transaction_id.value,
+            "debit_customer_id": res.debit_customer_id.value,
+            "credit_customer_id": res.credit_customer_id.value,
+        }
 
     @staticmethod
     def _parse_reply(payload):

@@ -1,8 +1,5 @@
-
-from .request_handler import _RequestHandler
 from .generated.common_model_pb2 import CustomerNumber
 from .generated.messaging_model_pb2 import OutboundMessage,\
-    OutboundMessageBody,\
     VoiceCallAction,\
     RecordSessionCallAction,\
     RejectCallAction

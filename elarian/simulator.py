@@ -4,7 +4,7 @@ from elarian.utils.generated.simulator_socket_pb2 import \
     SimulatorToServerCommandReply
 from elarian.utils.generated.messaging_model_pb2 import \
     InboundMessageBody
-from elarian.utils import has_key
+from elarian.utils.helpers import has_key
 from elarian.models import *
 
 
