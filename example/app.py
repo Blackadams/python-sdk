@@ -1,8 +1,8 @@
 import os
 import asyncio
-from elarian import Simulator, MessagingChannel, PaymentStatus, PaymentChannel
+from elarian import Customer, Elarian, MessagingChannel, PaymentStatus, PaymentChannel, CustomerNumberProvider
 
-client = Simulator(
+client = Elarian(
         org_id=os.getenv('ORG_ID'),
         app_id=os.getenv('APP_ID'),
         api_key=os.getenv('API_KEY'),
@@ -31,25 +31,9 @@ async def run():
             }
         }
     ]
-    resp = await client.receive_message(
-        phone_number=phone_number,
-        messaging_channel=channel,
-        session_id=session_id,
-        message_parts=message_parts)
-    print(resp)
 
-    resp = await client.receive_payment(
-        phone_number=phone_number,
-        transaction_id="some-txn",
-        payment_channel={"number": os.getenv("MPESA_PAYBILL"), "channel": PaymentChannel.CELLULAR},
-        value={"currency_code": "KES", "amount": 55.6},
-        status=PaymentStatus.PENDING_VALIDATION)
-    print(resp)
-
-    resp = await client.update_payment_status(
-        transaction_id="some-txn",
-        status=PaymentStatus.FAILED
-    )
+    customer = Customer(client=client, number=phone_number)
+    resp = await customer.get_state()
     print(resp)
     await client.disconnect()
 
@@ -63,7 +47,7 @@ async def start():
     client.set_on_connected(run)
 
     await client.connect()
-    await asyncio.sleep(30)
+    await asyncio.sleep(10)
 
 
 if __name__ == "__main__":

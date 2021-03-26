@@ -1,6 +1,6 @@
 from elarian.client import Client
 from elarian.models import PaymentStatus
-from elarian.utils import fill_in_outgoing_message, has_key
+from elarian.utils.helpers import fill_in_outgoing_message, has_key
 from elarian.utils.generated.app_socket_pb2 import AppToServerCommand,\
     AppToServerCommandReply,\
     GenerateAuthTokenCommand
@@ -112,6 +112,8 @@ class Elarian(Client):
         req.add_customer_reminder_tag.reminder.payload.value = reminder['payload']
         data = await self._send_command(req)
         res = self._parse_reply(data).tag_command
+        if not res.status:
+            raise RuntimeError(res.description)
         return {
             "status": res.status,
             "description": res.description,
@@ -126,6 +128,8 @@ class Elarian(Client):
         req.cancel_customer_reminder_tag.tag.value.value = tag['value']
         data = await self._send_command(req)
         res = self._parse_reply(data).tag_command
+        if not res.status:
+            raise RuntimeError(res.description)
         return {
             "status": res.status,
             "description": res.description,
@@ -142,6 +146,8 @@ class Elarian(Client):
         req.send_message_tag.message = fill_in_outgoing_message(message)
         data = await self._send_command(req)
         res = self._parse_reply(data).tag_command
+        if not res.status:
+            raise RuntimeError(res.description)
         return {
             "status": res.status,
             "description": res.description,

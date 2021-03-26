@@ -5,7 +5,7 @@ import atexit
 from abc import ABCMeta
 from rsocket import Payload, RSocket
 from elarian.utils.generated.app_socket_pb2 import AppConnectionMetadata
-from elarian.utils import _RequestHandler
+from elarian.utils.request_handler import _RequestHandler
 
 
 class Client(metaclass=ABCMeta):
