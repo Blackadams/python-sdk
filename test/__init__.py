@@ -1,5 +1,6 @@
 import os
 import asyncio
+import random
 
 loop = asyncio.get_event_loop()
 
@@ -14,3 +15,7 @@ sms_sender_id = os.getenv('SMS_SENDER_ID')
 telegram_number = os.getenv('TELEGRAM_NUMBER')
 voice_number = os.getenv('VOICE_NUMBER')
 messenger_number = os.getenv('MESSENNGER_NUMBER')
+customer_number = {'number': f'+2547{random.randint(10000000,99999999)}',
+                   'provider': 'Cellular'}
+adopted_customer = {'number': f'+2547{random.randint(10000000,99999999)}',
+                    'provider': 'Cellular'}
