@@ -38,6 +38,15 @@ class CustomerNumberProvider(enum.Enum):
     EMAIL = 5
 
 
+class PromptMessageReplyAction(enum.Enum):
+    UNKNOWN = 0
+    TEXT = 1
+    PHONE_NUMBER = 2
+    EMAIL = 3
+    LOCATION = 4
+    URL = 5
+
+
 class MediaType(enum.Enum):
     UNKNOWN = 0
     IMAGE = 1

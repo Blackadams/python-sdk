@@ -94,7 +94,7 @@ class Customer:
         req.send_message.channel_number.channel = messaging_channel.get('channel', MessagingChannel.UNKNOWN).value
         req.send_message.customer_number.number = self.customer_number.get('number')
         req.send_message.customer_number.provider = self.customer_number.get('provider', CustomerNumberProvider.CELLULAR).value
-        req.send_message.message = fill_in_outgoing_message(message)
+        req.send_message.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
         res = self._parse_reply(data).send_message
         return {
@@ -110,7 +110,7 @@ class Customer:
         req = AppToServerCommand()
         req.reply_to_message.customer_id = self.customer_id
         req.reply_to_message.message_id = message_id
-        req.reply_to_message.message = fill_in_outgoing_message(message)
+        req.reply_to_message.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
         res = self._parse_reply(data).send_message
         return {
@@ -431,10 +431,10 @@ class Customer:
             raise RuntimeError('Invalid customer id and/or customer number')
 
         req.add_customer_reminder.reminder.key = reminder.get('key')
-        req.add_customer_reminder.reminder.remind_at.seconds = reminder.get('remind_at')
+        req.add_customer_reminder.reminder.remind_at.seconds = round(reminder.get('remind_at'))
         req.add_customer_reminder.reminder.payload.value = reminder.get('payload')
         if reminder.get('interval') is not None:
-            req.add_customer_reminder.reminder.interval.seconds = reminder.get('interval')
+            req.add_customer_reminder.reminder.interval.seconds = round(reminder.get('interval'))
 
         data = await self._send_command(req)
         res = self._parse_reply(data).update_customer_state
