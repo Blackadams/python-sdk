@@ -107,8 +107,9 @@ class Elarian(Client):
         req.add_customer_reminder_tag.tag.key = tag['key']
         req.add_customer_reminder_tag.tag.value.value = tag['value']
         req.add_customer_reminder_tag.reminder.key = reminder['key']
-        req.add_customer_reminder_tag.reminder.remind_at.seconds = reminder['remind_at']
-        req.add_customer_reminder_tag.reminder.interval.seconds = reminder['interval']
+        req.add_customer_reminder_tag.reminder.remind_at.seconds = round(reminder['remind_at'])
+        if has_key('interval', reminder):
+            req.add_customer_reminder_tag.reminder.interval.seconds = round(reminder['interval'])
         req.add_customer_reminder_tag.reminder.payload.value = reminder['payload']
         data = await self._send_command(req)
         res = self._parse_reply(data).tag_command
@@ -143,7 +144,7 @@ class Elarian(Client):
         req.send_message_tag.channel_number.channel = messaging_channel['channel'].value
         req.send_message_tag.tag.key = tag['key']
         req.send_message_tag.tag.value.value = tag['value']
-        req.send_message_tag.message = fill_in_outgoing_message(message)
+        req.send_message_tag.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
         res = self._parse_reply(data).tag_command
         if not res.status:
@@ -161,11 +162,17 @@ class Elarian(Client):
         if has_key('purse', debit_party):
             req.initiate_payment.debit_party.purse.purse_id = debit_party['purse']['purse_id']
         elif has_key('customer', debit_party):
-            req.initiate_payment.debit_party.customer.customer_number.number = debit_party['customer']['customer_number']['number']
-            req.initiate_payment.debit_party.customer.customer_number.provider = debit_party['customer']['customer_number']['provider'].value
-            req.initiate_payment.debit_party.customer.customer_number.partition = debit_party['customer']['customer_number']['partition']
-            req.initiate_payment.debit_party.customer.channel_number.number = debit_party['customer']['channel_number']['number']
-            req.initiate_payment.debit_party.customer.channel_number.number = debit_party['customer']['channel_number']['channel'].value
+            req.initiate_payment.debit_party.customer.customer_number.number =\
+                debit_party['customer']['customer_number']['number']
+            req.initiate_payment.debit_party.customer.customer_number.provider =\
+                debit_party['customer']['customer_number']['provider'].value
+            if has_key('partition', debit_party['customer']['customer_number']):
+                req.initiate_payment.debit_party.customer.customer_number.partition =\
+                    debit_party['customer']['customer_number']['partition']
+            req.initiate_payment.debit_party.customer.channel_number.number =\
+                debit_party['customer']['channel_number']['number']
+            req.initiate_payment.debit_party.customer.channel_number.channel =\
+                debit_party['customer']['channel_number']['channel'].value
         elif has_key('wallet', debit_party):
             req.initiate_payment.debit_party.wallet.wallet_id = debit_party['wallet']['wallet_id']
             req.initiate_payment.debit_party.wallet.customer_id = debit_party['wallet']['customer_id']
@@ -178,17 +185,25 @@ class Elarian(Client):
         if has_key('purse', credit_party):
             req.initiate_payment.credit_party.purse.purse_id = credit_party['purse']['purse_id']
         elif has_key('customer', credit_party):
-            req.initiate_payment.credit_party.customer.customer_number.number = credit_party['customer']['customer_number']['number']
-            req.initiate_payment.credit_party.customer.customer_number.provider = credit_party['customer']['customer_number']['provider'].value
-            req.initiate_payment.credit_party.customer.customer_number.partition = credit_party['customer']['customer_number']['partition']
-            req.initiate_payment.credit_party.customer.channel_number.number = credit_party['customer']['channel_number']['number']
-            req.initiate_payment.credit_party.customer.channel_number.number = credit_party['customer']['channel_number']['channel'].value
+            req.initiate_payment.credit_party.customer.customer_number.number =\
+                credit_party['customer']['customer_number']['number']
+            req.initiate_payment.credit_party.customer.customer_number.provider =\
+                credit_party['customer']['customer_number']['provider'].value
+            if has_key('partition', credit_party['customer']['customer_number']):
+                req.initiate_payment.credit_party.customer.customer_number.partition =\
+                    credit_party['customer']['customer_number']['partition']
+            req.initiate_payment.credit_party.customer.channel_number.number =\
+                credit_party['customer']['channel_number']['number']
+            req.initiate_payment.credit_party.customer.channel_number.number =\
+                credit_party['customer']['channel_number']['channel'].value
         elif has_key('wallet', credit_party):
             req.initiate_payment.credit_party.wallet.wallet_id = credit_party['wallet']['wallet_id']
             req.initiate_payment.credit_party.wallet.customer_id = credit_party['wallet']['customer_id']
         elif has_key('channel', credit_party):
-            req.initiate_payment.credit_party.channel.channel_number.number = credit_party['channel']['channel_number']['number']
-            req.initiate_payment.credit_party.channel.channel_number.number = credit_party['channel']['channel_number']['channel'].value
+            req.initiate_payment.credit_party.channel.channel_number.number =\
+                credit_party['channel']['channel_number']['number']
+            req.initiate_payment.credit_party.channel.channel_number.channel =\
+                credit_party['channel']['channel_number']['channel'].value
             req.initiate_payment.credit_party.channel.channel_code = credit_party['channel']['network_code']
             req.initiate_payment.credit_party.channel.account.value = credit_party['channel']['account'].value
 
