@@ -1,7 +1,7 @@
 import pytest
 
 from elarian.customer import Customer
-from elarian.client import Elarian
+from elarian.elarian import Elarian
 from test import (
     loop,
     api_key,
@@ -35,7 +35,7 @@ def client():
 
 
 def test_get_state(client):
-    customer = Customer(client)
+    customer = Customer(client, 'some-customer-id')
     response = loop.run_until_complete(customer.get_state())
     assert all(
         elem in response
@@ -58,7 +58,7 @@ def test_adopt_state(client):
 def test_send_message(client):
     customer = Customer(client)
     messaging_channel = {"number": sms_sender_id, "channel": "sms"}
-    message = {"body": "Python sms messaging test"}
+    message = {"body": {"text:": "Python sms messaging test"}}
     response = loop.run_until_complete(
         customer.send_message(messaging_channel, message)
     )
@@ -70,7 +70,7 @@ def test_send_message(client):
 
 def test_reply_to_message(client):
     customer = Customer(client)
-    message = {"body": "Python sms messaging reply test"}
+    message = {"body": {"text": "Python sms messaging reply test"}}
     response = loop.run_until_complete(
         customer.reply_to_message("some-message-id", message)
     )
@@ -82,7 +82,7 @@ def test_reply_to_message(client):
 
 def test_update_activity(client):
     customer = Customer(client)
-    activity_channel = {"number": "some-test-number", "channel": "web"}
+    activity_channel = {"number": "some-test-number", "channel": "WEB"}
     activity = {
         "session_id": "some-session-id",
         "key": "some-key",
@@ -96,7 +96,7 @@ def test_update_activity(client):
 
 def test_update_messaging_consent(client):
     customer = Customer(client)
-    messaging_channel = {"number": sms_sender_id, "channel": "sms"}
+    messaging_channel = {"number": sms_sender_id, "channel": "SMS"}
     response = loop.run_until_complete(customer.update_activity(messaging_channel))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
 

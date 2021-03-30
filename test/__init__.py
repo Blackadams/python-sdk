@@ -16,6 +16,6 @@ telegram_number = os.getenv('TELEGRAM_NUMBER')
 voice_number = os.getenv('VOICE_NUMBER')
 messenger_number = os.getenv('MESSENNGER_NUMBER')
 customer_number = {'number': f'+2547{random.randint(10000000,99999999)}',
-                   'provider': 'Cellular'}
+                   'provider': 'cellular'}
 adopted_customer = {'number': f'+2547{random.randint(10000000,99999999)}',
-                    'provider': 'Cellular'}
+                    'provider': 'cellular'}
