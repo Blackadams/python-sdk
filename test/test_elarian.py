@@ -57,11 +57,11 @@ def test_initiate_payment(client):
         "customer": {
             "customer_number": {
                 "number": "+254718769882",
-                "provider": CustomerNumberProvider.CELLULAR,
+                "provider": 'cellular',
             },
             "channel_number": {
                 "number": mpesa_paybill,
-                "channel": PaymentChannel.CELLULAR,
+                "channel": 'cellular',
             },
         }
     }

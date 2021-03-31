@@ -154,6 +154,8 @@ def test_update_secondary_ids(client):
     ]
     response = loop.run_until_complete(customer.update_app_data(data))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
+    response = loop.run_until_complete(customer.get_state())
+    assert list(value for elem, value in response["identity_state"]["secondary_ids"].items() if value in ("passport", "huduma"))
 
 
 def test_delete_secondary_ids(client):
@@ -163,51 +165,27 @@ def test_delete_secondary_ids(client):
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    # come back to this
-    assert next(
-        (
-            value
-            for value in response["identity_state"]["metadata"]
-            if value["key"] == "huduma"
-        ),
-        False,
-    )
+    assert not list(value for elem, value in response["identity_state"]["secondary_ids"].items() if value in ("huduma", "808082"))
 
 
 def test_update_tags(client):
     customer = Customer(client)
     response = loop.run_until_complete(
-        customer.delete_secondary_ids([{"key": "huduma", "value": "808082"}])
+        customer.update_tags([{"key": "coffid", "value": "test"}])
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    # come back to this
-    assert next(
-        (
-            value
-            for value in response["identity_state"]["metadata"]
-            if value["key"] == "huduma"
-        ),
-        False,
-    )
+    assert list(value for elem, value in response["identity_state"]["tags"].items() if value in ("coffid", "test"))
 
 
 def test_delete_tags(client):
     customer = Customer(client)
     response = loop.run_until_complete(
-        customer.delete_secondary_ids([{"key": "huduma", "value": "808082"}])
+        customer.delete_tags(["coffid"])
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    # come back to this
-    assert next(
-        (
-            value
-            for value in response["identity_state"]["metadata"]
-            if value["key"] == "huduma"
-        ),
-        False,
-    )
+    assert not list(value for elem, value in response["identity_state"]["tags"].items() if value in ("coffid"))
 
 
 def test_add_reminder(client):
