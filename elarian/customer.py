@@ -1,3 +1,4 @@
+import json
 from .utils.generated.app_socket_pb2 import AppToServerCommand, AppToServerCommandReply
 from .utils.generated.common_model_pb2 import (
     CustomerIndex,
@@ -6,6 +7,7 @@ from .utils.generated.common_model_pb2 import (
 )
 from .utils.helpers import has_key, fill_in_outgoing_message, get_provider
 from .models import *
+
 
 
 class Customer:
@@ -46,9 +48,12 @@ class Customer:
             req.get_customer_state.customer_number.number = self.customer_number.get(
                 "number"
             )
-            req.get_customer_state.customer_number.provider = self.customer_number.get(
-                "provider", CustomerNumberProvider.CELLULAR
-            ).value
+            req.get_customer_state.customer_number.provider = get_provider(
+                CustomerNumberProvider,
+                self.customer_number.get("provider", "cellular"),
+                "CUSTOMER_NUMBER_PROVIDER",
+            )
+
         else:
             raise RuntimeError("Invalid customer id and/or customer number")
 
@@ -76,19 +81,19 @@ class Customer:
 
         req.adopt_customer_state.customer_id = self.customer_id
 
-        if other_customer.customer_id is not None:
-            req.adopt_customer_state.customer_id = other_customer.customer_id
-        elif other_customer.customer_number is not None and has_key(
-            "number", other_customer.customer_number
+        if other_customer.get("customer_id") is not None:
+            req.adopt_customer_state.customer_id = other_customer.get("customer_id")
+        elif other_customer.get("number") is not None and has_key(
+            "number", other_customer
         ):
-            req.adopt_customer_state.customer_number.number = (
-                other_customer.customer_number.get("number")
+            req.adopt_customer_state.other_customer_number.number = (
+                other_customer.get("number")
             )
             # req.adopt_customer_state.customer_number.provider = other_customer.customer_number.get('provider',
             #                                                                            CustomerNumberProvider.CELLULAR).value
-            req.adopt_customer_state.customer_number.provider = get_provider(
+            req.adopt_customer_state.other_customer_number.provider = get_provider(
                 CustomerNumberProvider,
-                other_customer.customer_number.get("provider", "cellular"),
+                other_customer.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -110,9 +115,11 @@ class Customer:
         """ Send a message to this customer"""
         req = AppToServerCommand()
         req.send_message.channel_number.number = messaging_channel.get("number")
-        req.send_message.channel_number.channel = messaging_channel.get(
-            "channel", MessagingChannel.UNKNOWN
-        ).value
+        req.send_message.channel_number.channel = get_provider(
+            MessagingChannel,
+            messaging_channel.get("channel", "unknown"),
+            "MESSAGING_CHANNEL",
+        )
         req.send_message.customer_number.number = self.customer_number.get("number")
         req.send_message.customer_number.provider = get_provider(
             CustomerNumberProvider,
@@ -151,9 +158,11 @@ class Customer:
         req = AppToServerCommand()
 
         req.customer_activity.channel_number.number = activity_channel.get("number")
-        req.customer_activity.channel_number.channel = activity_channel.get(
-            "channel", ActivityChannel.UNKNOWN
-        ).value
+        req.customer_activity.channel_number.channel = get_provider(
+            ActivityChannel,
+            activity_channel.get("channel", "cellular"),
+            "ACTIVITY_CHANNEL",
+        )
         req.customer_activity.customer_number.number = self.customer_number.get(
             "number"
         )
@@ -165,7 +174,7 @@ class Customer:
 
         req.customer_activity.key = activity.get("key")
         req.customer_activity.session_id = activity.get("session_id")
-        req.customer_activity.properties = activity.get("properties", dict())
+        req.customer_activity.properties['property'] = str(activity.get("properties"))
 
         data = await self._send_command(req)
         res = self._parse_reply(data).customer_activity
@@ -190,9 +199,11 @@ class Customer:
         req.update_messaging_consent.channel_number.number = messaging_channel.get(
             "number"
         )
-        req.update_messaging_consent.channel_number.channel = messaging_channel.get(
-            "channel", MessagingChannel.UNKNOWN
-        ).value
+        req.update_messaging_consent.channel_number.channel = get_provider(
+            MessagingChannel,
+            messaging_channel.get("channel", "unknown"),
+            "MESSAGING_CHANNEL",
+        )
         req.update_messaging_consent.customer_number.number = self.customer_number.get(
             "number"
         )
@@ -398,10 +409,10 @@ class Customer:
 
         for _id in secondary_ids:
             val = CustomerIndex()
-            val.mapping.key = _id.get("key")
-            val.mapping.value.value = _id.get("value")
-            if _id.get("expires_at") is not None:
-                val.expires_at.seconds = _id.get("expires_at")
+            val.mapping.key = _id["key"]
+            val.mapping.value.value = _id["value"]
+            if _id["expires_at"] is not None:
+                val.expires_at.seconds = _id["expires_at"]
             req.update_customer_secondary_id.updates.append(val)
 
         data = await self._send_command(req)

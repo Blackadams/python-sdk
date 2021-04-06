@@ -4,7 +4,7 @@ from elarian.utils.generated.simulator_socket_pb2 import (
     SimulatorToServerCommandReply,
 )
 from elarian.utils.generated.messaging_model_pb2 import InboundMessageBody
-from elarian.utils.helpers import has_key
+from elarian.utils.helpers import has_key, get_provider
 from elarian.models import *
 
 
@@ -54,7 +54,11 @@ class Simulator(Client):
         req.receive_message.session_id.value = session_id
         req.receive_message.customer_number = phone_number
         req.receive_message.channel_number.number = messaging_channel["number"]
-        req.receive_message.channel_number.channel = messaging_channel["channel"].value
+        req.receive_message.channel_number.channel = get_provider(
+            MessagingChannel,
+            messaging_channel["channel"],
+            "MESSAGING_CHANNEL",
+        )
 
         parts = req.receive_message.parts
         for part in message_parts:
@@ -119,7 +123,6 @@ class Simulator(Client):
                 ]["queue_duration"]
 
             parts.append(_part)
-
         data = await self._send_command(req)
         res = self._parse_reply(data)
         return {
@@ -140,12 +143,19 @@ class Simulator(Client):
         req = SimulatorToServerCommand()
         req.receive_payment.transaction_id = transaction_id
         req.receive_payment.customer_number = phone_number
-        req.receive_payment.status = status.value
+        req.receive_payment.status = get_provider(
+            PaymentStatus,
+            status,
+            "MESSAGING_CHANNEL",
+        )
         req.receive_payment.value.amount = value["amount"]
         req.receive_payment.value.currency_code = value["currency_code"]
         req.receive_payment.channel_number.number = payment_channel["number"]
-        req.receive_payment.channel_number.channel = payment_channel["channel"].value
-
+        req.receive_payment.channel_number.channel = get_provider(
+            PaymentChannel,
+            payment_channel["channel"],
+            "MESSAGING_CHANNEL",
+        )
         data = await self._send_command(req)
         res = self._parse_reply(data)
         return {
@@ -158,8 +168,12 @@ class Simulator(Client):
         """..."""
         req = SimulatorToServerCommand()
         req.update_payment_status.transaction_id = transaction_id
-        req.update_payment_status.status = status.value
-
+        req.update_payment_status.status = get_provider(
+            PaymentStatus,
+            status,
+            "MESSAGING_CHANNEL",
+        )
+        print(req.update_payment_status.status)
         data = await self._send_command(req)
         res = self._parse_reply(data)
         return {

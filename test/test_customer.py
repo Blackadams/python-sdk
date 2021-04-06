@@ -19,23 +19,14 @@ from test import (
 @pytest.fixture(scope="session", autouse=True)
 def client():
     """Create a connection to Elarian backend"""
-    # client = Elarian(app_id=app_id, api_key=api_key, org_id=org_id)
-    # yield client.connect()
-    # loop.run_until_complete(client.disconnect())
     connection = Elarian(app_id=app_id, api_key=api_key, org_id=org_id)
     client = loop.run_until_complete(connection.connect())
     yield client
     loop.run_until_complete(connection.disconnect())
-    # return Elarian(app_id=app_id, api_key=api_key, org_id=org_id)
-
-
-# def test_connect(client):
-#     loop.run_until_complete(client.connect())
-#     assert client.is_connected()
 
 
 def test_get_state(client):
-    customer = Customer(client, 'some-customer-id')
+    customer = Customer(client, number='254711891648')
     response = loop.run_until_complete(customer.get_state())
     assert all(
         elem in response
@@ -50,13 +41,13 @@ def test_get_state(client):
 
 
 def test_adopt_state(client):
-    customer = Customer(client)
-    response = customer.adopt_state(adopted_customer)
+    customer = Customer(client, id='some-customer-id')
+    response = loop.run_until_complete(customer.adopt_state(adopted_customer))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
 
 
 def test_send_message(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     messaging_channel = {"number": sms_sender_id, "channel": "sms"}
     message = {"body": {"text:": "Python sms messaging test"}}
     response = loop.run_until_complete(
@@ -69,7 +60,7 @@ def test_send_message(client):
 
 
 def test_reply_to_message(client):
-    customer = Customer(client)
+    customer = Customer(client, id='some-customer-id')
     message = {"body": {"text": "Python sms messaging reply test"}}
     response = loop.run_until_complete(
         customer.reply_to_message("some-message-id", message)
@@ -81,7 +72,7 @@ def test_reply_to_message(client):
 
 
 def test_update_activity(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     activity_channel = {"number": "some-test-number", "channel": "WEB"}
     activity = {
         "session_id": "some-session-id",
@@ -95,21 +86,21 @@ def test_update_activity(client):
 
 
 def test_update_messaging_consent(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     messaging_channel = {"number": sms_sender_id, "channel": "SMS"}
-    response = loop.run_until_complete(customer.update_activity(messaging_channel))
+    response = loop.run_until_complete(customer.update_messaging_consent(messaging_channel))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
 
 
 def test_update_app_data(client):
-    customer = Customer(client)
-    data = {"key": "test-key", "hollow": 1020, "payload": {"a": "Test"}}
+    customer = Customer(client, number='+254711892648')
+    data = {"key": "test-key", "hollow": 1020, "payload": {"a": "Test"}, "string_value": str.encode("test"), "bytes_val": str.encode("test")}
     response = loop.run_until_complete(customer.update_app_data(data))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
 
 
 def test_lease_app_data(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     data = {"a": {"name": "update_after_lease"}}
     loop.run_until_complete(customer.update_app_data(data))
     response = loop.run_until_complete(customer.lease_app_data())
@@ -117,13 +108,13 @@ def test_lease_app_data(client):
 
 
 def test_delete_app_data(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     response = loop.run_until_complete(customer.delete_app_data())
     assert all(elem in response for elem in ("customer_id", "status", "description"))
 
 
 def test_update_metadata(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     data = {"key": "test-key", "hollow": 1020, "payload": {"a": "Test"}}
     response = loop.run_until_complete(customer.update_metadata(data))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
@@ -135,67 +126,69 @@ def test_update_metadata(client):
 
 
 def test_delete_metadata(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     response = loop.run_until_complete(customer.delete_metadata(["hollow"]))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert "hollow" not in response["identity_state"]["metadata"]
+    assert "hollow" not in response["identity_state"].metadata
 
 
 def test_update_secondary_ids(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     data = [
-        {"key": "passport", "value": "808083", "expiresAt": 300000000},
+        {"key": "passport", "value": "808083", "expires_at": 300000000},
         {
             "key": "huduma",
             "value": "808082",
-            "expiresAt": 500000000,
+            "expires_at": 500000000,
         },
     ]
-    response = loop.run_until_complete(customer.update_app_data(data))
+    response = loop.run_until_complete(customer.update_secondary_ids(data))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert list(value for elem, value in response["identity_state"]["secondary_ids"].items() if value in ("passport", "huduma"))
+    assert list(value for elem, value in response["identity_state"].secondary_ids if value in ("passport", "huduma"))
 
 
 def test_delete_secondary_ids(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     response = loop.run_until_complete(
         customer.delete_secondary_ids([{"key": "huduma", "value": "808082"}])
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert not list(value for elem, value in response["identity_state"]["secondary_ids"].items() if value in ("huduma", "808082"))
+    assert not list(value for elem, value in response["identity_state"].secondary_ids if value in ("huduma", "808082"))
 
 
 def test_update_tags(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     response = loop.run_until_complete(
         customer.update_tags([{"key": "coffid", "value": "test"}])
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert list(value for elem, value in response["identity_state"]["tags"].items() if value in ("coffid", "test"))
+    print(str(response["identity_state"].tags[0]))
+    assert list(value for elem, value in response["identity_state"].tags if value in ("coffid", "test"))
 
 
 def test_delete_tags(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     response = loop.run_until_complete(
         customer.delete_tags(["coffid"])
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert not list(value for elem, value in response["identity_state"]["tags"].items() if value in ("coffid"))
+    assert not list(value for elem, value in response["identity_state"].tags if value in ("coffid"))
 
 
 def test_add_reminder(client):
-    customer = Customer(client)
-    reminder = {"key": "some-key", "remindAt": 50000, "payload": {"a": 1, "c": "de"}}
+    customer = Customer(client, number='+254711892648')
+    reminder = {"key": "some-key", "remind_at": 50000, "payload": '{"a": 1, "c": "de"}'}
     response = loop.run_until_complete(customer.add_reminder(reminder))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
 
 
 def test_cancel_reminder(client):
-    customer = Customer(client)
+    customer = Customer(client, number='+254711892648')
     response = loop.run_until_complete(customer.cancel_reminder("some-key"))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
+

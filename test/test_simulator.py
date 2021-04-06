@@ -25,7 +25,7 @@ def client():
 
 def test_receive_message(client):
     response = loop.run_until_complete(
-        client.receive_message("254712345678", customer_number, "1234567", ["ussd"])
+        client.receive_message("254712345678", customer_number, "1234567", [{"ussd": '*123#'}])
     )
     assert all(elem in response for elem in ("message", "status", "description"))
 
@@ -34,7 +34,7 @@ def test_receive_payment(client):
     response = loop.run_until_complete(
         client.receive_payment(
             "254712345678",
-            customer_number,
+            adopted_customer,
             "test-transaction-id",
             {"amount": 100, "currency_code": "KES"},
             "pending_confirmation",

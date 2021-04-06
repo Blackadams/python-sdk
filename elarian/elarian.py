@@ -195,7 +195,7 @@ class Elarian(Client):
             )
             req.initiate_payment.debit_party.customer.channel_number.channel = get_provider(
                 PaymentChannel,
-                debit_party["customer"]["customer_number"]["channel"],
+                debit_party["customer"]["channel_number"]["channel"],
                 "PAYMENT_CHANNEL",
             )
         elif has_key("wallet", debit_party):

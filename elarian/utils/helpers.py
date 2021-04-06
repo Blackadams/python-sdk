@@ -1,4 +1,4 @@
-from .generated.common_model_pb2 import CustomerNumber, ChannelNumberProvider
+from .generated.common_model_pb2 import CustomerNumber, ChannelNumberProvider, CustomerNumberProvider
 from .generated.payment_model_pb2 import PaymentChannel
 from .generated.messaging_model_pb2 import OutboundMessage,\
     VoiceCallAction,\
@@ -152,5 +152,8 @@ def get_provider(enum, channel, channel_enum):
         return key_value
     except ValueError:
         return f"`Invalid key {channel}. Must be one of get_valid_keys({get_valid_keys(enum)})"
+    except TypeError:
+        key_value = enum.Value(f"{channel_enum}_{channel.upper()}")
+        return key_value
     except Exception as e:
         return e
