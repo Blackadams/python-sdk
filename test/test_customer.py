@@ -49,7 +49,7 @@ def test_adopt_state(client):
 def test_send_message(client):
     customer = Customer(client, number='+254711892648')
     messaging_channel = {"number": sms_sender_id, "channel": "sms"}
-    message = {"body": {"text:": "Python sms messaging test"}}
+    message = {"body": {"text": "Python sms messaging test"}}
     response = loop.run_until_complete(
         customer.send_message(messaging_channel, message)
     )
@@ -104,7 +104,7 @@ def test_lease_app_data(client):
     data = {"a": {"name": "update_after_lease"}}
     loop.run_until_complete(customer.update_app_data(data))
     response = loop.run_until_complete(customer.lease_app_data())
-    assert response["abc"]["name"] == "update_after_lease"
+    assert response["a"]["name"] == "update_after_lease"
 
 
 def test_delete_app_data(client):
@@ -166,7 +166,7 @@ def test_update_tags(client):
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    print(str(response["identity_state"].tags[0]))
+    # print(str(response["identity_state"].tags[0]))
     assert list(value for elem, value in response["identity_state"].tags if value in ("coffid", "test"))
 
 
@@ -191,4 +191,3 @@ def test_cancel_reminder(client):
     customer = Customer(client, number='+254711892648')
     response = loop.run_until_complete(customer.cancel_reminder("some-key"))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
-
