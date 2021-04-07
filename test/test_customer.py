@@ -166,7 +166,6 @@ def test_update_tags(client):
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    # print(str(response["identity_state"].tags[0]))
     assert list(value for elem, value in response["identity_state"].tags if value in ("coffid", "test"))
 
 
