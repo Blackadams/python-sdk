@@ -1,4 +1,5 @@
-from .generated.common_model_pb2 import CustomerNumber
+from .generated.common_model_pb2 import CustomerNumber, ChannelNumberProvider, CustomerNumberProvider
+from .generated.payment_model_pb2 import PaymentChannel
 from .generated.messaging_model_pb2 import OutboundMessage,\
     VoiceCallAction,\
     RecordSessionCallAction,\
@@ -23,6 +24,7 @@ def fill_in_outgoing_message(message: dict):
     body = message.get('body', {})
 
     if has_key('text', body):
+        print(body['text'])
         _message.body.text = body['text']
 
     if has_key('url', body):
@@ -132,5 +134,28 @@ def fill_in_outgoing_message(message: dict):
                 _action.redirect.url = action['redirect']['url']
 
             _message.body.voice.actions.append(_action)
-
+    else:
+        raise KeyError('Invalid body')
     return _message
+
+
+def get_valid_keys(provider):
+    """Lists the valid keys to be used on specific protos"""
+    valid_keys = {key_name: key_name.split('_')[-1].lower()
+                  for key_name in provider.keys()
+                  if key_name.split('_')[-1].lower() != 'unspecified'}
+    return list(valid_keys.values())
+
+
+def get_provider(enum, channel, channel_enum):
+    """Used to get the provider given the enum"""
+    try:
+        key_value = enum.Value(f"{channel_enum}_{channel.upper()}")
+        return key_value
+    except ValueError:
+        return f"`Invalid key {channel}. Must be one of get_valid_keys({get_valid_keys(enum)})"
+    except TypeError:
+        key_value = enum.Value(f"{channel_enum}_{channel.upper()}")
+        return key_value
+    except Exception as e:
+        return e
