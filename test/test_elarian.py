@@ -15,17 +15,18 @@ def client():
 
 
 def test_connect(client):
-    loop.run_until_complete(client.connect())
-    loop.run_until_complete(asyncio.sleep(2))
+    """Function to test the connection to Elarian backend"""
     assert client.is_connected()
 
 
 def test_generate_auth_token(client):
+    """Function to test the generate_auth_token function"""
     response = loop.run_until_complete(client.generate_auth_token())
     assert all(elem in response for elem in ("token", "lifetime"))
 
 
 def test_add_customer_reminder_by_tag(client):
+    """Function to test the add_customer_reminder_by_tag function"""
     tag = {"key": "some-key", "value": "some-value"}
     reminder = {"key": "some-rem", "remind_at": time.time() + 60, "payload": "some str"}
     response = loop.run_until_complete(
@@ -35,6 +36,7 @@ def test_add_customer_reminder_by_tag(client):
 
 
 def test_cancel_customer_reminder_by_tag(client):
+    """Function to test the cancel_customer_reminder_by_tag function"""
     tag = {"key": "some-key", "value": "some-value"}
     response = loop.run_until_complete(
         client.cancel_customer_reminder_by_tag(tag, "some-rem")
@@ -43,8 +45,9 @@ def test_cancel_customer_reminder_by_tag(client):
 
 
 def test_send_message_by_tag(client):
+    """Function to test the send_message_by_tag function"""
     tag = {"key": "some-key", "value": "some-value"}
-    sms_channel = {"number": sms_short_code, "channel": MessagingChannel.SMS}
+    sms_channel = {"number": sms_short_code, "channel": 'sms'}
     message = {"body": {"text": "Hello From Python"}}
     response = loop.run_until_complete(
         client.send_message_by_tag(tag, sms_channel, message)
@@ -53,6 +56,7 @@ def test_send_message_by_tag(client):
 
 
 def test_initiate_payment(client):
+    """Function to test the initiate_payment function"""
     debit_from = {
         "customer": {
             "customer_number": {
@@ -87,5 +91,6 @@ def test_initiate_payment(client):
 
 
 def test_disconnect(client):
+    """Function to test the disconnection function"""
     loop.run_until_complete(client.disconnect())
     assert not client.is_connected()

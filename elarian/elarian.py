@@ -15,6 +15,7 @@ from .utils.generated.payment_model_pb2 import (
     PaymentChannel,
 )
 from .utils.helpers import get_provider
+from .utils.generated.messaging_model_pb2 import MessagingChannel
 
 
 class Elarian(Client):
@@ -155,7 +156,11 @@ class Elarian(Client):
         """ Send a message by tag """
         req = AppToServerCommand()
         req.send_message_tag.channel_number.number = messaging_channel["number"]
-        req.send_message_tag.channel_number.channel = messaging_channel["channel"].value
+        req.send_message_tag.channel_number.channel = get_provider(
+                MessagingChannel,
+                messaging_channel["channel"]
+                "MESSAGING_CHANNEL",
+            )
         req.send_message_tag.tag.key = tag["key"]
         req.send_message_tag.tag.value.value = tag["value"]
         req.send_message_tag.message.CopyFrom(fill_in_outgoing_message(message))
