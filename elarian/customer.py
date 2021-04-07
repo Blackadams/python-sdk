@@ -37,7 +37,7 @@ class Customer:
             raise RuntimeError("Either id or number is required")
 
     async def get_state(self):
-        """ Get customer state """
+        """Used to get the current customer state"""
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -64,7 +64,7 @@ class Customer:
             raise RuntimeError(res.description)
         res = res.data
         self.customer_id = res.customer_id
-        return {  # FIXME: Format object accordingly
+        return {
             "customer_id": res.customer_id,
             "identity_state": res.identity_state,
             "messaging_state": res.messaging_state,
@@ -73,7 +73,7 @@ class Customer:
         }
 
     async def adopt_state(self, other_customer):
-        """ Adopt another customer's state """
+        """Used to adopt another customer's state"""
         req = AppToServerCommand()
 
         if self.customer_id is None:
@@ -89,8 +89,6 @@ class Customer:
             req.adopt_customer_state.other_customer_number.number = (
                 other_customer.get("number")
             )
-            # req.adopt_customer_state.customer_number.provider = other_customer.customer_number.get('provider',
-            #                                                                            CustomerNumberProvider.CELLULAR).value
             req.adopt_customer_state.other_customer_number.provider = get_provider(
                 CustomerNumberProvider,
                 other_customer.get("provider", "cellular"),
@@ -112,7 +110,7 @@ class Customer:
         }
 
     async def send_message(self, messaging_channel: dict, message: dict):
-        """ Send a message to this customer"""
+        """Used to send a message to this customer"""
         req = AppToServerCommand()
         req.send_message.channel_number.number = messaging_channel.get("number")
         req.send_message.channel_number.channel = get_provider(
@@ -138,7 +136,7 @@ class Customer:
         }
 
     async def reply_to_message(self, message_id: str, message: dict):
-        """ Reply to a message from this customer """
+        """Used to reply to a message from this customer"""
         req = AppToServerCommand()
         req.reply_to_message.customer_id = self.customer_id
         req.reply_to_message.message_id = message_id
@@ -154,7 +152,7 @@ class Customer:
         }
 
     async def update_activity(self, activity_channel: dict, activity: dict):
-        """ Update customer's activity """
+        """Used to update a customer's activity """
         req = AppToServerCommand()
 
         req.customer_activity.channel_number.number = activity_channel.get("number")
@@ -193,7 +191,7 @@ class Customer:
         messaging_channel: dict,
         action: MessagingConsentAction = MessagingConsentAction.ALLOW,
     ):
-        """ Update customer's engagement consent on this channel """
+        """Used to update a customer's engagement consent on this channel """
         req = AppToServerCommand()
 
         req.update_messaging_consent.channel_number.number = messaging_channel.get(
@@ -223,7 +221,7 @@ class Customer:
         }
 
     async def lease_app_data(self):
-        """ Lease customer's app data """
+        """Used to lease a customer's app data """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -250,7 +248,7 @@ class Customer:
         return res.value
 
     async def update_app_data(self, data: dict):
-        """ Update customer's app data """
+        """Used to update a customer's app data """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -284,7 +282,7 @@ class Customer:
         }
 
     async def delete_app_data(self):
-        """ Remove customer's app data """
+        """Used to remove a customer's app data """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -316,7 +314,7 @@ class Customer:
         }
 
     async def update_metadata(self, data: dict):
-        """ Update customer's metadata """
+        """Used to update a customer's metadata """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -355,7 +353,7 @@ class Customer:
         }
 
     async def delete_metadata(self, keys: list):
-        """ Remove customer's metadata """
+        """Used to remove a customer's metadata """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -388,7 +386,7 @@ class Customer:
         }
 
     async def update_secondary_ids(self, secondary_ids: list):
-        """ Update customer's secondary ids """
+        """Used to update a customer's secondary ids """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -428,7 +426,7 @@ class Customer:
         }
 
     async def delete_secondary_ids(self, secondary_ids: list):
-        """ Remove customer's secondary ids """
+        """Used to remove a customer's secondary ids """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -466,7 +464,7 @@ class Customer:
         }
 
     async def update_tags(self, tags: list):
-        """ Update a customer's tags """
+        """Used to update a customer's tags """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -506,7 +504,7 @@ class Customer:
         }
 
     async def delete_tags(self, keys: list):
-        """ Remove a customer's tags """
+        """Used to remove a customer's tags """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -540,7 +538,7 @@ class Customer:
         }
 
     async def add_reminder(self, reminder: dict):
-        """ Add a reminder """
+        """Used to add a reminder """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -582,7 +580,7 @@ class Customer:
         }
 
     async def cancel_reminder(self, key: str):
-        """ Cancel a reminder """
+        """Used to cancel a reminder """
         req = AppToServerCommand()
 
         if self.customer_id is not None:

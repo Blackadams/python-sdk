@@ -9,7 +9,6 @@ from elarian.models import *
 
 
 class Simulator(Client):
-    """..."""
 
     def __init__(self, org_id, api_key, app_id, options=Client.default_options):
         super().__init__(
@@ -28,18 +27,23 @@ class Simulator(Client):
         self._is_simulator = True
 
     def set_on_send_message(self, handler):
+        """Used to set the handler on simulating the sending message"""
         return self._on("send_message", handler)
 
     def set_on_make_voice_call(self, handler):
+        """Used to set the handler on simulating the making of voice call"""
         return self._on("make_voice_call", handler)
 
     def set_on_send_customer_payment(self, handler):
+        """Used to set the handler on simulating the sending of a payment to a customer"""
         return self._on("send_customer_payment", handler)
 
     def set_on_send_channel_payment(self, handler):
+        """Used to set the handler on simulating the sending of a payment via a channel"""
         return self._on("send_channel_payment", handler)
 
     def set_on_checkout_payment(self, handler):
+        """Used to set the handler on simulating the payment checkout"""
         return self._on("checkout_payment", handler)
 
     async def receive_message(
@@ -49,7 +53,7 @@ class Simulator(Client):
         session_id: str,
         message_parts: list,
     ):
-        """..."""
+        """Used to simulate the receiving of a message"""
         req = SimulatorToServerCommand()
         req.receive_message.session_id.value = session_id
         req.receive_message.customer_number = phone_number
@@ -72,7 +76,7 @@ class Simulator(Client):
 
             if has_key("media", part):
                 _part.media.url = part["media"]["url"]
-                _part.media.media = part["media"]["type"].value
+                _part.media.media = part["media"]["type"]
 
             if has_key("location", part):
                 _part.location.latitude = part["location"]["latitude"]
@@ -139,7 +143,7 @@ class Simulator(Client):
         value: dict,
         status: PaymentStatus,
     ):
-        """..."""
+        """Used to simulate the receiving of a payment"""
         req = SimulatorToServerCommand()
         req.receive_payment.transaction_id = transaction_id
         req.receive_payment.customer_number = phone_number
@@ -165,7 +169,7 @@ class Simulator(Client):
         }
 
     async def update_payment_status(self, transaction_id: str, status: PaymentStatus):
-        """..."""
+        """Used to simulate the updating of a payment status"""
         req = SimulatorToServerCommand()
         req.update_payment_status.transaction_id = transaction_id
         req.update_payment_status.status = get_provider(
@@ -173,7 +177,7 @@ class Simulator(Client):
             status,
             "MESSAGING_CHANNEL",
         )
-        print(req.update_payment_status.status)
+        print(req)
         data = await self._send_command(req)
         res = self._parse_reply(data)
         return {
