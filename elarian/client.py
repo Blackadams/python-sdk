@@ -38,6 +38,8 @@ class Client(metaclass=ABCMeta):
 
     async def connect(self):
         """ Connect to Elarian """
+        self._request_handler.handle("pending")
+
         setup = AppConnectionMetadata()
         setup.org_id = self._org_id
         setup.app_id = self._app_id
@@ -46,7 +48,6 @@ class Client(metaclass=ABCMeta):
         setup.simulator_mode = self._is_simulator
 
         self._loop = asyncio.get_event_loop()
-        self._request_handler.handle("pending")
         self._connection = await asyncio.open_connection(
             host='tcp.elarian.dev',
             loop=self._loop,

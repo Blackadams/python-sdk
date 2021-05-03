@@ -31,7 +31,7 @@ class _RequestHandler(BaseRequestHandler):
 
     @staticmethod
     async def _default_handler(notif, customer, app_data, callback):
-        print(notif, customer, app_data)
+        print(notif)
         callback(data_update=app_data, response=None)
 
     async def request_response(self, payload: Payload) -> asyncio.Future:
@@ -93,7 +93,7 @@ class _RequestHandler(BaseRequestHandler):
         if asyncio.iscoroutinefunction(handler):
             await handler(notif, customer, app_data, callback)
         else:
-            handler(notif, customer, app_data, callback)
+            await handler(notif, customer, app_data, callback)
 
         return future
 
