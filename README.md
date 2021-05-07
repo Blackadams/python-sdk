@@ -1,6 +1,8 @@
 # Elarian Python SDK
 
 > The wrapper provides convenient access to the Elarian APIs.
+>
+> ***Project Status: Still under ACTIVE DEVELOPMENT, APIs are unstable and may change at any time until release of v1.0.0.***
 
 ## Documentation
 
