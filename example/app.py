@@ -10,9 +10,19 @@ client = Elarian(
 
 
 async def handle_ussd(notif, customer, app_data, callback):
-    print(notif)
-    print(app_data)
-    print(customer)
+    res = {
+        "body": {
+            "ussd": {
+                "text": "This is a test",
+                "is_terminal": True,
+            }
+        }
+    }
+    callback(res, app_data)
+
+
+async def handle_received_sms(notif, customer, app_data, callback):
+    print("Got an sms", notif)
     callback(None, app_data)
 
 
@@ -23,6 +33,7 @@ async def start():
     client.set_on_connection_closed(lambda: print("Connection closed!"))
     client.set_on_connected(lambda: print("Connected! Ready to process requests!"))
     client.set_on_ussd_session(handle_ussd)
+    client.set_on_received_sms(handle_received_sms)
 
     await client.connect()
 

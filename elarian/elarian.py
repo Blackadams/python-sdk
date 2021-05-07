@@ -30,7 +30,8 @@ class Elarian(Client):
                 "messaging_session_started",
                 "messaging_session_renewed",
                 "messaging_session_ended",
-                "messaging_consent_update" "received_sms",
+                "messaging_consent_update",
+                "received_sms",
                 "received_fb_messenger",
                 "received_telegram",
                 "received_whatsapp",
@@ -48,7 +49,7 @@ class Elarian(Client):
         )
 
     def set_on_reminder(self, handler):
-        """Used to set the handler functionon setting a reminder"""
+        """Used to set the handler function setting a reminder"""
         return self._on("reminder", handler)
 
     def set_on_messaging_session_started(self, handler):

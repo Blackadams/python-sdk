@@ -134,8 +134,7 @@ def fill_in_outgoing_message(message: dict):
                 _action.redirect.url = action['redirect']['url']
 
             _message.body.voice.actions.append(_action)
-    else:
-        raise KeyError('Invalid body')
+
     return _message
 
 
