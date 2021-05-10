@@ -113,6 +113,7 @@ class Client(metaclass=ABCMeta):
         registered = self._request_handler.get_handlers()
         self._request_handler = _RequestHandler(socket)
         self._request_handler._is_simulator = self._is_simulator
+        self._request_handler._client = self
         for event in registered.keys():
             self._request_handler.register_handler(event, registered[event])
         self._request_handler.handle("connecting")

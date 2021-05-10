@@ -4,13 +4,26 @@ import traceback
 from rsocket import Payload, BaseRequestHandler
 from elarian.customer import Customer
 from google.protobuf.json_format import MessageToJson
-from elarian.utils.generated.messaging_model_pb2 import MessagingChannel
+from elarian.utils.generated.messaging_model_pb2 import MessagingChannel,\
+    MessagingSessionEndReason,\
+    MessageReaction,\
+    MessageDeliveryStatus
+from elarian.utils.generated.payment_model_pb2 import PaymentChannel, PaymentStatus
 from elarian.utils.generated.app_socket_pb2 import AppConnectionMetadata,\
     ServerToAppNotification,\
     ServerToAppNotificationReply
-from elarian.utils.generated.simulator_socket_pb2 import ServerToSimulatorNotification,\
+from elarian.utils.generated.simulator_socket_pb2 import (
+    ServerToSimulatorNotification,
     ServerToSimulatorNotificationReply
-from elarian.utils.helpers import fill_in_outgoing_message
+)
+from elarian.utils.generated.common_model_pb2 import (
+    CustomerNumberProvider,
+)
+from elarian.utils.helpers import (
+    fill_in_outgoing_message,
+    get_enum_string,
+    has_key
+)
 
 
 class _RequestHandler(BaseRequestHandler):
@@ -53,31 +66,83 @@ class _RequestHandler(BaseRequestHandler):
             notif = getattr(data, event)
 
             customer = None
+
             app_data = data.app_data if data.HasField('app_data') else None
-            app_data = None if app_data is None else json.loads(
-                MessageToJson(message=app_data, preserving_proto_field_name=True))
+            if app_data is not None:
+                app_data = json.loads(app_data.string_val) if app_data.HasField('string_val') else app_data.bytes_val
+
             data = json.loads(MessageToJson(message=data, preserving_proto_field_name=True))
             notif = json.loads(MessageToJson(message=notif, preserving_proto_field_name=True))
 
-            customer_number = None
+            customer_number = notif.get('customer_number', None)
+
+            # TODO: Complete notification parsing to match sdk spec
+
+            if event in [
+                'messaging_session_started',
+                'messaging_session_renewed',
+                'messaging_session_ended',
+                'messaging_consent_update',
+                'sent_message_reaction'
+            ]:
+                notif['channel_number']['channel'] = get_enum_string(
+                    MessagingChannel,
+                    notif['channel_number']['channel'],
+                    'MESSAGING_CHANNEL'
+                )
+                if has_key('reason', notif):
+                    notif['reason'] = get_enum_string(
+                        MessagingSessionEndReason,
+                        notif['reason'],
+                        'MESSAGING_SESSION_END_REASON'
+                    )
+                if has_key('reaction', notif):
+                    notif['reaction'] = get_enum_string(
+                        MessageReaction,
+                        notif['reaction'],
+                        'MESSAGE_REACTION'
+                    )
+
+            if event == 'message_status':
+                notif['status'] = get_enum_string(MessageDeliveryStatus, notif['status'], 'MESSAGE_DELIVERY_STATUS')
+
+            if event in ['payment_status', 'wallet_payment_status', 'received_payment']:
+                if has_key('channel_number', notif):
+                    notif['channel_number']['channel'] = get_enum_string(
+                        PaymentChannel,
+                        notif['channel_number']['channel'],
+                        'PAYMENT_CHANNEL'
+                    )
+                notif['status'] = get_enum_string(PaymentStatus, notif['status'], 'PAYMENT_STATUS')
+
             if event == 'received_message':
-                customer_number = notif['customer_number']
-                channel = MessagingChannel.Value(notif['channel_number']['channel'])
-                if channel is MessagingChannel.MESSAGING_CHANNEL_SMS:
+                notif['channel_number']['channel'] = get_enum_string(
+                    MessagingChannel,
+                    notif['channel_number']['channel'],
+                    'MESSAGING_CHANNEL'
+                )
+                notif['customer_number']['provider'] = get_enum_string(
+                            CustomerNumberProvider,
+                            customer_number['provider'],
+                            'CUSTOMER_NUMBER_PROVIDER')
+                channel = notif['channel_number']['channel'].lower()
+                if channel == 'sms':
                     event = 'received_sms'
                     notif['text'] = notif['parts'][0]['text']
-                if channel is MessagingChannel.MESSAGING_CHANNEL_VOICE:
+                    del notif['parts']
+                if channel == 'voice':
                     event = 'voice_call'
-                if channel is MessagingChannel.MESSAGING_CHANNEL_USSD:
+                if channel == 'ussd':
                     event = 'ussd_session'
                     notif['input'] = notif['parts'][0]['ussd']
-                if channel is MessagingChannel.MESSAGING_CHANNEL_FB_MESSENGER:
+                    del notif['parts']
+                if channel == 'fb_messenger':
                     event = 'received_fb_messenger'
-                if channel is MessagingChannel.MESSAGING_CHANNEL_TELEGRAM:
+                if channel == 'telegram':
                     event = 'received_telegram'
-                if channel is MessagingChannel.MESSAGING_CHANNEL_WHATSAPP:
+                if channel == 'whatsapp':
                     event = 'received_whatsapp'
-                if channel is MessagingChannel.MESSAGING_CHANNEL_EMAIL:
+                if channel == 'email':
                     event = 'received_email'
 
             if event in self._handlers.keys():
@@ -92,7 +157,10 @@ class _RequestHandler(BaseRequestHandler):
                         client=self._client,
                         id=data['customer_id'],
                         number=customer_number['number'],
-                        provider=customer_number['provider'])
+                        provider=get_enum_string(
+                            CustomerNumberProvider,
+                            customer_number['provider'],
+                            'CUSTOMER_NUMBER_PROVIDER'))
 
                 # FIXME: Format notification data
                 notif['org_id'] = data['org_id']
@@ -103,13 +171,15 @@ class _RequestHandler(BaseRequestHandler):
             def callback(response=None, data_update=None):
                 res = ServerToSimulatorNotificationReply() if self._is_simulator else ServerToAppNotificationReply()
                 if not self._is_simulator:
-                    print("In callback:", response)
                     if response is not None:
                         res.message.CopyFrom(fill_in_outgoing_message(response))
                     if data_update is not None:
-                        res.data_update.update.string_val = data_update.get("string_value")
-                        res.data_update.update.bytes_val = data_update.get("bytes_val")
-                    print(res)
+                        try:
+                            ro = data_update.decode()
+                            res.data_update.update.bytes_val = data_update
+                        except (UnicodeDecodeError, AttributeError):
+                            res.data_update.update.string_val = json.dumps(data_update)
+                            pass
                 future.set_result(Payload(data=res.SerializeToString()))
 
             if asyncio.iscoroutinefunction(handler):

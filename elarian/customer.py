@@ -5,9 +5,8 @@ from .utils.generated.common_model_pb2 import (
     IndexMapping,
     CustomerNumberProvider,
 )
-from .utils.helpers import has_key, fill_in_outgoing_message, get_provider
+from .utils.helpers import has_key, fill_in_outgoing_message, get_enum_value
 from .models import *
-
 
 
 class Customer:
@@ -48,7 +47,7 @@ class Customer:
             req.get_customer_state.customer_number.number = self.customer_number.get(
                 "number"
             )
-            req.get_customer_state.customer_number.provider = get_provider(
+            req.get_customer_state.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -89,7 +88,7 @@ class Customer:
             req.adopt_customer_state.other_customer_number.number = (
                 other_customer.get("number")
             )
-            req.adopt_customer_state.other_customer_number.provider = get_provider(
+            req.adopt_customer_state.other_customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 other_customer.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -113,13 +112,13 @@ class Customer:
         """Used to send a message to this customer"""
         req = AppToServerCommand()
         req.send_message.channel_number.number = messaging_channel.get("number")
-        req.send_message.channel_number.channel = get_provider(
+        req.send_message.channel_number.channel = get_enum_value(
             MessagingChannel,
             messaging_channel.get("channel", "unknown"),
             "MESSAGING_CHANNEL",
         )
         req.send_message.customer_number.number = self.customer_number.get("number")
-        req.send_message.customer_number.provider = get_provider(
+        req.send_message.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
             self.customer_number.get("provider", "cellular"),
             "CUSTOMER_NUMBER_PROVIDER",
@@ -156,7 +155,7 @@ class Customer:
         req = AppToServerCommand()
 
         req.customer_activity.channel_number.number = activity_channel.get("number")
-        req.customer_activity.channel_number.channel = get_provider(
+        req.customer_activity.channel_number.channel = get_enum_value(
             ActivityChannel,
             activity_channel.get("channel", "cellular"),
             "ACTIVITY_CHANNEL",
@@ -164,7 +163,7 @@ class Customer:
         req.customer_activity.customer_number.number = self.customer_number.get(
             "number"
         )
-        req.customer_activity.customer_number.provider = get_provider(
+        req.customer_activity.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
             self.customer_number.get("provider", "cellular"),
             "CUSTOMER_NUMBER_PROVIDER",
@@ -197,7 +196,7 @@ class Customer:
         req.update_messaging_consent.channel_number.number = messaging_channel.get(
             "number"
         )
-        req.update_messaging_consent.channel_number.channel = get_provider(
+        req.update_messaging_consent.channel_number.channel = get_enum_value(
             MessagingChannel,
             messaging_channel.get("channel", "unknown"),
             "MESSAGING_CHANNEL",
@@ -205,7 +204,7 @@ class Customer:
         req.update_messaging_consent.customer_number.number = self.customer_number.get(
             "number"
         )
-        req.update_messaging_consent.customer_number.provider = get_provider(
+        req.update_messaging_consent.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
             self.customer_number.get("provider", "cellular"),
             "CUSTOMER_NUMBER_PROVIDER",
@@ -232,7 +231,7 @@ class Customer:
             req.lease_customer_app_data.customer_number.number = (
                 self.customer_number.get("number")
             )
-            req.lease_customer_app_data.customer_number.provider = get_provider(
+            req.lease_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -245,9 +244,13 @@ class Customer:
 
         if not res.status:
             raise RuntimeError(res.description)
-        return res.value
 
-    async def update_app_data(self, data: dict):
+        if res.value.HasField('string_val'):
+            return json.loads(res.string_val)
+        else:
+            return res.value.bytes_val
+
+    async def update_app_data(self, data):
         """Used to update a customer's app data """
         req = AppToServerCommand()
 
@@ -259,7 +262,7 @@ class Customer:
             req.update_customer_app_data.customer_number.number = (
                 self.customer_number.get("number")
             )
-            req.update_customer_app_data.customer_number.provider = get_provider(
+            req.update_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -267,8 +270,13 @@ class Customer:
         else:
             raise RuntimeError("Invalid customer id and/or customer number")
 
-        req.update_customer_app_data.update.string_val = data.get("string_value")
-        req.update_customer_app_data.update.bytes_val = data.get("bytes_val")
+        try:
+            ro = data.decode()
+            req.update_customer_app_data.bytes_val = data
+        except (UnicodeDecodeError, AttributeError):
+            req.update_customer_app_data.string_val = json.dumps(data)
+            pass
+
         data = await self._send_command(req)
         res = self._parse_reply(data).update_customer_app_data
 
@@ -293,7 +301,7 @@ class Customer:
             req.delete_customer_app_data.customer_number.number = (
                 self.customer_number.get("number")
             )
-            req.delete_customer_app_data.customer_number.provider = get_provider(
+            req.delete_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -313,6 +321,14 @@ class Customer:
             "customer_id": res.customer_id.value,
         }
 
+    async def get_metadata(self):
+        state = await self.get_state()
+        meta = state['identity_state']['metadata']
+        result = dict()
+        for key in meta:
+            result[key] = json.loads(meta[key].string_val) if meta[key].HasField('string_val') else meta[key].bytes_val
+        return result
+
     async def update_metadata(self, data: dict):
         """Used to update a customer's metadata """
         req = AppToServerCommand()
@@ -325,7 +341,7 @@ class Customer:
             req.update_customer_metadata.customer_number.number = (
                 self.customer_number.get("number")
             )
-            req.update_customer_metadata.customer_number.provider = get_provider(
+            req.update_customer_metadata.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -335,10 +351,12 @@ class Customer:
 
         for key in data.keys():
             val = data.get(key)
-            req.update_customer_metadata.updates[key].string_val = val.get(
-                "string_value"
-            )
-            req.update_customer_metadata.updates[key].bytes_val = val.get("bytes_val")
+            try:
+                data = val.decode()
+                req.update_customer_metadata.updates[key].bytes_val = val
+            except (UnicodeDecodeError, AttributeError):
+                req.update_customer_metadata.updates[key].string_val = json.dumps(val)
+                pass
 
         data = await self._send_command(req)
         res = self._parse_reply(data).update_customer_state
@@ -364,7 +382,7 @@ class Customer:
             req.delete_customer_metadata.customer_number.number = (
                 self.customer_number.get("number")
             )
-            req.delete_customer_metadata.customer_number.provider = get_provider(
+            req.delete_customer_metadata.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -385,6 +403,10 @@ class Customer:
             "customer_id": res.customer_id.value,
         }
 
+    async def get_secondary_ids(self):
+        state = await self.get_state()
+        return state['identity_state']['secondary_ids']
+
     async def update_secondary_ids(self, secondary_ids: list):
         """Used to update a customer's secondary ids """
         req = AppToServerCommand()
@@ -397,7 +419,7 @@ class Customer:
             req.update_customer_secondary_id.customer_number.number = (
                 self.customer_number.get("number")
             )
-            req.update_customer_secondary_id.customer_number.provider = get_provider(
+            req.update_customer_secondary_id.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -437,7 +459,7 @@ class Customer:
             req.delete_customer_secondary_id.customer_number.number = (
                 self.customer_number.get("number")
             )
-            req.delete_customer_secondary_id.customer_number.provider = get_provider(
+            req.delete_customer_secondary_id.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -463,6 +485,10 @@ class Customer:
             "customer_id": res.customer_id.value,
         }
 
+    async def get_tags(self):
+        state = await self.get_state()
+        return state['identity_state']['tags']
+
     async def update_tags(self, tags: list):
         """Used to update a customer's tags """
         req = AppToServerCommand()
@@ -475,7 +501,7 @@ class Customer:
             req.update_customer_tag.customer_number.number = self.customer_number.get(
                 "number"
             )
-            req.update_customer_tag.customer_number.provider = get_provider(
+            req.update_customer_tag.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -515,7 +541,7 @@ class Customer:
             req.delete_customer_tag.customer_number.number = self.customer_number.get(
                 "number"
             )
-            req.delete_customer_tag.customer_number.provider = get_provider(
+            req.delete_customer_tag.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -549,7 +575,7 @@ class Customer:
             req.add_customer_reminder.customer_number.number = self.customer_number.get(
                 "number"
             )
-            req.add_customer_reminder.customer_number.provider = get_provider(
+            req.add_customer_reminder.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -591,7 +617,7 @@ class Customer:
             req.cancel_customer_reminder.customer_number.number = (
                 self.customer_number.get("number")
             )
-            req.cancel_customer_reminder.customer_number.provider = get_provider(
+            req.cancel_customer_reminder.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 self.customer_number.get("provider", "cellular"),
                 "CUSTOMER_NUMBER_PROVIDER",

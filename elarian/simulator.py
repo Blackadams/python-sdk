@@ -4,7 +4,7 @@ from elarian.utils.generated.simulator_socket_pb2 import (
     SimulatorToServerCommandReply,
 )
 from elarian.utils.generated.messaging_model_pb2 import InboundMessageBody
-from elarian.utils.helpers import has_key, get_provider
+from elarian.utils.helpers import has_key, get_enum_value
 from elarian.models import *
 
 
@@ -58,7 +58,7 @@ class Simulator(Client):
         req.receive_message.session_id.value = session_id
         req.receive_message.customer_number = phone_number
         req.receive_message.channel_number.number = messaging_channel["number"]
-        req.receive_message.channel_number.channel = get_provider(
+        req.receive_message.channel_number.channel = get_enum_value(
             MessagingChannel,
             messaging_channel["channel"],
             "MESSAGING_CHANNEL",
@@ -147,7 +147,7 @@ class Simulator(Client):
         req = SimulatorToServerCommand()
         req.receive_payment.transaction_id = transaction_id
         req.receive_payment.customer_number = phone_number
-        req.receive_payment.status = get_provider(
+        req.receive_payment.status = get_enum_value(
             PaymentStatus,
             status,
             "MESSAGING_CHANNEL",
@@ -155,7 +155,7 @@ class Simulator(Client):
         req.receive_payment.value.amount = value["amount"]
         req.receive_payment.value.currency_code = value["currency_code"]
         req.receive_payment.channel_number.number = payment_channel["number"]
-        req.receive_payment.channel_number.channel = get_provider(
+        req.receive_payment.channel_number.channel = get_enum_value(
             PaymentChannel,
             payment_channel["channel"],
             "MESSAGING_CHANNEL",
@@ -172,7 +172,7 @@ class Simulator(Client):
         """Used to simulate the updating of a payment status"""
         req = SimulatorToServerCommand()
         req.update_payment_status.transaction_id = transaction_id
-        req.update_payment_status.status = get_provider(
+        req.update_payment_status.status = get_enum_value(
             PaymentStatus,
             status,
             "MESSAGING_CHANNEL",

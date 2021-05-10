@@ -14,7 +14,7 @@ from .utils.generated.common_model_pb2 import (
 from .utils.generated.payment_model_pb2 import (
     PaymentChannel,
 )
-from .utils.helpers import get_provider
+from .utils.helpers import get_enum_value
 
 
 class Elarian(Client):
@@ -200,7 +200,7 @@ class Elarian(Client):
             req.initiate_payment.debit_party.customer.customer_number.number = (
                 debit_party["customer"]["customer_number"]["number"]
             )
-            req.initiate_payment.debit_party.customer.customer_number.provider = get_provider(
+            req.initiate_payment.debit_party.customer.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 debit_party["customer"]["customer_number"]["provider"],
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -212,7 +212,7 @@ class Elarian(Client):
             req.initiate_payment.debit_party.customer.channel_number.number = (
                 debit_party["customer"]["channel_number"]["number"]
             )
-            req.initiate_payment.debit_party.customer.channel_number.channel = get_provider(
+            req.initiate_payment.debit_party.customer.channel_number.channel = get_enum_value(
                 PaymentChannel,
                 debit_party["customer"]["channel_number"]["channel"],
                 "PAYMENT_CHANNEL",
@@ -224,7 +224,7 @@ class Elarian(Client):
             req.initiate_payment.debit_party.channel.channel_number.number = (
                 debit_party["channel"]["channel_number"]["number"]
             )
-            req.initiate_payment.debit_party.channel.channel_number.channel = get_provider(
+            req.initiate_payment.debit_party.channel.channel_number.channel = get_enum_value(
                 PaymentChannel,
                 debit_party["customer"]["channel_number"]["channel"],
                 "PAYMENT_CHANNEL",
@@ -240,7 +240,7 @@ class Elarian(Client):
             req.initiate_payment.credit_party.customer.customer_number.number = (
                 credit_party["customer"]["customer_number"]["number"]
             )
-            req.initiate_payment.credit_party.customer.customer_number.provider = get_provider(
+            req.initiate_payment.credit_party.customer.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
                 credit_party["customer"]["customer_number"]["provider"],
                 "CUSTOMER_NUMBER_PROVIDER",
@@ -252,7 +252,7 @@ class Elarian(Client):
             req.initiate_payment.credit_party.customer.channel_number.number = (
                 credit_party["customer"]["channel_number"]["number"]
             )
-            req.initiate_payment.credit_party.customer.channel_number.channel = get_provider(
+            req.initiate_payment.credit_party.customer.channel_number.channel = get_enum_value(
                 PaymentChannel,
                 credit_party["customer"]["channel_number"]["channel"],
                 "PAYMENT_CHANNEL",
@@ -266,7 +266,7 @@ class Elarian(Client):
             req.initiate_payment.credit_party.channel.channel_number.number = (
                 credit_party["channel"]["channel_number"]["number"]
             )
-            req.initiate_payment.credit_party.channel.channel_number.channel = get_provider(
+            req.initiate_payment.credit_party.channel.channel_number.channel = get_enum_value(
                 PaymentChannel,
                 credit_party["customer"]["channel_number"]["channel"],
                 "PAYMENT_CHANNEL",

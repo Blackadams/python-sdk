@@ -1,40 +1,166 @@
 import os
+import time
+import traceback
 import asyncio
 from elarian import Customer, Elarian, MessagingChannel, PaymentStatus, PaymentChannel, CustomerNumberProvider
 
+sms_channel = {
+    'number': os.getenv('SMS_SHORT_CODE'),
+    'provider': 'sms'
+}
+
+voice_channel = {
+    'number': os.getenv('VOICE_NUMBER'),
+    'provider': 'voice'
+}
+
 client = Elarian(
-        org_id=os.getenv('ORG_ID'),
-        app_id=os.getenv('APP_ID'),
-        api_key=os.getenv('API_KEY'),
+    org_id=os.getenv('ORG_ID'),
+    app_id=os.getenv('APP_ID'),
+    api_key=os.getenv('API_KEY'),
 )
 
 
+async def approve_loan(customer, amount):
+    print(f"Approving loan for {customer.customer_number['number']}")
+
+
+async def handle_payment(notif, customer, app_data, callback):
+    try:
+        print(customer.customer_number)
+        print(f"Processing payment from {customer.customer_number['number']}")
+
+        print(app_data)
+        # FIXME: make SDK race callback with a timeout task so that this is not needed
+        callback(None, app_data)
+
+        print(notif)
+
+        meta = await customer.get_metadata()
+        print(meta)
+
+    except Exception as ex:
+        print(f"Failed to handle payment {ex}")
+        traceback.print_exc()
+
+
 async def handle_ussd(notif, customer, app_data, callback):
-    res = {
-        "body": {
-            "ussd": {
-                "text": "This is a test",
-                "is_terminal": True,
+    try:
+        print(f"Processing ussd from {customer.customer_number['number']}")
+        ussd_input = notif['input']
+        screen = app_data.get('screen', 'home')
+
+        meta = await customer.get_metadata()
+        name = meta.get('name', None)
+        balance = meta.get('balance', 0)
+
+        menu = {
+            "text": None,
+            "is_terminal": False
+        }
+
+        next_screen = screen
+        if screen == 'home' and ussd_input != '':
+            if ussd_input == '1':
+                next_screen = 'request-name'
+            elif ussd_input == '2':
+                next_screen = 'quit'
+
+        if screen == 'home' and ussd_input == '':
+            if name is not None:
+                next_screen = 'info'
+
+        if next_screen == 'quit':
+            menu['text'] = 'Happy Coding!'
+            menu['is_terminal'] = True
+            next_screen = 'home'
+            callback({"body": {"ussd": menu}}, {"screen": next_screen})
+
+        elif next_screen == 'info':
+            menu['text'] = f"Hey {name}, "
+            menu['text'] += f"you still owe me KES {balance}" if balance > 0 else "you have repaid your loan, good for you!"
+            menu['is_terminal'] = True
+            next_screen = 'home'
+            callback({"body": {"ussd": menu}}, {"screen": next_screen})
+
+        elif next_screen == 'request-name':
+            menu['text'] = "Alright, what is your name?"
+            next_screen = 'request-amount'
+            callback({"body": {"ussd": menu}}, {"screen": next_screen})
+
+        elif next_screen == 'request-amount':
+            name = ussd_input
+            menu['text'] = f"Okay {name}, how much do you need?"
+            next_screen = 'approve-amount'
+            callback({"body": {"ussd": menu}}, {"screen": next_screen})
+
+        elif next_screen == 'approve-amount':
+            balance = float(ussd_input)
+            menu['text'] = f"Awesome! {name} we are reviewing your application and will be in touch shortly!\nHave a lovely day!"
+            menu['is_terminal'] = True
+            next_screen = 'home'
+            callback({"body": {"ussd": menu}}, {"screen": next_screen})
+            await approve_loan(customer, balance)
+
+        elif next_screen == 'home':
+            menu['text'] = "Welcome to MoniMoni!\n1. Apply for loan\n2. Quit"
+            menu['is_terminal'] = False
+            callback({"body": {"ussd": menu}}, {"screen": next_screen})
+
+        await customer.update_metadata({"name": name, "balance": balance})
+    except Exception as ex:
+        print(f"Failed to process ussd {ex}")
+
+
+async def handle_reminder(notif, customer, app_data, callback):
+    try:
+
+        # FIXME: make SDK race callback with a timeout task so that this is not needed
+        callback(None, app_data)
+
+        print(f"Processing reminder for {customer.customer_number['number']}")
+        meta = customer.get_metadata()
+        name = meta['name']
+        balance = meta['balance']
+        strike = meta.get('strike', 1)
+
+        channel = sms_channel
+        message = {
+            "body": {
+                "text": f"Hello {name}, this is a friendly reminder to pay back my KES {balance}"
             }
         }
-    }
-    callback(res, app_data)
+        if strike == 2:
+            message['body']['text'] = f"Hey {name}, you still need to pay back my KES {balance}"
+        elif strike > 2:
+            channel = voice_channel
+            message['body'] = {
+                "voice": [
+                    {
+                        "say": {
+                            "text": f"Yo ${name}! You need to pay back my KES {balance}",
+                            "voice": "male"
+                        }
+                    }
+                ]
+            }
+        await customer.send_message(messaging_channel=channel, message=message)
+        meta['strike'] = strike + 1
+        await customer.update_metadata(meta)
 
+        reminder = {"key": "moni", "remind_at": time.time() + 60, "payload": ''}
+        await customer.add_reminder(reminder)
 
-async def handle_received_sms(notif, customer, app_data, callback):
-    print("Got an sms", notif)
-    callback(None, app_data)
+    except Exception as ex:
+        print(f"Failed to process reminder {ex}")
 
 
 async def start():
-    client.set_on_connection_pending(lambda: print('Pending...'))
-    client.set_on_connecting(lambda: print('Connecting...'))
-    client.set_on_connection_error(lambda err: print(err))
-    client.set_on_connection_closed(lambda: print("Connection closed!"))
-    client.set_on_connected(lambda: print("Connected! Ready to process requests!"))
     client.set_on_ussd_session(handle_ussd)
-    client.set_on_received_sms(handle_received_sms)
-
+    client.set_on_reminder(handle_reminder)
+    client.set_on_received_payment(handle_payment)
+    client.set_on_connection_error(lambda err: print(f"Connection Error {err}"))
+    client.set_on_connected(lambda: print(f"App is connected, waiting for customers on {os.getenv('USSD_CODE')}"))
     await client.connect()
 
 

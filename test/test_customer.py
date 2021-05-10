@@ -101,7 +101,7 @@ def test_update_messaging_consent(client):
 def test_update_app_data(client):
     """Function to test the update_app_data function"""
     customer = Customer(client, number='+254711892648')
-    data = {"key": "test-key", "hollow": 1020, "payload": {"a": "Test"}, "string_value": str.encode("test"), "bytes_val": str.encode("test")}
+    data = {"key": "test-key", "hollow": 1020, "payload": {"a": "Test"}, "some_bytes": str.encode("test")}
     response = loop.run_until_complete(customer.update_app_data(data))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
 
@@ -135,6 +135,16 @@ def test_update_metadata(client):
     )
 
 
+def test_get_metadata(client):
+    """Function to test the get_metadata function"""
+    customer = Customer(client, number='254711891648')
+    response = loop.run_until_complete(customer.get_metadata())
+    assert all(
+        elem in response
+        for elem in ("key", "hollow", "payload")
+    )
+
+
 def test_delete_metadata(client):
     """Function to test the delete_metadata function"""
     customer = Customer(client, number='+254711892648')
@@ -161,6 +171,13 @@ def test_update_secondary_ids(client):
     assert list(value for elem, value in response["identity_state"].secondary_ids if value in ("passport", "huduma"))
 
 
+def test_get_secondary_ids(client):
+    """Function to test the get_secondary_ids function"""
+    customer = Customer(client, number='254711891648')
+    response = loop.run_until_complete(customer.get_secondary_ids())
+    assert list(value for elem, value in response if value in ("passport", "huduma"))
+
+
 def test_delete_secondary_ids(client):
     """Function to test the delete_secondary_ids function"""
     customer = Customer(client, number='+254711892648')
@@ -181,6 +198,13 @@ def test_update_tags(client):
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
     assert list(value for elem, value in response["identity_state"].tags if value in ("coffid", "test"))
+
+
+def test_get_tags(client):
+    """Function to test the get_tags function"""
+    customer = Customer(client, number='254711891648')
+    response = loop.run_until_complete(customer.get_tags())
+    assert list(value for elem, value in response if value in ("coffid", "test"))
 
 
 def test_delete_tags(client):

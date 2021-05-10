@@ -140,21 +140,34 @@ def fill_in_outgoing_message(message: dict):
 
 def get_valid_keys(provider):
     """Lists the valid keys to be used on specific protos"""
-    valid_keys = {key_name: key_name.split('_')[-1].lower()
+    valid_keys = {key_name: key_name.split('_')[-1]
                   for key_name in provider.keys()
-                  if key_name.split('_')[-1].lower() != 'unspecified'}
+                  if key_name.split('_')[-1] != 'UNSPECIFIED'}
     return list(valid_keys.values())
 
 
-def get_provider(enum, channel, channel_enum):
+def get_enum_value(enum, channel, channel_enum):
     """Used to get the provider given the enum"""
     try:
         key_value = enum.Value(f"{channel_enum}_{channel.upper()}")
         return key_value
     except ValueError:
-        return f"`Invalid key {channel}. Must be one of get_valid_keys({get_valid_keys(enum)})"
+        return f"`Invalid key {channel}. Must be one of ({get_valid_keys(enum)})"
     except TypeError:
         key_value = enum.Value(f"{channel_enum}_{channel.upper()}")
         return key_value
+    except Exception as e:
+        return e
+
+
+def get_enum_string(enum, value, channel_enum):
+    """Used to get the provider value given the enum"""
+    try:
+        keys = enum.keys()
+        if value in keys:
+            return value.replace(f"{channel_enum}_", "")
+        raise ValueError
+    except ValueError:
+        return f"`Invalid key {value}. Must be one of ({get_valid_keys(enum)})"
     except Exception as e:
         return e
