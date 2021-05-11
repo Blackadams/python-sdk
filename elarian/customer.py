@@ -18,7 +18,7 @@ from .utils.generated.messaging_model_pb2 import (
 from .utils.generated.activity_model_pb2 import (
     ActivityChannel,
 )
-from .utils.helpers import has_key, fill_in_outgoing_message, get_enum_value
+from .utils.helpers import has_key, fill_in_outgoing_message, get_enum_value, get_enum_string
 
 
 class Customer:
@@ -111,7 +111,7 @@ class Customer:
         req.send_message.channel_number.number = messaging_channel.get("number")
         req.send_message.channel_number.channel = get_enum_value(
             MessagingChannel,
-            messaging_channel.get("channel", "unknown"),
+            messaging_channel.get("channel", "UNSPECIFIED"),
             "MESSAGING_CHANNEL",
         )
         req.send_message.customer_number.number = self.customer_number.get("number")
@@ -123,7 +123,7 @@ class Customer:
         req.send_message.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
         res = self._parse_reply(data)['send_message']
-        res['status'] = get_enum_string(MessageDeliveryStatus, MessageDeliveryStatus(res['status']), 'MESSAGE_DELIVERY_STATUS')
+        res['status'] = get_enum_string(MessageDeliveryStatus, res['status'], 'MESSAGE_DELIVERY_STATUS')
         return res
 
     async def reply_to_message(self, message_id: str, message: dict):
@@ -134,7 +134,7 @@ class Customer:
         req.reply_to_message.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
         res = self._parse_reply(data)['send_message']
-        res['status'] = get_enum_string(MessageDeliveryStatus, MessageDeliveryStatus(res['status']), 'MESSAGE_DELIVERY_STATUS')
+        res['status'] = get_enum_string(MessageDeliveryStatus, res['status'], 'MESSAGE_DELIVERY_STATUS')
         return res
 
     async def update_activity(self, activity_channel: dict, activity: dict):
@@ -181,7 +181,7 @@ class Customer:
         )
         req.update_messaging_consent.channel_number.channel = get_enum_value(
             MessagingChannel,
-            messaging_channel.get("channel", "unknown"),
+            messaging_channel.get("channel", "UNSPECIFIED"),
             "MESSAGING_CHANNEL",
         )
         req.update_messaging_consent.customer_number.number = self.customer_number.get(
@@ -299,10 +299,10 @@ class Customer:
         state = await self.get_state()
         meta = dict()
         if has_key('identity_state', state):
-            meta = state['identity_state']['metadata'] or dict()
+            meta = state['identity_state'].get('metadata', dict())
         result = dict()
         for key in meta:
-            result[key] = json.loads(meta[key].string_val) if meta[key].HasField('string_val') else meta[key].bytes_val
+            result[key] = json.loads(meta[key]['string_val']) if has_key('string_val', meta[key]) else meta[key]['bytes_val']
         return result
 
     async def update_metadata(self, data: dict):
@@ -580,7 +580,7 @@ class Customer:
         req.cancel_customer_reminder.key = key
 
         data = await self._send_command(req)
-        res = self._parse_reply(data)['update_customer_state']
+        res = self._parse_reply(data)['update_customer_app_data']
 
         if not res['status']:
             raise RuntimeError(res['description'])

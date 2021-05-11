@@ -185,6 +185,8 @@ class _RequestHandler(BaseRequestHandler):
                         except (UnicodeDecodeError, AttributeError):
                             res.data_update.data.string_val = json.dumps(data_update)
                             pass
+                    else:
+                        res.data_update.data.CopyFrom(incoming_app_data)
                 if not future.done():
                     future.set_result(Payload(data=res.SerializeToString(), metadata=bytes()))
 
@@ -193,7 +195,7 @@ class _RequestHandler(BaseRequestHandler):
                 if not future.done():
                     res = ServerToSimulatorNotificationReply() if self._is_simulator else ServerToAppNotificationReply()
                     if not self._is_simulator and incoming_app_data is not None:
-                        res.data_update = incoming_app_data
+                        res.data_update.data.CopyFrom(incoming_app_data)
                     future.set_result(Payload(data=res.SerializeToString(), metadata=bytes()))
 
             future.get_loop().create_task(handler(notif, customer, app_data or dict(), callback))

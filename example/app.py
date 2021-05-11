@@ -8,17 +8,17 @@ from elarian import (
 
 sms_channel = {
     'number': os.getenv('SMS_SHORT_CODE'),
-    'provider': 'SMS'
+    'channel': 'SMS'
 }
 
 voice_channel = {
     'number': os.getenv('VOICE_NUMBER'),
-    'provider': 'VOICE'
+    'channel': 'VOICE'
 }
 
 mpesa_channel = {
     'number': os.getenv('MPESA_PAYBILL'),
-    'provider': 'CELLULAR'
+    'channel': 'CELLULAR'
 }
 
 purse_id = os.getenv('PURSE_ID')
@@ -73,13 +73,13 @@ async def approve_loan(customer, amount):
         traceback.print_exc()
 
 
-async def handle_payment(notif, customer):
+async def handle_payment(notif, customer, app_data, callback):
     try:
         print(f"Processing payment from {customer.customer_number['number']}")
         amount = notif['value']['amount']
         meta = await customer.get_metadata()
-        name = meta['name']
-        balance = float(meta['balance'])
+        name = meta.get('name', 'Unknown Customer')
+        balance = float(meta.get('balance', 0))
 
         new_balance = balance - amount
         await customer.update_metadata({
@@ -88,7 +88,7 @@ async def handle_payment(notif, customer):
         })
 
         if new_balance <= 0:
-            text = f"Thank you for your payment ${name}, your loan has been fully repaid!!"
+            text = f"Thank you for your payment {name}, your loan has been fully repaid!!"
             await customer.cancel_reminder('moni')
             await customer.delete_metadata(['name', 'strike', 'balance', 'screen'])
         else:
@@ -112,7 +112,6 @@ async def handle_ussd(notif, customer, app_data, callback):
         screen = app_data.get('screen', 'home')
 
         meta = await customer.get_metadata()
-        print(f"Got meta {meta}")
         name = meta.get('name', None)
         balance = meta.get('balance', 0)
 
@@ -218,7 +217,8 @@ async def start():
     client.set_on_ussd_session(handle_ussd)
     client.set_on_reminder(handle_reminder)
     client.set_on_received_payment(handle_payment)
-    client.set_on_connection_error(lambda err: print(f"Connection Error {err}"))
+    client.set_on_connection_error(lambda err: print(f"{err}"))
+    client.set_on_connection_closed(lambda: print(f"Connection Closed"))
     client.set_on_connected(lambda: print(f"App is connected, waiting for customers on {os.getenv('USSD_CODE')}"))
     await client.connect()
 
