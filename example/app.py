@@ -37,10 +37,16 @@ async def approve_loan(customer, amount):
         name = meta['name']
         repayment_date = time.time() + 60
         res = await client.initiate_payment(
-            debit_party={'purse_id': purse_id},
+            debit_party={
+                'purse': {
+                    'purse_id': purse_id
+                }
+            },
             credit_party={
-                'channel_number': mpesa_channel,
-                'customer_number': customer.customer_number
+                'customer': {
+                    'channel_number': mpesa_channel,
+                    'customer_number': customer.customer_number
+                }
             },
             value={
                 'amount': amount,

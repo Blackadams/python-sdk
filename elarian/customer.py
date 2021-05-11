@@ -254,9 +254,9 @@ class Customer:
 
         try:
             ro = data.decode()
-            req.update_customer_app_data.bytes_val = data
+            req.update_customer_app_data.update.bytes_val = data
         except (UnicodeDecodeError, AttributeError):
-            req.update_customer_app_data.string_val = json.dumps(data)
+            req.update_customer_app_data.update.string_val = json.dumps(data)
             pass
 
         data = await self._send_command(req)
