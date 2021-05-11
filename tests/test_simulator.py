@@ -1,14 +1,10 @@
 import pytest
 from elarian.simulator import Simulator
-from test import (
+from tests import (
     loop,
     api_key,
     app_id,
     org_id,
-    sms_short_code,
-    mpesa_paybill,
-    purse_id,
-    sms_sender_id,
     customer_number,
     adopted_customer,
 )

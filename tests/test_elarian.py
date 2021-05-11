@@ -1,9 +1,7 @@
 import pytest
-import asyncio
 import time
 from elarian.elarian import Elarian
-from elarian.models import MessagingChannel, PaymentChannel, CustomerNumberProvider
-from test import loop, api_key, app_id, org_id, sms_short_code, mpesa_paybill, purse_id
+from tests import loop, api_key, app_id, org_id, sms_short_code, mpesa_paybill, purse_id
 
 
 @pytest.fixture(scope="session", autouse=True)

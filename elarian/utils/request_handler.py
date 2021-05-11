@@ -107,13 +107,20 @@ class _RequestHandler(BaseRequestHandler):
                 notif['status'] = get_enum_string(MessageDeliveryStatus, notif['status'], 'MESSAGE_DELIVERY_STATUS')
 
             if event in ['payment_status', 'wallet_payment_status', 'received_payment']:
+                notif['status'] = get_enum_string(PaymentStatus, notif['status'], 'PAYMENT_STATUS')
+
                 if has_key('channel_number', notif):
                     notif['channel_number']['channel'] = get_enum_string(
                         PaymentChannel,
                         notif['channel_number']['channel'],
                         'PAYMENT_CHANNEL'
                     )
-                notif['status'] = get_enum_string(PaymentStatus, notif['status'], 'PAYMENT_STATUS')
+
+                if has_key('customer_number', notif):
+                    notif['customer_number']['provider'] = get_enum_string(
+                        CustomerNumberProvider,
+                        customer_number['provider'],
+                        'CUSTOMER_NUMBER_PROVIDER')
 
             if event == 'received_message':
                 notif['channel_number']['channel'] = get_enum_string(
@@ -157,10 +164,8 @@ class _RequestHandler(BaseRequestHandler):
                         client=self._client,
                         id=data['customer_id'],
                         number=customer_number['number'],
-                        provider=get_enum_string(
-                            CustomerNumberProvider,
-                            customer_number['provider'],
-                            'CUSTOMER_NUMBER_PROVIDER'))
+                        provider=customer_number['provider']
+                    )
 
                 # FIXME: Format notification data
                 notif['org_id'] = data['org_id']

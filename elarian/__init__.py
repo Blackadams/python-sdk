@@ -1,5 +1,5 @@
 
 from .elarian import Elarian
-from elarian.simulator import Simulator
-from elarian.customer import Customer
+from .simulator import Simulator
+from .customer import Customer
 from .models import *

@@ -2,7 +2,10 @@ import os
 import time
 import traceback
 import asyncio
-from elarian import Customer, Elarian, MessagingChannel, PaymentStatus, PaymentChannel, CustomerNumberProvider
+from elarian import (
+    Customer,
+    Elarian,
+)
 
 sms_channel = {
     'number': os.getenv('SMS_SHORT_CODE'),
@@ -27,10 +30,8 @@ async def approve_loan(customer, amount):
 
 async def handle_payment(notif, customer, app_data, callback):
     try:
-        print(customer.customer_number)
         print(f"Processing payment from {customer.customer_number['number']}")
 
-        print(app_data)
         # FIXME: make SDK race callback with a timeout task so that this is not needed
         callback(None, app_data)
 
@@ -119,7 +120,7 @@ async def handle_reminder(notif, customer, app_data, callback):
         callback(None, app_data)
 
         print(f"Processing reminder for {customer.customer_number['number']}")
-        meta = customer.get_metadata()
+        meta = await customer.get_metadata()
         name = meta['name']
         balance = meta['balance']
         strike = meta.get('strike', 1)

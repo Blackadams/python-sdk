@@ -1,12 +1,22 @@
 import json
-from .utils.generated.app_socket_pb2 import AppToServerCommand, AppToServerCommandReply
+from .utils.generated.app_socket_pb2 import (
+    AppToServerCommand,
+    AppToServerCommandReply,
+)
 from .utils.generated.common_model_pb2 import (
     CustomerIndex,
     IndexMapping,
     CustomerNumberProvider,
 )
+from .utils.generated.messaging_model_pb2 import (
+    MessagingChannel,
+    MessagingConsentUpdate,
+    MessageDeliveryStatus
+)
+from .utils.generated.activity_model_pb2 import (
+    ActivityChannel,
+)
 from .utils.helpers import has_key, fill_in_outgoing_message, get_enum_value
-from .models import *
 
 
 class Customer:
@@ -28,7 +38,7 @@ class Customer:
             self.customer_id = id
         if number is not None:
             provider = (
-                provider if provider is not None else 'cellular'
+                provider if provider is not None else 'CELLULAR'
             )
             self.customer_number = {"number": number, "provider": provider}
 
@@ -39,19 +49,15 @@ class Customer:
         """Used to get the current customer state"""
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.get_customer_state.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
-        ):
-            req.get_customer_state.customer_number.number = self.customer_number.get(
-                "number"
-            )
+        if self.customer_number is not None and has_key("number", self.customer_number):
+            req.get_customer_state.customer_number.number = self.customer_number.get("number")
             req.get_customer_state.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
+        elif self.customer_id is not None:
+            req.get_customer_state.customer_id = self.customer_id
 
         else:
             raise RuntimeError("Invalid customer id and/or customer number")
@@ -90,7 +96,7 @@ class Customer:
             )
             req.adopt_customer_state.other_customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                other_customer.get("provider", "cellular"),
+                other_customer.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -120,7 +126,7 @@ class Customer:
         req.send_message.customer_number.number = self.customer_number.get("number")
         req.send_message.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
-            self.customer_number.get("provider", "cellular"),
+            self.customer_number.get("provider", "CELLULAR"),
             "CUSTOMER_NUMBER_PROVIDER",
         )
         req.send_message.message.CopyFrom(fill_in_outgoing_message(message))
@@ -157,7 +163,7 @@ class Customer:
         req.customer_activity.channel_number.number = activity_channel.get("number")
         req.customer_activity.channel_number.channel = get_enum_value(
             ActivityChannel,
-            activity_channel.get("channel", "cellular"),
+            activity_channel.get("channel", "CELLULAR"),
             "ACTIVITY_CHANNEL",
         )
         req.customer_activity.customer_number.number = self.customer_number.get(
@@ -165,7 +171,7 @@ class Customer:
         )
         req.customer_activity.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
-            self.customer_number.get("provider", "cellular"),
+            self.customer_number.get("provider", "CELLULAR"),
             "CUSTOMER_NUMBER_PROVIDER",
         )
 
@@ -188,7 +194,7 @@ class Customer:
     async def update_messaging_consent(
         self,
         messaging_channel: dict,
-        action: MessagingConsentAction = MessagingConsentAction.ALLOW,
+        action: str = 'ALLOW',
     ):
         """Used to update a customer's engagement consent on this channel """
         req = AppToServerCommand()
@@ -206,10 +212,10 @@ class Customer:
         )
         req.update_messaging_consent.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
-            self.customer_number.get("provider", "cellular"),
+            self.customer_number.get("provider", "CELLULAR"),
             "CUSTOMER_NUMBER_PROVIDER",
         )
-        req.update_messaging_consent.update = action.value
+        req.update_messaging_consent.update = get_enum_value(MessagingConsentUpdate, action, 'MESSAGING_CONSENT_UPDATE')
         data = await self._send_command(req)
         res = self._parse_reply(data).update_messaging_consent
 
@@ -233,7 +239,7 @@ class Customer:
             )
             req.lease_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -264,7 +270,7 @@ class Customer:
             )
             req.update_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -303,7 +309,7 @@ class Customer:
             )
             req.delete_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -343,7 +349,7 @@ class Customer:
             )
             req.update_customer_metadata.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -384,7 +390,7 @@ class Customer:
             )
             req.delete_customer_metadata.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -421,7 +427,7 @@ class Customer:
             )
             req.update_customer_secondary_id.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -461,7 +467,7 @@ class Customer:
             )
             req.delete_customer_secondary_id.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -503,7 +509,7 @@ class Customer:
             )
             req.update_customer_tag.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -543,7 +549,7 @@ class Customer:
             )
             req.delete_customer_tag.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -577,7 +583,7 @@ class Customer:
             )
             req.add_customer_reminder.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -619,7 +625,7 @@ class Customer:
             )
             req.cancel_customer_reminder.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "cellular"),
+                self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:

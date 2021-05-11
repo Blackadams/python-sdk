@@ -1,11 +1,17 @@
 from .client import Client
-from elarian.utils.generated.simulator_socket_pb2 import (
+from .utils.generated.simulator_socket_pb2 import (
     SimulatorToServerCommand,
     SimulatorToServerCommandReply,
 )
-from elarian.utils.generated.messaging_model_pb2 import InboundMessageBody
-from elarian.utils.helpers import has_key, get_enum_value
-from elarian.models import *
+from .utils.generated.messaging_model_pb2 import (
+    InboundMessageBody,
+    MessagingChannel
+)
+from .utils.generated.payment_model_pb2 import (
+    PaymentChannel,
+    PaymentStatus
+)
+from .utils.helpers import has_key, get_enum_value
 
 
 class Simulator(Client):
@@ -27,23 +33,23 @@ class Simulator(Client):
         self._is_simulator = True
 
     def set_on_send_message(self, handler):
-        """Used to set the handler on simulating the sending message"""
+        """Set the handler for messages received on the simulator"""
         return self._on("send_message", handler)
 
     def set_on_make_voice_call(self, handler):
-        """Used to set the handler on simulating the making of voice call"""
+        """Set the handler for voice calls received on the simulator"""
         return self._on("make_voice_call", handler)
 
     def set_on_send_customer_payment(self, handler):
-        """Used to set the handler on simulating the sending of a payment to a customer"""
+        """Set the handler for customer payments received on the simulator"""
         return self._on("send_customer_payment", handler)
 
     def set_on_send_channel_payment(self, handler):
-        """Used to set the handler on simulating the sending of a payment via a channel"""
+        """Set the handler for channel payments received on the simulator"""
         return self._on("send_channel_payment", handler)
 
     def set_on_checkout_payment(self, handler):
-        """Used to set the handler on simulating the payment checkout"""
+        """Set the handler for customer checkout received on the simulator"""
         return self._on("checkout_payment", handler)
 
     async def receive_message(
@@ -53,7 +59,7 @@ class Simulator(Client):
         session_id: str,
         message_parts: list,
     ):
-        """Used to simulate the receiving of a message"""
+        """Simulate sending a message. i.e. tell the simulated gateway to receive a message"""
         req = SimulatorToServerCommand()
         req.receive_message.session_id.value = session_id
         req.receive_message.customer_number = phone_number
@@ -141,7 +147,7 @@ class Simulator(Client):
         payment_channel: dict,
         transaction_id: str,
         value: dict,
-        status: PaymentStatus,
+        status: str,
     ):
         """Used to simulate the receiving of a payment"""
         req = SimulatorToServerCommand()
@@ -150,7 +156,7 @@ class Simulator(Client):
         req.receive_payment.status = get_enum_value(
             PaymentStatus,
             status,
-            "MESSAGING_CHANNEL",
+            "PAYMENT_STATUS",
         )
         req.receive_payment.value.amount = value["amount"]
         req.receive_payment.value.currency_code = value["currency_code"]
@@ -158,7 +164,7 @@ class Simulator(Client):
         req.receive_payment.channel_number.channel = get_enum_value(
             PaymentChannel,
             payment_channel["channel"],
-            "MESSAGING_CHANNEL",
+            "PAYMENT_CHANNEL",
         )
         data = await self._send_command(req)
         res = self._parse_reply(data)
@@ -168,16 +174,15 @@ class Simulator(Client):
             "message": res.message,
         }
 
-    async def update_payment_status(self, transaction_id: str, status: PaymentStatus):
+    async def update_payment_status(self, transaction_id: str, status: str):
         """Used to simulate the updating of a payment status"""
         req = SimulatorToServerCommand()
         req.update_payment_status.transaction_id = transaction_id
         req.update_payment_status.status = get_enum_value(
             PaymentStatus,
             status,
-            "MESSAGING_CHANNEL",
+            "PAYMENT_STATUS",
         )
-        print(req)
         data = await self._send_command(req)
         res = self._parse_reply(data)
         return {

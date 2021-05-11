@@ -1,11 +1,17 @@
-from .generated.common_model_pb2 import CustomerNumber, ChannelNumberProvider, CustomerNumberProvider
-from .generated.payment_model_pb2 import PaymentChannel
-from .generated.messaging_model_pb2 import OutboundMessage,\
-    VoiceCallAction,\
-    RecordSessionCallAction,\
-    RejectCallAction
-
-from elarian.models import PromptMessageReplyAction, TextToSpeechVoice
+from .generated.common_model_pb2 import (
+    CustomerNumber,
+    MediaType,
+)
+from .generated.messaging_model_pb2 import (
+    OutboundMessage,
+    VoiceCallAction,
+    RecordSessionCallAction,
+    RejectCallAction,
+    PromptMessageReplyAction,
+    PromptMessageMenuItemBody,
+    TextToSpeechVoice,
+    MessagingChannel
+)
 
 
 def has_key(key: str, data: dict):
@@ -18,13 +24,27 @@ def fill_in_outgoing_message(message: dict):
     _message.provider_tag.value = message.get('provider_tag', '')
     _message.reply_token.value = message.get('reply_token', '')
     if has_key('reply_prompt', message):
-        _message.reply_prompt.action = message.get('reply_prompt', {}).get('action', PromptMessageReplyAction.UNKNOWN).value
-        _message.reply_prompt.menu.extend(message.get('reply_prompt', {}).get('menu', []))
+        _message.reply_prompt.action = get_enum_value(
+            PromptMessageReplyAction,
+            message.get('reply_prompt', {}).get('action', 'UNKNOWN'),
+            'PROMPT_MESSAGE_REPLY_ACTION'
+        )
+
+        def make_prompt_item(item):
+            re = PromptMessageMenuItemBody()
+            if has_key('text', item):
+                re.text = item['text']
+            elif has_key('media', item):
+                re.media.url = item['media']['url']
+                re.media.media = get_enum_value(MediaType, item['media']['type'], 'MEDIA_TYPE')
+            return re
+        _message.reply_prompt.menu.extend(list(
+            map(make_prompt_item, message.get('reply_prompt', {}).get('menu', []))
+        ))
 
     body = message.get('body', {})
 
     if has_key('text', body):
-        print(body['text'])
         _message.body.text = body['text']
 
     if has_key('url', body):
@@ -36,7 +56,7 @@ def fill_in_outgoing_message(message: dict):
 
     if has_key('media', body):
         _message.body.media.url = body['media']['url']
-        _message.body.media.media = body['media']['type'].value
+        _message.body.media.media = get_enum_value(MediaType, body['media']['type'], 'MEDIA_TYPE')
 
     if has_key('location', body):
         _message.body.location.latitude = body['location']['latitude']
@@ -46,7 +66,8 @@ def fill_in_outgoing_message(message: dict):
 
     if has_key('template', body):
         _message.body.template.id = body['template']['id']
-        _message.body.template.params = body['template']['params']
+        for k in body['template']['params']:
+            _message.body.template.params[k] = body['template']['params'][k]
 
     if has_key('email', body):
         _message.body.email.subject = body['email'].get('subject')
@@ -63,7 +84,11 @@ def fill_in_outgoing_message(message: dict):
             if has_key('say', action):
                 _action.say.text = action['say']['text']
                 _action.say.play_beep = action['say'].get('play_beep', False)
-                _action.say.voice = action['say'].get('voice', TextToSpeechVoice.FEMALE).value
+                _action.say.voice = get_enum_value(
+                    TextToSpeechVoice,
+                    action['say'].get('voice', 'FEMALE'),
+                    'TEXT_TO_SPEECH_VOICE'
+                )
 
             if has_key('play', action):
                 _action.play.url = action['play']['url']
@@ -76,8 +101,11 @@ def fill_in_outgoing_message(message: dict):
                 if has_key('say', action.get_digits):
                     _action.get_digits.say.text = action['get_digits']['say']['text']
                     _action.get_digits.say.play_beep = action['get_digits']['say'].get('play_beep', False)
-                    _action.get_digits.say.voice =\
-                        action['get_digits']['say'].get('voice', TextToSpeechVoice.FEMALE).value
+                    _action.get_digits.say.voice = get_enum_value(
+                        TextToSpeechVoice,
+                        action['get_digits']['say'].get('voice', 'FEMALE'),
+                        'TEXT_TO_SPEECH_VOICE'
+                    )
 
                 if has_key('play', action.get_digits):
                     _action.get_digits.play.url = action['get_digits']['play']['url']
@@ -92,8 +120,11 @@ def fill_in_outgoing_message(message: dict):
                 if has_key('say', action.get_recording):
                     _action.get_recording.say.text = action['get_recording']['say']['text']
                     _action.get_recording.say.play_beep = action['get_recording']['say'].get('play_beep', False)
-                    _action.get_recording.say.voice =\
-                        action['get_recording']['say'].get('voice', TextToSpeechVoice.FEMALE).value
+                    _action.get_recording.say.voice = get_enum_value(
+                        TextToSpeechVoice,
+                        action['get_recording']['say'].get('voice', 'FEMALE'),
+                        'TEXT_TO_SPEECH_VOICE'
+                    )
 
                 if has_key('play', action.get_recording):
                     _action.get_recording.play.url = action['get_recording']['play']['url']
@@ -125,7 +156,11 @@ def fill_in_outgoing_message(message: dict):
                 _action.dequeue.record = action['dequeue'].get('record', False)
                 _action.dequeue.queue_name.value = action['dequeue']['queue_name']
                 _action.dequeue.channel_number.number = action['dequeue']['channel']['number']
-                _action.dequeue.channel_number.channel = action['dequeue']['channel']['channel'].value
+                _action.dequeue.channel_number.channel = get_enum_value(
+                    MessagingChannel,
+                    action['dequeue']['channel']['channel'],
+                    'MESSAGING_CHANNEL'
+                )
 
             if has_key('reject', action):
                 _action.reject.CopyFrom(RejectCallAction())
@@ -138,36 +173,26 @@ def fill_in_outgoing_message(message: dict):
     return _message
 
 
-def get_valid_keys(provider):
-    """Lists the valid keys to be used on specific protos"""
-    valid_keys = {key_name: key_name.split('_')[-1]
-                  for key_name in provider.keys()
-                  if key_name.split('_')[-1] != 'UNSPECIFIED'}
-    return list(valid_keys.values())
+def get_valid_keys(target, prefix):
+    """Lists the valid keys to be used on specific proto"""
+    keys = map(lambda key: key.replace(f'{prefix}_', ''), target.keys())
+    return list(filter(lambda item: item != 'UNSPECIFIED', list(keys)))
 
 
-def get_enum_value(enum, channel, channel_enum):
+def get_enum_value(target, key, prefix):
     """Used to get the provider given the enum"""
     try:
-        key_value = enum.Value(f"{channel_enum}_{channel.upper()}")
-        return key_value
-    except ValueError:
-        return f"`Invalid key {channel}. Must be one of ({get_valid_keys(enum)})"
-    except TypeError:
-        key_value = enum.Value(f"{channel_enum}_{channel.upper()}")
-        return key_value
-    except Exception as e:
-        return e
+        return target.Value(f"{prefix}_{key.upper()}")
+    except Exception:
+        raise RuntimeError(f"Invalid key {key}")
 
 
-def get_enum_string(enum, value, channel_enum):
+def get_enum_string(target, value, prefix):
     """Used to get the provider value given the enum"""
     try:
-        keys = enum.keys()
+        keys = target.keys()
         if value in keys:
-            return value.replace(f"{channel_enum}_", "")
+            return value.replace(f"{prefix}_", "")
         raise ValueError
-    except ValueError:
-        return f"`Invalid key {value}. Must be one of ({get_valid_keys(enum)})"
-    except Exception as e:
-        return e
+    except Exception:
+        raise RuntimeError(f"Invalid value {value} for {target}")
