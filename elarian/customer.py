@@ -1,4 +1,6 @@
 import json
+from google.protobuf.json_format import MessageToJson
+
 from .utils.generated.app_socket_pb2 import (
     AppToServerCommand,
     AppToServerCommandReply,
@@ -63,19 +65,12 @@ class Customer:
             raise RuntimeError("Invalid customer id and/or customer number")
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).get_customer_state
+        res = self._parse_reply(data)['get_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
-        res = res.data
-        self.customer_id = res.customer_id
-        return {
-            "customer_id": res.customer_id,
-            "identity_state": res.identity_state,
-            "messaging_state": res.messaging_state,
-            "payment_state": res.payment_state,
-            "activity_state": res.activity_state,
-        }
+        if not res['status']:
+            raise RuntimeError(res['description'])
+        res = res['data']
+        return res
 
     async def adopt_state(self, other_customer):
         """Used to adopt another customer's state"""
@@ -103,16 +98,12 @@ class Customer:
             raise RuntimeError("Invalid customer id and/or customer number")
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def send_message(self, messaging_channel: dict, message: dict):
         """Used to send a message to this customer"""
@@ -131,14 +122,9 @@ class Customer:
         )
         req.send_message.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
-        res = self._parse_reply(data).send_message
-        return {
-            "status": MessageDeliveryStatus(res.status),
-            "description": res.description,
-            "message_id": res.message_id.value,
-            "session_id": res.session_id.value,
-            "customer_id": res.customer_id.value,
-        }
+        res = self._parse_reply(data)['send_message']
+        res['status'] = get_enum_string(MessageDeliveryStatus, MessageDeliveryStatus(res['status']), 'MESSAGE_DELIVERY_STATUS')
+        return res
 
     async def reply_to_message(self, message_id: str, message: dict):
         """Used to reply to a message from this customer"""
@@ -147,14 +133,9 @@ class Customer:
         req.reply_to_message.message_id = message_id
         req.reply_to_message.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
-        res = self._parse_reply(data).send_message
-        return {
-            "status": MessageDeliveryStatus(res.status),
-            "description": res.description,
-            "message_id": res.message_id.value,
-            "session_id": res.session_id.value,
-            "customer_id": res.customer_id.value,
-        }
+        res = self._parse_reply(data)['send_message']
+        res['status'] = get_enum_string(MessageDeliveryStatus, MessageDeliveryStatus(res['status']), 'MESSAGE_DELIVERY_STATUS')
+        return res
 
     async def update_activity(self, activity_channel: dict, activity: dict):
         """Used to update a customer's activity """
@@ -180,16 +161,12 @@ class Customer:
         req.customer_activity.properties['property'] = str(activity.get("properties"))
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).customer_activity
+        res = self._parse_reply(data)['customer_activity']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def update_messaging_consent(
         self,
@@ -217,13 +194,12 @@ class Customer:
         )
         req.update_messaging_consent.update = get_enum_value(MessagingConsentUpdate, action, 'MESSAGING_CONSENT_UPDATE')
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_messaging_consent
+        res = self._parse_reply(data)['update_messaging_consent']
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        if not res['status']:
+            raise RuntimeError(res['description'])
+
+        return res
 
     async def lease_app_data(self):
         """Used to lease a customer's app data """
@@ -246,7 +222,7 @@ class Customer:
             raise RuntimeError("Invalid customer id and/or customer number")
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).lease_customer_app_data
+        res = self._parse_reply(data, to_json=False).lease_customer_app_data
 
         if not res.status:
             raise RuntimeError(res.description)
@@ -284,16 +260,12 @@ class Customer:
             pass
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_app_data
+        res = self._parse_reply(data)['update_customer_app_data']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def delete_app_data(self):
         """Used to remove a customer's app data """
@@ -316,27 +288,25 @@ class Customer:
             raise RuntimeError("Invalid customer id and/or customer number")
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_app_data
+        res = self._parse_reply(data)['update_customer_app_data']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def get_metadata(self):
         state = await self.get_state()
-        meta = state['identity_state']['metadata']
+        meta = dict()
+        if has_key('identity_state', state):
+            meta = state['identity_state']['metadata'] or dict()
         result = dict()
         for key in meta:
             result[key] = json.loads(meta[key].string_val) if meta[key].HasField('string_val') else meta[key].bytes_val
         return result
 
     async def update_metadata(self, data: dict):
-        """Used to update a customer's metadata """
+        """Used to update a customer's metadata"""
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -365,16 +335,12 @@ class Customer:
                 pass
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def delete_metadata(self, keys: list):
         """Used to remove a customer's metadata """
@@ -398,20 +364,18 @@ class Customer:
 
         req.delete_customer_metadata.deletions.extend(keys)
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def get_secondary_ids(self):
         state = await self.get_state()
-        return state['identity_state']['secondary_ids']
+        if has_key('identity_state', state):
+            return state['identity_state']['secondary_ids'] or list()
+        return list()
 
     async def update_secondary_ids(self, secondary_ids: list):
         """Used to update a customer's secondary ids """
@@ -442,16 +406,12 @@ class Customer:
             req.update_customer_secondary_id.updates.append(val)
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def delete_secondary_ids(self, secondary_ids: list):
         """Used to remove a customer's secondary ids """
@@ -480,20 +440,18 @@ class Customer:
             req.delete_customer_secondary_id.deletions.append(val)
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def get_tags(self):
         state = await self.get_state()
-        return state['identity_state']['tags']
+        if has_key('identity_state', state):
+            return state['identity_state']['tags'] or list()
+        return list()
 
     async def update_tags(self, tags: list):
         """Used to update a customer's tags """
@@ -524,16 +482,12 @@ class Customer:
             req.update_customer_tag.updates.append(val)
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def delete_tags(self, keys: list):
         """Used to remove a customer's tags """
@@ -558,16 +512,12 @@ class Customer:
         req.delete_customer_tag.deletions.extend(keys)
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def add_reminder(self, reminder: dict):
         """Used to add a reminder """
@@ -600,16 +550,12 @@ class Customer:
             )
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def cancel_reminder(self, key: str):
         """Used to cancel a reminder """
@@ -634,22 +580,20 @@ class Customer:
         req.cancel_customer_reminder.key = key
 
         data = await self._send_command(req)
-        res = self._parse_reply(data).update_customer_state
+        res = self._parse_reply(data)['update_customer_state']
 
-        if not res.status:
-            raise RuntimeError(res.description)
+        if not res['status']:
+            raise RuntimeError(res['description'])
 
-        return {
-            "status": res.status,
-            "description": res.description,
-            "customer_id": res.customer_id.value,
-        }
+        return res
 
     async def _send_command(self, data):
         return await self._client._send_command(data)
 
     @staticmethod
-    def _parse_reply(payload):
+    def _parse_reply(payload, to_json=True):
         result = AppToServerCommandReply()
         result.ParseFromString(payload.data)
+        if to_json:
+            result = json.loads(MessageToJson(message=result, preserving_proto_field_name=True))
         return result

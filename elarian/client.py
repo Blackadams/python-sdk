@@ -141,4 +141,4 @@ class Client(metaclass=ABCMeta):
 
     @staticmethod
     def _make_payload(data):
-        return Payload(data=data.SerializeToString())
+        return Payload(data=data.SerializeToString(), metadata=bytes())

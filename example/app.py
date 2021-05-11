@@ -3,19 +3,25 @@ import time
 import traceback
 import asyncio
 from elarian import (
-    Customer,
     Elarian,
 )
 
 sms_channel = {
     'number': os.getenv('SMS_SHORT_CODE'),
-    'provider': 'sms'
+    'provider': 'SMS'
 }
 
 voice_channel = {
     'number': os.getenv('VOICE_NUMBER'),
-    'provider': 'voice'
+    'provider': 'VOICE'
 }
+
+mpesa_channel = {
+    'number': os.getenv('MPESA_PAYBILL'),
+    'provider': 'CELLULAR'
+}
+
+purse_id = os.getenv('PURSE_ID')
 
 client = Elarian(
     org_id=os.getenv('ORG_ID'),
@@ -25,20 +31,74 @@ client = Elarian(
 
 
 async def approve_loan(customer, amount):
-    print(f"Approving loan for {customer.customer_number['number']}")
+    try:
+        print(f"Approving loan for {customer.customer_number['number']}")
+        meta = await customer.get_metadata()
+        name = meta['name']
+        repayment_date = time.time() + 60
+        res = await client.initiate_payment(
+            debit_party={'purse_id': purse_id},
+            credit_party={
+                'channel_number': mpesa_channel,
+                'customer_number': customer.customer_number
+            },
+            value={
+                'amount': amount,
+                'currency_code': 'KES'
+            }
+        )
+
+        if res['status'] != 'SUCCESS':
+            raise RuntimeError(f"Failed to make payment {res}")
+
+        await customer.update_metadata({
+            'name': name,
+            'balance': amount,
+        })
+
+        await customer.send_message(messaging_channel=sms_channel, message={
+            'body': {
+                "text": f"Congratulations {name}!\nYour loan of KES {amount} has been approved!\nYou are expected to pay it back by {repayment_date}"
+            }
+        })
+
+        await customer.add_reminder({
+            'key': 'moni',
+            'remind_at': repayment_date,
+            'payload': '',
+        })
+
+    except Exception as ex:
+        print(f"Failed to approve payment {ex}")
+        traceback.print_exc()
 
 
-async def handle_payment(notif, customer, app_data, callback):
+async def handle_payment(notif, customer):
     try:
         print(f"Processing payment from {customer.customer_number['number']}")
-
-        # FIXME: make SDK race callback with a timeout task so that this is not needed
-        callback(None, app_data)
-
-        print(notif)
-
+        amount = notif['value']['amount']
         meta = await customer.get_metadata()
-        print(meta)
+        name = meta['name']
+        balance = float(meta['balance'])
+
+        new_balance = balance - amount
+        await customer.update_metadata({
+            'name': name,
+            'balance': new_balance,
+        })
+
+        if new_balance <= 0:
+            text = f"Thank you for your payment ${name}, your loan has been fully repaid!!"
+            await customer.cancel_reminder('moni')
+            await customer.delete_metadata(['name', 'strike', 'balance', 'screen'])
+        else:
+            text = f"Hey {name}!\nThank you for your payment, but you still owe me KES ${new_balance}"
+
+        await customer.send_message(messaging_channel=sms_channel, message={
+            'body': {
+                "text": text
+            }
+        })
 
     except Exception as ex:
         print(f"Failed to handle payment {ex}")
@@ -52,6 +112,7 @@ async def handle_ussd(notif, customer, app_data, callback):
         screen = app_data.get('screen', 'home')
 
         meta = await customer.get_metadata()
+        print(f"Got meta {meta}")
         name = meta.get('name', None)
         balance = meta.get('balance', 0)
 
@@ -111,14 +172,11 @@ async def handle_ussd(notif, customer, app_data, callback):
         await customer.update_metadata({"name": name, "balance": balance})
     except Exception as ex:
         print(f"Failed to process ussd {ex}")
+        traceback.print_exc()
 
 
 async def handle_reminder(notif, customer, app_data, callback):
     try:
-
-        # FIXME: make SDK race callback with a timeout task so that this is not needed
-        callback(None, app_data)
-
         print(f"Processing reminder for {customer.customer_number['number']}")
         meta = await customer.get_metadata()
         name = meta['name']

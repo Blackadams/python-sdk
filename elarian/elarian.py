@@ -1,3 +1,6 @@
+import json
+from google.protobuf.json_format import MessageToJson
+
 from elarian.client import Client
 from elarian.utils.helpers import fill_in_outgoing_message, has_key
 from elarian.utils.generated.app_socket_pb2 import (
@@ -144,14 +147,10 @@ class Elarian(Client):
             )
         req.add_customer_reminder_tag.reminder.payload.value = reminder["payload"]
         data = await self._send_command(req)
-        res = self._parse_reply(data).tag_command
-        if not res.status:
-            raise RuntimeError(res.description)
-        return {
-            "status": res.status,
-            "description": res.description,
-            "work_id": res.work_id.value,
-        }
+        res = self._parse_reply(data, to_json=True)['tag_command']
+        if not res['status']:
+            raise RuntimeError(res['description'])
+        return res
 
     async def cancel_customer_reminder_by_tag(self, tag: dict, key: str):
         """Cancel a previously set reminder using a tag and key """
@@ -160,14 +159,10 @@ class Elarian(Client):
         req.cancel_customer_reminder_tag.tag.key = tag["key"]
         req.cancel_customer_reminder_tag.tag.value.value = tag["value"]
         data = await self._send_command(req)
-        res = self._parse_reply(data).tag_command
-        if not res.status:
-            raise RuntimeError(res.description)
-        return {
-            "status": res.status,
-            "description": res.description,
-            "work_id": res.work_id.value,
-        }
+        res = self._parse_reply(data, to_json=True)['tag_command']
+        if not res['status']:
+            raise RuntimeError(res['description'])
+        return res
 
     async def send_message_by_tag(
         self, tag: dict, messaging_channel: dict, message: dict
@@ -180,14 +175,10 @@ class Elarian(Client):
         req.send_message_tag.tag.value.value = tag["value"]
         req.send_message_tag.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
-        res = self._parse_reply(data).tag_command
-        if not res.status:
-            raise RuntimeError(res.description)
-        return {
-            "status": res.status,
-            "description": res.description,
-            "work_id": res.work_id.value,
-        }
+        res = self._parse_reply(data, to_json=True)['tag_command']
+        if not res['status']:
+            raise RuntimeError(res['description'])
+        return res
 
     async def initiate_payment(
         self, debit_party: dict, credit_party: dict, value: dict
@@ -292,7 +283,9 @@ class Elarian(Client):
         }
 
     @staticmethod
-    def _parse_reply(payload):
+    def _parse_reply(payload, to_json=False):
         result = AppToServerCommandReply()
         result.ParseFromString(payload.data)
+        if to_json:
+            result = json.loads(MessageToJson(message=result, preserving_proto_field_name=True))
         return result

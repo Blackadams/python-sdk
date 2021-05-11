@@ -9,7 +9,7 @@ from elarian.utils.generated.messaging_model_pb2 import MessagingChannel,\
     MessageReaction,\
     MessageDeliveryStatus
 from elarian.utils.generated.payment_model_pb2 import PaymentChannel, PaymentStatus
-from elarian.utils.generated.app_socket_pb2 import AppConnectionMetadata,\
+from elarian.utils.generated.app_socket_pb2 import \
     ServerToAppNotification,\
     ServerToAppNotificationReply
 from elarian.utils.generated.simulator_socket_pb2 import (
@@ -67,6 +67,7 @@ class _RequestHandler(BaseRequestHandler):
 
             customer = None
 
+            incoming_app_data = data.app_data if data.HasField('app_data') else None
             app_data = data.app_data if data.HasField('app_data') else None
             if app_data is not None:
                 app_data = json.loads(app_data.string_val) if app_data.HasField('string_val') else app_data.bytes_val
@@ -167,7 +168,6 @@ class _RequestHandler(BaseRequestHandler):
                         provider=customer_number['provider']
                     )
 
-                # FIXME: Format notification data
                 notif['org_id'] = data['org_id']
                 notif['app_id'] = data['app_id']
                 notif['customer_id'] = customer.customer_id
@@ -181,16 +181,24 @@ class _RequestHandler(BaseRequestHandler):
                     if data_update is not None:
                         try:
                             ro = data_update.decode()
-                            res.data_update.update.bytes_val = data_update
+                            res.data_update.data.bytes_val = data_update
                         except (UnicodeDecodeError, AttributeError):
-                            res.data_update.update.string_val = json.dumps(data_update)
+                            res.data_update.data.string_val = json.dumps(data_update)
                             pass
-                future.set_result(Payload(data=res.SerializeToString()))
+                if not future.done():
+                    future.set_result(Payload(data=res.SerializeToString(), metadata=bytes()))
 
-            if asyncio.iscoroutinefunction(handler):
-                await handler(notif, customer, app_data, callback)
-            else:
-                handler(notif, customer, app_data, callback)
+            async def callback_timeout():
+                await asyncio.sleep(15)
+                if not future.done():
+                    res = ServerToSimulatorNotificationReply() if self._is_simulator else ServerToAppNotificationReply()
+                    if not self._is_simulator and incoming_app_data is not None:
+                        res.data_update = incoming_app_data
+                    future.set_result(Payload(data=res.SerializeToString(), metadata=bytes()))
+
+            future.get_loop().create_task(handler(notif, customer, app_data or dict(), callback))
+            future.get_loop().create_task(callback_timeout())
+
         except Exception as ex:
             traceback.print_exc()
             future.set_exception(ex)

@@ -1,12 +1,21 @@
+import json
+from google.protobuf.json_format import MessageToJson
+
 from .client import Client
+
 from .utils.generated.simulator_socket_pb2 import (
     SimulatorToServerCommand,
     SimulatorToServerCommandReply,
 )
 from .utils.generated.messaging_model_pb2 import (
     InboundMessageBody,
-    MessagingChannel
+    MessagingChannel,
 )
+
+from .utils.generated.common_model_pb2 import (
+    MediaType
+)
+
 from .utils.generated.payment_model_pb2 import (
     PaymentChannel,
     PaymentStatus
@@ -82,7 +91,11 @@ class Simulator(Client):
 
             if has_key("media", part):
                 _part.media.url = part["media"]["url"]
-                _part.media.media = part["media"]["type"]
+                _part.media.media = get_enum_value(
+                    MediaType,
+                    part["media"]["type"],
+                    "MEDIA_TYPE",
+                )
 
             if has_key("location", part):
                 _part.location.latitude = part["location"]["latitude"]
@@ -135,11 +148,7 @@ class Simulator(Client):
             parts.append(_part)
         data = await self._send_command(req)
         res = self._parse_reply(data)
-        return {
-            "status": res.status,
-            "description": res.description,
-            "message": res.message,
-        }
+        return res
 
     async def receive_payment(
         self,
@@ -168,11 +177,7 @@ class Simulator(Client):
         )
         data = await self._send_command(req)
         res = self._parse_reply(data)
-        return {
-            "status": res.status,
-            "description": res.description,
-            "message": res.message,
-        }
+        return res
 
     async def update_payment_status(self, transaction_id: str, status: str):
         """Used to simulate the updating of a payment status"""
@@ -185,14 +190,12 @@ class Simulator(Client):
         )
         data = await self._send_command(req)
         res = self._parse_reply(data)
-        return {
-            "status": res.status,
-            "description": res.description,
-            "message": res.message,
-        }
+        return res
 
     @staticmethod
-    def _parse_reply(payload):
+    def _parse_reply(payload, to_json=True):
         result = SimulatorToServerCommandReply()
         result.ParseFromString(payload.data)
+        if to_json:
+            result = json.loads(MessageToJson(message=result, preserving_proto_field_name=True))
         return result
