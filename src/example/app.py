@@ -2,9 +2,7 @@ import os
 import time
 import traceback
 import asyncio
-from elarian import (
-    Elarian,
-)
+from elarian import Elarian
 
 sms_channel = {
     'number': os.getenv('SMS_SHORT_CODE'),
@@ -54,7 +52,7 @@ async def approve_loan(customer, amount):
             }
         )
 
-        if res['status'] != 'SUCCESS':
+        if res['status'] != 'SUCCESS' or res['status'] != 'PENDING_CONFIRMATION':
             raise RuntimeError(f"Failed to make payment {res}")
 
         await customer.update_metadata({

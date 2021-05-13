@@ -1,9 +1,9 @@
 import json
 from google.protobuf.json_format import MessageToJson
 
-from elarian.client import Client
-from elarian.utils.helpers import fill_in_outgoing_message, has_key
-from elarian.utils.generated.app_socket_pb2 import (
+from .client import Client
+from .utils.helpers import fill_in_outgoing_message, has_key
+from .utils.generated.app_socket_pb2 import (
     AppToServerCommand,
     AppToServerCommandReply,
     GenerateAuthTokenCommand,

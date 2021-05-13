@@ -1,0 +1,3 @@
+[submodule "lib/rsocket"]
+	path = lib/rsocket
+	url = git@github.com:aksalj/rsocket-py.git

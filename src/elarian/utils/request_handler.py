@@ -4,22 +4,22 @@ import traceback
 from rsocket import Payload, BaseRequestHandler
 from elarian.customer import Customer
 from google.protobuf.json_format import MessageToJson
-from elarian.utils.generated.messaging_model_pb2 import MessagingChannel,\
+from .generated.messaging_model_pb2 import MessagingChannel,\
     MessagingSessionEndReason,\
     MessageReaction,\
     MessageDeliveryStatus
-from elarian.utils.generated.payment_model_pb2 import PaymentChannel, PaymentStatus
-from elarian.utils.generated.app_socket_pb2 import \
+from .generated.payment_model_pb2 import PaymentChannel, PaymentStatus
+from .generated.app_socket_pb2 import \
     ServerToAppNotification,\
     ServerToAppNotificationReply
-from elarian.utils.generated.simulator_socket_pb2 import (
+from .generated.simulator_socket_pb2 import (
     ServerToSimulatorNotification,
     ServerToSimulatorNotificationReply
 )
-from elarian.utils.generated.common_model_pb2 import (
+from .generated.common_model_pb2 import (
     CustomerNumberProvider,
 )
-from elarian.utils.helpers import (
+from .helpers import (
     fill_in_outgoing_message,
     get_enum_string,
     has_key

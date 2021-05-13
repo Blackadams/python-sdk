@@ -1,7 +1,7 @@
 import pytest
 
-from elarian.customer import Customer
-from elarian.elarian import Elarian
+from src.elarian.customer import Customer
+from src.elarian.elarian import Elarian
 from tests import (
     loop,
     api_key,

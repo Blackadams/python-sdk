@@ -19,9 +19,8 @@ $ pip install elarian
 
 ## Usage
 
-
 ```python
-from elarian import Elarian, Customer
+from src.elarian import Elarian, Customer
 
 elarian = Elarian(api_key="test_api_key", org_id="test_org", app_id="test_app_id")
 customer = Customer(client=elarian, number="+254709759881")
