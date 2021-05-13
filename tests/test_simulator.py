@@ -1,5 +1,5 @@
 import pytest
-from src.elarian.simulator import Simulator
+from elarian.simulator import Simulator
 from tests import (
     loop,
     api_key,

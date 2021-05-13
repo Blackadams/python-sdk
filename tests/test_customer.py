@@ -1,7 +1,6 @@
 import pytest
 
-from src.elarian.customer import Customer
-from src.elarian.elarian import Elarian
+from elarian import Elarian, Customer
 from tests import (
     loop,
     api_key,
@@ -147,7 +146,7 @@ def test_delete_metadata(client):
     response = loop.run_until_complete(customer.delete_metadata(["hollow"]))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert "hollow" not in response["identity_state"].metadata
+    assert "hollow" not in response["identity_state"]['metadata']
 
 
 def test_update_secondary_ids(client):
@@ -164,7 +163,7 @@ def test_update_secondary_ids(client):
     response = loop.run_until_complete(customer.update_secondary_ids(data))
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert list(value for elem, value in response["identity_state"].secondary_ids if value in ("passport", "huduma"))
+    assert list(value for elem, value in response["identity_state"]['secondary_ids'] if value in ("passport", "huduma"))
 
 
 def test_get_secondary_ids(client):
@@ -182,7 +181,7 @@ def test_delete_secondary_ids(client):
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert not list(value for elem, value in response["identity_state"].secondary_ids if value in ("huduma", "808082"))
+    assert not list(value for elem, value in response["identity_state"]['secondary_ids'] if value in ("huduma", "808082"))
 
 
 def test_update_tags(client):
@@ -193,7 +192,7 @@ def test_update_tags(client):
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert list(value for elem, value in response["identity_state"].tags if value in ("coffid", "test"))
+    assert list(value for elem, value in response["identity_state"]['tags'] if value in ("coffid", "test"))
 
 
 def test_get_tags(client):
@@ -211,7 +210,7 @@ def test_delete_tags(client):
     )
     assert all(elem in response for elem in ("customer_id", "status", "description"))
     response = loop.run_until_complete(customer.get_state())
-    assert not list(value for elem, value in response["identity_state"].tags if value in ("coffid"))
+    assert not list(value for elem, value in response["identity_state"]['tags'] if value in ("coffid"))
 
 
 def test_add_reminder(client):

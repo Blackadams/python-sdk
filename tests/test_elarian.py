@@ -1,6 +1,6 @@
 import pytest
 import time
-from src.elarian.elarian import Elarian
+from elarian.elarian import Elarian
 from tests import loop, api_key, app_id, org_id, sms_short_code, mpesa_paybill, purse_id
 
 
