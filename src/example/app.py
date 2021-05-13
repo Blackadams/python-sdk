@@ -52,7 +52,7 @@ async def approve_loan(customer, amount):
             }
         )
 
-        if res['status'] != 'SUCCESS' or res['status'] != 'PENDING_CONFIRMATION':
+        if res['status'] != 'SUCCESS' and res['status'] != 'PENDING_CONFIRMATION':
             raise RuntimeError(f"Failed to make payment {res}")
 
         await customer.update_metadata({
@@ -180,7 +180,7 @@ async def handle_ussd(notif, customer, app_data, callback):
 
 async def handle_reminder(notif, customer, app_data, callback):
     try:
-        print(f"Processing reminder for {customer.customer_number['number']}")
+        print(f"Processing reminder for {customer.customer_id}")
         meta = await customer.get_metadata()
         name = meta['name']
         balance = meta['balance']
@@ -206,14 +206,17 @@ async def handle_reminder(notif, customer, app_data, callback):
                     }
                 ]
             }
-        await customer.send_message(messaging_channel=channel, message=message)
         meta['strike'] = strike + 1
         await customer.update_metadata(meta)
 
         reminder = {"key": "moni", "remind_at": time.time() + 60, "payload": ''}
         await customer.add_reminder(reminder)
 
+        # FIXME: Requires customer to have customer_number set
+        await customer.send_message(messaging_channel=channel, message=message)
+
     except Exception as ex:
+        traceback.print_exc()
         print(f"Failed to process reminder {ex}")
 
 

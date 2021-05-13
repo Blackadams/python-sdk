@@ -274,7 +274,7 @@ class Elarian(Client):
         req.initiate_payment.value.currency_code = value["currency_code"]
         data = await self._send_command(req)
         res = self._parse_reply(data, to_json=True)['initiate_payment']
-        res['status'] = get_enum_string(PaymentStatus, res['status'], 'PAYMENT_STATUS'),
+        res['status'] = get_enum_string(PaymentStatus, res['status'], 'PAYMENT_STATUS')
         return res
 
     @staticmethod

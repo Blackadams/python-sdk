@@ -550,7 +550,7 @@ class Customer:
             )
 
         data = await self._send_command(req)
-        res = self._parse_reply(data)['update_customer_state']
+        res = self._parse_reply(data)['update_customer_app_data']
 
         if not res['status']:
             raise RuntimeError(res['description'])

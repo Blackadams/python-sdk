@@ -167,6 +167,7 @@ class _RequestHandler(BaseRequestHandler):
                         number=customer_number['number'],
                         provider=customer_number['provider']
                     )
+                # TODO: Fetch customer number from state if not available?
 
                 notif['org_id'] = data['org_id']
                 notif['app_id'] = data['app_id']
