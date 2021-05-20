@@ -12,14 +12,6 @@ elarian.client module
    :undoc-members:
    :show-inheritance:
 
-elarian.conf module
--------------------
-
-.. automodule:: elarian.conf
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 elarian.customer module
 -----------------------
 
