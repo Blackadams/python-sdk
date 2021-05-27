@@ -24,8 +24,14 @@ from .utils.helpers import has_key, get_enum_value
 
 
 class Simulator(Client):
+    """Client class that simulates a connection to the elarian backend
 
-    def __init__(self, org_id, api_key, app_id, options=Client.default_options):
+        :param org_id: The organization id
+        :param api_key: The generated API key from the dashboard
+        :param app_id: The app id generated from the dashboard
+    """
+
+    def __init__(self, org_id, api_key, app_id, options=Client._default_options):
         super().__init__(
             org_id,
             api_key,
@@ -42,23 +48,33 @@ class Simulator(Client):
         self._is_simulator = True
 
     def set_on_send_message(self, handler):
-        """Set the handler for messages received on the simulator"""
+        """Set the handler for messages received on the simulator
+           :param handler: Dedicated handler function
+        """
         return self._on("send_message", handler)
 
     def set_on_make_voice_call(self, handler):
-        """Set the handler for voice calls received on the simulator"""
+        """Set the handler for voice calls received on the simulator
+           :param handler: Dedicated handler function
+        """
         return self._on("make_voice_call", handler)
 
     def set_on_send_customer_payment(self, handler):
-        """Set the handler for customer payments received on the simulator"""
+        """Set the handler for customer payments received on the simulator
+           :param handler: Dedicated handler function
+        """
         return self._on("send_customer_payment", handler)
 
     def set_on_send_channel_payment(self, handler):
-        """Set the handler for channel payments received on the simulator"""
+        """Set the handler for channel payments received on the simulator
+           :param handler: Dedicated handler function
+        """
         return self._on("send_channel_payment", handler)
 
     def set_on_checkout_payment(self, handler):
-        """Set the handler for customer checkout received on the simulator"""
+        """Set the handler for customer checkout received on the simulator
+           :param handler: Dedicated handler function
+        """
         return self._on("checkout_payment", handler)
 
     async def receive_message(
@@ -68,7 +84,12 @@ class Simulator(Client):
         session_id: str,
         message_parts: list,
     ):
-        """Simulate sending a message. i.e. tell the simulated gateway to receive a message"""
+        """Simulate sending a message. i.e. tell the simulated gateway to receive a message
+           :param phone_number: Phone number that sent the message
+           :param messaging_channel: Dictionary containing the details of the messaging channel used
+           :param session_id: Session id of the simulation
+           :param message_parts: List containing the message parts
+        """
         req = SimulatorToServerCommand()
         req.receive_message.session_id.value = session_id
         req.receive_message.customer_number = phone_number
@@ -158,7 +179,13 @@ class Simulator(Client):
         value: dict,
         status: str,
     ):
-        """Used to simulate the receiving of a payment"""
+        """Used to simulate the receiving of a payment
+           :param phone_number: Phone number that sent the payment
+           :param payment_channel: Dictionary containing the details of the payment channel used
+           :param transaction_id: Transaction id of the simulation
+           :param value: Dictionary containing the transaction value and currency
+           :param status: Status of the transaction
+           """
         req = SimulatorToServerCommand()
         req.receive_payment.transaction_id = transaction_id
         req.receive_payment.customer_number = phone_number
@@ -180,7 +207,10 @@ class Simulator(Client):
         return res
 
     async def update_payment_status(self, transaction_id: str, status: str):
-        """Used to simulate the updating of a payment status"""
+        """Used to simulate the updating of a payment status
+           :param transaction_id: Transaction id of the simulation
+           :param status: Status of the transaction
+        """
         req = SimulatorToServerCommand()
         req.update_payment_status.transaction_id = transaction_id
         req.update_payment_status.status = get_enum_value(

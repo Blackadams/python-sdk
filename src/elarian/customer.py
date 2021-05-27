@@ -22,33 +22,37 @@ from .utils.helpers import has_key, fill_in_outgoing_message, get_enum_value, ge
 
 
 class Customer:
-    """..."""
+    """Customer class that handles a single customer instance, must have one of customer_id or customer_number.
 
-    customer_id: str = None
-    customer_number: dict = None
+        :param customer_id: The Elarian generated customer id
+        :param customer_number: The customer phone number
+    """
 
-    identity_state: dict = None
-    messaging_state: dict = None
-    payment_state: dict = None
-    activity_state: dict = None
+    _customer_id: str = None
+    _customer_number: dict = None
+
+    _identity_state: dict = None
+    _messaging_state: dict = None
+    _payment_state: dict = None
+    _activity_state: dict = None
 
     _client = None
 
     def __init__(self, client, id=None, number=None, provider=None):
         self._client = client
         if id is not None:
-            self.customer_id = id
+            self._customer_id = id
         if number is not None:
             provider = (
                 provider if provider is not None else 'CELLULAR'
             )
-            self.customer_number = {"number": number, "provider": provider}
+            self._customer_number = {"number": number, "provider": provider}
 
         if self.customer_id is None and self.customer_number is None:
             raise RuntimeError("Either id or number is required")
 
     async def get_state(self):
-        """Used to get the current customer state"""
+        """Used to get the current customer state."""
         req = AppToServerCommand()
 
         if self.customer_number is not None and has_key("number", self.customer_number):
@@ -73,7 +77,10 @@ class Customer:
         return res
 
     async def adopt_state(self, other_customer):
-        """Used to adopt another customer's state"""
+        """Used to adopt another customer's state.
+
+        :param other_customer: Dictionary containing the other customer details
+        """
         req = AppToServerCommand()
 
         if self.customer_id is None:
@@ -106,7 +113,11 @@ class Customer:
         return res
 
     async def send_message(self, messaging_channel: dict, message: dict):
-        """Used to send a message to this customer"""
+        """Used to send a message to this customer.
+
+        :param messaging_channel: Dictionary containing the messaging channels
+        :param message: Dictionary containg the message being sent
+        """
         req = AppToServerCommand()
         req.send_message.channel_number.number = messaging_channel.get("number")
         req.send_message.channel_number.channel = get_enum_value(
@@ -127,7 +138,11 @@ class Customer:
         return res
 
     async def reply_to_message(self, message_id: str, message: dict):
-        """Used to reply to a message from this customer"""
+        """Used to reply to a message from this customer.
+
+        :param message_id: Specific message id being replied to
+        :param message: Message being sent back
+        """
         req = AppToServerCommand()
         req.reply_to_message.customer_id = self.customer_id
         req.reply_to_message.message_id = message_id
@@ -138,7 +153,11 @@ class Customer:
         return res
 
     async def update_activity(self, activity_channel: dict, activity: dict):
-        """Used to update a customer's activity """
+        """Used to update a customer's activity.
+
+        :param activity_channel: Dictionary containg the activity channel(s)
+        :param activity: Dictionary containing the activities
+        """
         req = AppToServerCommand()
 
         req.customer_activity.channel_number.number = activity_channel.get("number")
@@ -173,7 +192,11 @@ class Customer:
         messaging_channel: dict,
         action: str = 'ALLOW',
     ):
-        """Used to update a customer's engagement consent on this channel """
+        """Used to update a customer's engagement consent on this channel.
+
+        :param messaging_channel: Dictionary containing the messaging channels
+        :param action: Choice of messaging constent. Default vallue: ALLOW
+        """
         req = AppToServerCommand()
 
         req.update_messaging_consent.channel_number.number = messaging_channel.get(
@@ -202,7 +225,7 @@ class Customer:
         return res
 
     async def lease_app_data(self):
-        """Used to lease a customer's app data """
+        """Used to lease a customer's app data. """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -233,7 +256,10 @@ class Customer:
             return res.value.bytes_val
 
     async def update_app_data(self, data):
-        """Used to update a customer's app data """
+        """Used to update a customer's app data.
+
+        :param data: Dictionary of the data being updated
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -268,7 +294,7 @@ class Customer:
         return res
 
     async def delete_app_data(self):
-        """Used to remove a customer's app data """
+        """Used to remove a customer's app data. """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -296,6 +322,8 @@ class Customer:
         return res
 
     async def get_metadata(self):
+        """Used to get the metadata of the customer.
+        """
         state = await self.get_state()
         meta = dict()
         if has_key('identity_state', state):
@@ -306,7 +334,10 @@ class Customer:
         return result
 
     async def update_metadata(self, data: dict):
-        """Used to update a customer's metadata"""
+        """Used to update a customer's metadata.
+
+        :param data: Dictionary containing the metadata being updated
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -343,7 +374,10 @@ class Customer:
         return res
 
     async def delete_metadata(self, keys: list):
-        """Used to remove a customer's metadata """
+        """Used to remove a customer's metadata.
+
+        :param keys: List of keys being deleted
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -372,13 +406,17 @@ class Customer:
         return res
 
     async def get_secondary_ids(self):
+        """Used to get the secondary ids of the customer."""
         state = await self.get_state()
         if has_key('identity_state', state):
             return state['identity_state']['secondary_ids'] or list()
         return list()
 
     async def update_secondary_ids(self, secondary_ids: list):
-        """Used to update a customer's secondary ids """
+        """Used to update a customer's secondary ids.
+
+        :param secondary_id: List of secondary ids being updated
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -414,7 +452,10 @@ class Customer:
         return res
 
     async def delete_secondary_ids(self, secondary_ids: list):
-        """Used to remove a customer's secondary ids """
+        """Used to remove a customer's secondary ids.
+
+        :param secondary_ids: List of secondary ids being deleted
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -448,13 +489,17 @@ class Customer:
         return res
 
     async def get_tags(self):
+        """Used to get the tags for a customer."""
         state = await self.get_state()
         if has_key('identity_state', state):
             return state['identity_state']['tags'] or list()
         return list()
 
     async def update_tags(self, tags: list):
-        """Used to update a customer's tags """
+        """Used to update a customer's tags.
+
+        :param tags: list of tags being updated
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -490,7 +535,10 @@ class Customer:
         return res
 
     async def delete_tags(self, keys: list):
-        """Used to remove a customer's tags """
+        """Used to remove a customer's tags.
+
+        :param keys: list of tags being deleted
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -520,7 +568,10 @@ class Customer:
         return res
 
     async def add_reminder(self, reminder: dict):
-        """Used to add a reminder """
+        """Used to add a reminder.
+
+        :param reminder: dictionary containing the details of the reminder
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
@@ -550,7 +601,7 @@ class Customer:
             )
 
         data = await self._send_command(req)
-        res = self._parse_reply(data)['update_customer_app_data']
+        res = self._parse_reply(data)['update_customer_state']
 
         if not res['status']:
             raise RuntimeError(res['description'])
@@ -558,7 +609,10 @@ class Customer:
         return res
 
     async def cancel_reminder(self, key: str):
-        """Used to cancel a reminder """
+        """Used to cancel a reminder based on keys.
+
+        :param key: Reminder key
+        """
         req = AppToServerCommand()
 
         if self.customer_id is not None:
