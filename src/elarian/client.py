@@ -9,7 +9,13 @@ from .utils.request_handler import _RequestHandler
 
 
 class Client(metaclass=ABCMeta):
-    default_options = {
+    """Client class that handles connections to the Elarian backend
+
+        :param org_id: The organization id
+        :param api_key: The generated API key from the dashboard
+        :param app_id: The app id generated from the dashboard
+    """
+    _default_options = {
         "resumable": False,
         "lifetime": 60000,
         "keep_alive": 1000,
@@ -20,7 +26,7 @@ class Client(metaclass=ABCMeta):
     _app_id = None
     _api_key = None
     _is_simulator = False
-    _options = default_options
+    _options = _default_options
 
     _socket = None
     _connection = None
@@ -37,7 +43,7 @@ class Client(metaclass=ABCMeta):
             self._options.update(options)
 
     async def connect(self):
-        """ Connect to Elarian """
+        """Used to connect to Elarian."""
         self._request_handler.handle("pending")
 
         setup = AppConnectionMetadata()
@@ -78,28 +84,52 @@ class Client(metaclass=ABCMeta):
         return self
 
     async def disconnect(self):
-        """ Disconnect from Elarian """
+        """Used to disconnect from Elarian."""
         self._is_connected = False
         self._connection[1].close()
         await self._socket.close()
         self._request_handler.handle("closed")
 
     def is_connected(self):
+        """Checks whether the connection has been successfully established. 
+
+           :returns: True or False
+        """
         return self._is_connected
 
     def set_on_connection_pending(self, handler):
+        """Sets handler for when the connection is pending
+
+           :param handler: Dedicated handler function
+        """
         return self._on('pending', handler)
 
     def set_on_connection_error(self, handler):
+        """Sets handler for when there is a connection error
+
+            :param handler: Dedicated handler function
+        """
         return self._on('error', handler)
 
     def set_on_connection_closed(self, handler):
+        """Sets handler for when the connection is closed
+
+            :param handler: Dedicated handler function
+        """
         return self._on('closed', handler)
 
     def set_on_connecting(self, handler):
+        """Sets handler for when the connection is being opened
+
+            :param handler: Dedicated handler function
+        """
         return self._on('connecting', handler)
 
     def set_on_connected(self, handler):
+        """Sets handler for when the connection has been successfully established
+
+            :param handler: Dedicated handler function
+        """
         return self._on('connected', handler)
 
     def _on(self, event, handler):

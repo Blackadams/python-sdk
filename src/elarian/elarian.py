@@ -22,9 +22,14 @@ from .utils.helpers import (
 
 
 class Elarian(Client):
-    """..."""
+    """Elarian class that allows setting of handlers to enable someone to deal with various situations.
 
-    def __init__(self, org_id, api_key, app_id, options=Client.default_options):
+        :param org_id: The organization id
+        :param api_key: The generated API key from the dashboard
+        :param app_id: The app id generated from the dashboard
+    """
+
+    def __init__(self, org_id, api_key, app_id, options=Client._default_options):
         super().__init__(
             org_id,
             api_key,
@@ -53,75 +58,129 @@ class Elarian(Client):
         )
 
     def set_on_reminder(self, handler):
-        """Set the reminder handler"""
+        """Set the reminder handler.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("reminder", handler)
 
     def set_on_messaging_session_started(self, handler):
-        """Set the handler for session started notifications"""
+        """Set the handler for session started notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("messaging_session_started", handler)
 
     def set_on_messaging_session_renewed(self, handler):
-        """Set the handler for session renewed notifications"""
+        """Set the handler for session renewed notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("messaging_session_renewed", handler)
 
     def set_on_messaging_session_ended(self, handler):
-        """Set the handler for session ended notifications"""
+        """Set the handler for session ended notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("messaging_session_ended", handler)
 
     def set_on_messaging_consent_update(self, handler):
-        """Set the handler for consent update notifications"""
+        """Set the handler for consent update notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("messaging_consent_update", handler)
 
     def set_on_received_sms(self, handler):
-        """Set the handler for sms notifications"""
+        """Set the handler for sms notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("received_sms", handler)
 
     def set_on_received_fb_messenger(self, handler):
-        """Set the handler for messenger(facebook) notifications"""
+        """Set the handler for messenger(facebook) notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("received_fb_messenger", handler)
 
     def set_on_received_telegram(self, handler):
-        """Set the handler for telegram notifications"""
+        """Set the handler for telegram notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("received_telegram", handler)
 
     def set_on_received_whatsapp(self, handler):
-        """Set the handler for whatsapp notifications"""
+        """Set the handler for whatsapp notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("received_whatsapp", handler)
 
     def set_on_received_email(self, handler):
-        """Set the handler for email notifications"""
+        """Set the handler for email notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("received_email", handler)
 
     def set_on_voice_call(self, handler):
-        """Set the handler for voice call notifications"""
+        """Set the handler for voice call notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("voice_call", handler)
 
     def set_on_ussd_session(self, handler):
-        """Set the handler for ussd session notifications"""
+        """Set the handler for ussd session notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("ussd_session", handler)
 
     def set_on_message_status(self, handler):
-        """Set the handler for message status notifications"""
+        """Set the handler for message status notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("message_status", handler)
 
     def set_on_sent_message_reaction(self, handler):
-        """Set the handler for message reaction notifications"""
+        """Set the handler for message reaction notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("sent_message_reaction", handler)
 
     def set_on_received_payment(self, handler):
-        """Set the handler for payment notifications"""
+        """Set the handler for payment notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("received_payment", handler)
 
     def set_on_payment_status(self, handler):
-        """Set the handler for payment status notifications"""
+        """Set the handler for payment status notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("payment_status", handler)
 
     def set_on_wallet_payment_status(self, handler):
-        """Set the handler for wallet payments status notifications"""
+        """Set the handler for wallet payments status notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("wallet_payment_status", handler)
 
     def set_on_customer_activity(self, handler):
-        """Set the handler for customer activity notifications"""
+        """Set the handler for customer activity notifications.
+
+        :param handler: Dedicated handler function
+        """
         return self._on("customer_activity", handler)
 
     async def generate_auth_token(self):
@@ -133,7 +192,11 @@ class Elarian(Client):
         return {"token": res.token, "lifetime": res.lifetime.seconds}
 
     async def add_customer_reminder_by_tag(self, tag: dict, reminder: dict):
-        """Set a reminder to be triggered at the specified time for customers with a particular tag"""
+        """Set a reminder to be triggered at the specified time for customers with a particular tag.
+
+        :param tag: Dictionary of tags
+        :param reminder: Dictionary of reminders
+        """
         req = AppToServerCommand()
         req.add_customer_reminder_tag.tag.key = tag["key"]
         req.add_customer_reminder_tag.tag.value.value = tag["value"]
@@ -153,7 +216,11 @@ class Elarian(Client):
         return res
 
     async def cancel_customer_reminder_by_tag(self, tag: dict, key: str):
-        """Cancel a previously set reminder using a tag and key """
+        """Cancel a previously set reminder using a tag and key.
+
+        :param tag: Dictionary of tags
+        :param reminder: Dictionary of reminders
+        """
         req = AppToServerCommand()
         req.cancel_customer_reminder_tag.key = key
         req.cancel_customer_reminder_tag.tag.key = tag["key"]
@@ -167,7 +234,11 @@ class Elarian(Client):
     async def send_message_by_tag(
         self, tag: dict, messaging_channel: dict, message: dict
     ):
-        """Send a message to customers with a specific tag"""
+        """Send a message to customers with a specific tag.
+
+        :param messaging_channel: Dictionary with the channles to be used
+        :param message: Dictionary with the messages to be sent
+        """
         req = AppToServerCommand()
         req.send_message_tag.channel_number.number = messaging_channel["number"]
         req.send_message_tag.channel_number.channel = messaging_channel["channel"].value
@@ -183,7 +254,12 @@ class Elarian(Client):
     async def initiate_payment(
         self, debit_party: dict, credit_party: dict, value: dict
     ):
-        """Initiate a payment transaction"""
+        """Initiate a payment transaction.
+
+        :param debit_party: Dictionary containing the details of the customer the money is coming from
+        :param credit_party: Dictionary containing the details of the customer the money is going to
+        :param value: Dictionary containing the amount and currency
+        """
         req = AppToServerCommand()
 
         if has_key("purse", debit_party):
@@ -274,7 +350,7 @@ class Elarian(Client):
         req.initiate_payment.value.currency_code = value["currency_code"]
         data = await self._send_command(req)
         res = self._parse_reply(data, to_json=True)['initiate_payment']
-        res['status'] = get_enum_string(PaymentStatus, res['status'], 'PAYMENT_STATUS')
+        res['status'] = get_enum_string(PaymentStatus, res['status'], 'PAYMENT_STATUS'),
         return res
 
     @staticmethod
