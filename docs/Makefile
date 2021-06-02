@@ -20,3 +20,4 @@ help:
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	cp -r $(BUILDDIR)/html/. $(HTMLCOPYDIR)
+	rm -rf $(BUILDDIR)/html
