@@ -653,65 +653,103 @@
 <dl class="py method">
 <dt id="elarian.simulator.Simulator.receive_message">
 <em class="property"><span class="pre">async</span> </em><code class="sig-name descname"><span class="pre">receive_message</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phone_number</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">messaging_channel</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_parts</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elarian.simulator.Simulator.receive_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Simulate sending a message. i.e. tell the simulated gateway to receive a message
-:param phone_number: Phone number that sent the message
-:param messaging_channel: Dictionary containing the details of the messaging channel used
-:param session_id: Session id of the simulation
-:param message_parts: List containing the message parts</p>
+<dd><p>Simulate sending a message. i.e. tell the simulated gateway to receive a message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phone_number</strong> – Phone number that sent the message</p></li>
+<li><p><strong>messaging_channel</strong> – Dictionary containing the details of the messaging channel used</p></li>
+<li><p><strong>session_id</strong> – Session id of the simulation</p></li>
+<li><p><strong>message_parts</strong> – List containing the message parts</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="elarian.simulator.Simulator.receive_payment">
 <em class="property"><span class="pre">async</span> </em><code class="sig-name descname"><span class="pre">receive_payment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phone_number</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payment_channel</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transaction_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elarian.simulator.Simulator.receive_payment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Used to simulate the receiving of a payment
-:param phone_number: Phone number that sent the payment
-:param payment_channel: Dictionary containing the details of the payment channel used
-:param transaction_id: Transaction id of the simulation
-:param value: Dictionary containing the transaction value and currency
-:param status: Status of the transaction</p>
+<dd><p>Used to simulate the receiving of a payment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>phone_number</strong> – Phone number that sent the payment</p></li>
+<li><p><strong>payment_channel</strong> – Dictionary containing the details of the payment channel used</p></li>
+<li><p><strong>transaction_id</strong> – Transaction id of the simulation</p></li>
+<li><p><strong>value</strong> – Dictionary containing the transaction value and currency</p></li>
+<li><p><strong>status</strong> – Status of the transaction</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="elarian.simulator.Simulator.set_on_checkout_payment">
 <code class="sig-name descname"><span class="pre">set_on_checkout_payment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elarian.simulator.Simulator.set_on_checkout_payment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the handler for customer checkout received on the simulator
-:param handler: Dedicated handler function</p>
+<dd><p>Set the handler for customer checkout received on the simulator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handler</strong> – Dedicated handler function</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="elarian.simulator.Simulator.set_on_make_voice_call">
 <code class="sig-name descname"><span class="pre">set_on_make_voice_call</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elarian.simulator.Simulator.set_on_make_voice_call" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the handler for voice calls received on the simulator
-:param handler: Dedicated handler function</p>
+<dd><p>Set the handler for voice calls received on the simulator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handler</strong> – Dedicated handler function</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="elarian.simulator.Simulator.set_on_send_channel_payment">
 <code class="sig-name descname"><span class="pre">set_on_send_channel_payment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elarian.simulator.Simulator.set_on_send_channel_payment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the handler for channel payments received on the simulator
-:param handler: Dedicated handler function</p>
+<dd><p>Set the handler for channel payments received on the simulator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handler</strong> – Dedicated handler function</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="elarian.simulator.Simulator.set_on_send_customer_payment">
 <code class="sig-name descname"><span class="pre">set_on_send_customer_payment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elarian.simulator.Simulator.set_on_send_customer_payment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the handler for customer payments received on the simulator
-:param handler: Dedicated handler function</p>
+<dd><p>Set the handler for customer payments received on the simulator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handler</strong> – Dedicated handler function</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="elarian.simulator.Simulator.set_on_send_message">
 <code class="sig-name descname"><span class="pre">set_on_send_message</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elarian.simulator.Simulator.set_on_send_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the handler for messages received on the simulator
-:param handler: Dedicated handler function</p>
+<dd><p>Set the handler for messages received on the simulator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handler</strong> – Dedicated handler function</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="elarian.simulator.Simulator.update_payment_status">
 <em class="property"><span class="pre">async</span> </em><code class="sig-name descname"><span class="pre">update_payment_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transaction_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#elarian.simulator.Simulator.update_payment_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Used to simulate the updating of a payment status
-:param transaction_id: Transaction id of the simulation
-:param status: Status of the transaction</p>
+<dd><p>Used to simulate the updating of a payment status</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transaction_id</strong> – Transaction id of the simulation</p></li>
+<li><p><strong>status</strong> – Status of the transaction</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

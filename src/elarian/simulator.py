@@ -49,30 +49,35 @@ class Simulator(Client):
 
     def set_on_send_message(self, handler):
         """Set the handler for messages received on the simulator
+
            :param handler: Dedicated handler function
         """
         return self._on("send_message", handler)
 
     def set_on_make_voice_call(self, handler):
         """Set the handler for voice calls received on the simulator
+
            :param handler: Dedicated handler function
         """
         return self._on("make_voice_call", handler)
 
     def set_on_send_customer_payment(self, handler):
         """Set the handler for customer payments received on the simulator
+
            :param handler: Dedicated handler function
         """
         return self._on("send_customer_payment", handler)
 
     def set_on_send_channel_payment(self, handler):
         """Set the handler for channel payments received on the simulator
+
            :param handler: Dedicated handler function
         """
         return self._on("send_channel_payment", handler)
 
     def set_on_checkout_payment(self, handler):
         """Set the handler for customer checkout received on the simulator
+
            :param handler: Dedicated handler function
         """
         return self._on("checkout_payment", handler)
@@ -85,6 +90,7 @@ class Simulator(Client):
         message_parts: list,
     ):
         """Simulate sending a message. i.e. tell the simulated gateway to receive a message
+
            :param phone_number: Phone number that sent the message
            :param messaging_channel: Dictionary containing the details of the messaging channel used
            :param session_id: Session id of the simulation
@@ -180,6 +186,7 @@ class Simulator(Client):
         status: str,
     ):
         """Used to simulate the receiving of a payment
+
            :param phone_number: Phone number that sent the payment
            :param payment_channel: Dictionary containing the details of the payment channel used
            :param transaction_id: Transaction id of the simulation
@@ -208,6 +215,7 @@ class Simulator(Client):
 
     async def update_payment_status(self, transaction_id: str, status: str):
         """Used to simulate the updating of a payment status
+
            :param transaction_id: Transaction id of the simulation
            :param status: Status of the transaction
         """
