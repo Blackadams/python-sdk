@@ -88,6 +88,7 @@ class Simulator(Client):
         messaging_channel: dict,
         session_id: str,
         message_parts: list,
+        cost: dict = None
     ):
         """Simulate sending a message. i.e. tell the simulated gateway to receive a message
 
@@ -97,9 +98,17 @@ class Simulator(Client):
            :param message_parts: List containing the message parts
         """
         req = SimulatorToServerCommand()
+
+        if cost is None:
+            cost = {
+                "currency_code": "KES",
+                "amount": 0
+            }
         req.receive_message.session_id.value = session_id
         req.receive_message.customer_number = phone_number
         req.receive_message.channel_number.number = messaging_channel["number"]
+        req.receive_message.cost.amount = cost["amount"]
+        req.receive_message.cost.currency_code = cost["currency_code"]
         req.receive_message.channel_number.channel = get_enum_value(
             MessagingChannel,
             messaging_channel["channel"],

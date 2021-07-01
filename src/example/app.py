@@ -112,7 +112,7 @@ async def handle_payment(notif, customer, app_data, callback):
 async def handle_ussd(notif, customer, app_data, callback):
     try:
         print(f"Processing ussd from {customer.customer_number['number']}")
-        ussd_input = notif['input']
+        ussd_input = notif['input']['text']
         screen = app_data.get('screen', 'home')
 
         meta = await customer.get_metadata()
