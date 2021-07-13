@@ -48,7 +48,7 @@ class Customer:
             )
             self._customer_number = {"number": number, "provider": provider}
 
-        if self.customer_id is None and self.customer_number is None:
+        if self._customer_id is None and self._customer_number is None:
             raise RuntimeError("Either id or number is required")
 
     async def get_state(self):
@@ -62,8 +62,8 @@ class Customer:
                 self.customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
-        elif self.customer_id is not None:
-            req.get_customer_state.customer_id = self.customer_id
+        elif self._customer_id is not None:
+            req.get_customer_state.customer_id = self._customer_id
 
         else:
             raise RuntimeError("Invalid customer id and/or customer number")
@@ -83,10 +83,10 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is None:
+        if self._customer_id is None:
             await self.get_state()
 
-        req.adopt_customer_state.customer_id = self.customer_id
+        req.adopt_customer_state.customer_id = self._customer_id
 
         if other_customer.get("customer_id") is not None:
             req.adopt_customer_state.customer_id = other_customer.get("customer_id")
@@ -144,7 +144,7 @@ class Customer:
         :param message: Message being sent back
         """
         req = AppToServerCommand()
-        req.reply_to_message.customer_id = self.customer_id
+        req.reply_to_message.customer_id = self._customer_id
         req.reply_to_message.message_id = message_id
         req.reply_to_message.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
@@ -228,8 +228,8 @@ class Customer:
         """Used to lease a customer's app data. """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.lease_customer_app_data.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.lease_customer_app_data.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -262,8 +262,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.update_customer_app_data.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.update_customer_app_data.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -297,8 +297,8 @@ class Customer:
         """Used to remove a customer's app data. """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.delete_customer_app_data.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.delete_customer_app_data.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -340,8 +340,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.update_customer_metadata.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.update_customer_metadata.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -380,8 +380,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.delete_customer_metadata.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.delete_customer_metadata.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -419,8 +419,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.update_customer_secondary_id.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.update_customer_secondary_id.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -458,8 +458,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.delete_customer_secondary_id.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.delete_customer_secondary_id.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -502,8 +502,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.update_customer_tag.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.update_customer_tag.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -541,8 +541,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.delete_customer_tag.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.delete_customer_tag.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -574,8 +574,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.add_customer_reminder.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.add_customer_reminder.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
@@ -615,8 +615,8 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.cancel_customer_reminder.customer_id = self.customer_id
+        if self._customer_id is not None:
+            req.cancel_customer_reminder.customer_id = self._customer_id
         elif self.customer_number is not None and has_key(
             "number", self.customer_number
         ):
