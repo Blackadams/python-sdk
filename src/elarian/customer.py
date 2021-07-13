@@ -48,22 +48,22 @@ class Customer:
             )
             self._customer_number = {"number": number, "provider": provider}
 
-        if self.customer_id is None and self.customer_number is None:
+        if self._customer_id is None and self._customer_number is None:
             raise RuntimeError("Either id or number is required")
 
     async def get_state(self):
         """Used to get the current customer state."""
         req = AppToServerCommand()
 
-        if self.customer_number is not None and has_key("number", self.customer_number):
-            req.get_customer_state.customer_number.number = self.customer_number.get("number")
+        if self._customer_number is not None and has_key("number", self._customer_number):
+            req.get_customer_state.customer_number.number = self._customer_number.get("number")
             req.get_customer_state.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
-        elif self.customer_id is not None:
-            req.get_customer_state.customer_id = self.customer_id
+        elif self._customer_id is not None:
+            req.get_customer_state.customer_id = self._customer_id
 
         else:
             raise RuntimeError("Invalid customer id and/or customer number")
@@ -83,10 +83,10 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is None:
+        if self._customer_id is None:
             await self.get_state()
 
-        req.adopt_customer_state.customer_id = self.customer_id
+        req.adopt_customer_state.customer_id = self._customer_id
 
         if other_customer.get("customer_id") is not None:
             req.adopt_customer_state.customer_id = other_customer.get("customer_id")
@@ -125,10 +125,10 @@ class Customer:
             messaging_channel.get("channel", "UNSPECIFIED"),
             "MESSAGING_CHANNEL",
         )
-        req.send_message.customer_number.number = self.customer_number.get("number")
+        req.send_message.customer_number.number = self._customer_number.get("number")
         req.send_message.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
-            self.customer_number.get("provider", "CELLULAR"),
+            self._customer_number.get("provider", "CELLULAR"),
             "CUSTOMER_NUMBER_PROVIDER",
         )
         req.send_message.message.CopyFrom(fill_in_outgoing_message(message))
@@ -144,7 +144,7 @@ class Customer:
         :param message: Message being sent back
         """
         req = AppToServerCommand()
-        req.reply_to_message.customer_id = self.customer_id
+        req.reply_to_message.customer_id = self._customer_id
         req.reply_to_message.message_id = message_id
         req.reply_to_message.message.CopyFrom(fill_in_outgoing_message(message))
         data = await self._send_command(req)
@@ -166,12 +166,12 @@ class Customer:
             activity_channel.get("channel", "CELLULAR"),
             "ACTIVITY_CHANNEL",
         )
-        req.customer_activity.customer_number.number = self.customer_number.get(
+        req.customer_activity.customer_number.number = self._customer_number.get(
             "number"
         )
         req.customer_activity.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
-            self.customer_number.get("provider", "CELLULAR"),
+            self._customer_number.get("provider", "CELLULAR"),
             "CUSTOMER_NUMBER_PROVIDER",
         )
 
@@ -207,12 +207,12 @@ class Customer:
             messaging_channel.get("channel", "UNSPECIFIED"),
             "MESSAGING_CHANNEL",
         )
-        req.update_messaging_consent.customer_number.number = self.customer_number.get(
+        req.update_messaging_consent.customer_number.number = self._customer_number.get(
             "number"
         )
         req.update_messaging_consent.customer_number.provider = get_enum_value(
             CustomerNumberProvider,
-            self.customer_number.get("provider", "CELLULAR"),
+            self._customer_number.get("provider", "CELLULAR"),
             "CUSTOMER_NUMBER_PROVIDER",
         )
         req.update_messaging_consent.update = get_enum_value(MessagingConsentUpdate, action, 'MESSAGING_CONSENT_UPDATE')
@@ -228,17 +228,17 @@ class Customer:
         """Used to lease a customer's app data. """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.lease_customer_app_data.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.lease_customer_app_data.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
             req.lease_customer_app_data.customer_number.number = (
-                self.customer_number.get("number")
+                self._customer_number.get("number")
             )
             req.lease_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -262,17 +262,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.update_customer_app_data.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.update_customer_app_data.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
             req.update_customer_app_data.customer_number.number = (
-                self.customer_number.get("number")
+                self._customer_number.get("number")
             )
             req.update_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -297,17 +297,17 @@ class Customer:
         """Used to remove a customer's app data. """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.delete_customer_app_data.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.delete_customer_app_data.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
             req.delete_customer_app_data.customer_number.number = (
-                self.customer_number.get("number")
+                self._customer_number.get("number")
             )
             req.delete_customer_app_data.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -340,17 +340,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.update_customer_metadata.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.update_customer_metadata.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
             req.update_customer_metadata.customer_number.number = (
-                self.customer_number.get("number")
+                self._customer_number.get("number")
             )
             req.update_customer_metadata.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -380,17 +380,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.delete_customer_metadata.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.delete_customer_metadata.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
             req.delete_customer_metadata.customer_number.number = (
-                self.customer_number.get("number")
+                self._customer_number.get("number")
             )
             req.delete_customer_metadata.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -419,17 +419,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.update_customer_secondary_id.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.update_customer_secondary_id.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
             req.update_customer_secondary_id.customer_number.number = (
-                self.customer_number.get("number")
+                self._customer_number.get("number")
             )
             req.update_customer_secondary_id.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -458,17 +458,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.delete_customer_secondary_id.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.delete_customer_secondary_id.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
             req.delete_customer_secondary_id.customer_number.number = (
-                self.customer_number.get("number")
+                self._customer_number.get("number")
             )
             req.delete_customer_secondary_id.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -502,17 +502,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.update_customer_tag.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.update_customer_tag.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
-            req.update_customer_tag.customer_number.number = self.customer_number.get(
+            req.update_customer_tag.customer_number.number = self._customer_number.get(
                 "number"
             )
             req.update_customer_tag.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -541,17 +541,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.delete_customer_tag.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.delete_customer_tag.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
-            req.delete_customer_tag.customer_number.number = self.customer_number.get(
+            req.delete_customer_tag.customer_number.number = self._customer_number.get(
                 "number"
             )
             req.delete_customer_tag.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -574,17 +574,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.add_customer_reminder.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.add_customer_reminder.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
-            req.add_customer_reminder.customer_number.number = self.customer_number.get(
+            req.add_customer_reminder.customer_number.number = self._customer_number.get(
                 "number"
             )
             req.add_customer_reminder.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
@@ -615,17 +615,17 @@ class Customer:
         """
         req = AppToServerCommand()
 
-        if self.customer_id is not None:
-            req.cancel_customer_reminder.customer_id = self.customer_id
-        elif self.customer_number is not None and has_key(
-            "number", self.customer_number
+        if self._customer_id is not None:
+            req.cancel_customer_reminder.customer_id = self._customer_id
+        elif self._customer_number is not None and has_key(
+            "number", self._customer_number
         ):
             req.cancel_customer_reminder.customer_number.number = (
-                self.customer_number.get("number")
+                self._customer_number.get("number")
             )
             req.cancel_customer_reminder.customer_number.provider = get_enum_value(
                 CustomerNumberProvider,
-                self.customer_number.get("provider", "CELLULAR"),
+                self._customer_number.get("provider", "CELLULAR"),
                 "CUSTOMER_NUMBER_PROVIDER",
             )
         else:
