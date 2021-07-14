@@ -42,7 +42,7 @@ class Client(metaclass=ABCMeta):
         if options is not None:
             self._options.update(options)
 
-    async def connect(self):
+    async def connect(self, host='tcp.elarian.com', port=8082):
         """Used to connect to Elarian."""
         self._request_handler.handle("pending")
 
@@ -55,11 +55,11 @@ class Client(metaclass=ABCMeta):
 
         self._loop = asyncio.get_event_loop()
         self._connection = await asyncio.open_connection(
-            host='tcp.elarian.dev',
+            port=port,
+            host=host,
             loop=self._loop,
-            port=8082,
+            server_hostname=host,
             ssl=ssl.create_default_context(),
-            server_hostname='tcp.elarian.dev',
         )
         self._socket = RSocket(
             reader=self._connection[0],
