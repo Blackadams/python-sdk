@@ -14,6 +14,7 @@ def client():
 
 def test_connect(client):
     """Function to test the connection to Elarian backend"""
+    loop.run_until_complete(client.connect())
     assert client.is_connected()
 
 
@@ -58,7 +59,7 @@ def test_initiate_payment(client):
     debit_from = {
         "customer": {
             "customer_number": {
-                "number": "+254718769882",
+                "number": "+25471xxxxxxx",
                 "provider": 'cellular',
             },
             "channel_number": {

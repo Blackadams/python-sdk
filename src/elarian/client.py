@@ -42,7 +42,7 @@ class Client(metaclass=ABCMeta):
         if options is not None:
             self._options.update(options)
 
-    async def connect(self, host='tcp.elarian.com', port=8082):
+    async def connect(self, host='tcp.elarian.com', port=443):
         """Used to connect to Elarian."""
         self._request_handler.handle("pending")
 

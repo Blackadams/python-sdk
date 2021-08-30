@@ -47,10 +47,11 @@ $ python setup.py
 
 Run all tests:
 
-Update the following params in your `.env` file then run `python -m unittest discover -v`
+Update the values in your `tests/.env`
 
 ```bash
-# TODO
+$ cd tests
+$ pytest
 ```
 
 ## Issues

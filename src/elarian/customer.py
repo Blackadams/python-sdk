@@ -15,9 +15,6 @@ from .utils.generated.messaging_model_pb2 import (
     MessagingConsentUpdate,
     MessageDeliveryStatus
 )
-from .utils.generated.activity_model_pb2 import (
-    ActivityChannel,
-)
 from .utils.helpers import has_key, fill_in_outgoing_message, get_enum_value, get_enum_string
 
 
@@ -50,6 +47,12 @@ class Customer:
 
         if self._customer_id is None and self._customer_number is None:
             raise RuntimeError("Either id or number is required")
+
+    def get_id(self):
+        return self._customer_id
+
+    def get_number(self):
+        return self._customer_id
 
     async def get_state(self):
         """Used to get the current customer state."""
@@ -152,20 +155,15 @@ class Customer:
         res['status'] = get_enum_string(MessageDeliveryStatus, res['status'], 'MESSAGE_DELIVERY_STATUS')
         return res
 
-    async def update_activity(self, activity_channel: dict, activity: dict):
+    async def update_activity(self, source: str, activity: dict):
         """Used to update a customer's activity.
 
-        :param activity_channel: Dictionary containg the activity channel(s)
+        :param source: Activity source
         :param activity: Dictionary containing the activities
         """
         req = AppToServerCommand()
 
-        req.customer_activity.channel_number.number = activity_channel.get("number")
-        req.customer_activity.channel_number.channel = get_enum_value(
-            ActivityChannel,
-            activity_channel.get("channel", "CELLULAR"),
-            "ACTIVITY_CHANNEL",
-        )
+        req.customer_activity.source = source
         req.customer_activity.customer_number.number = self._customer_number.get(
             "number"
         )

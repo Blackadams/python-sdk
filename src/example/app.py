@@ -4,6 +4,9 @@ import traceback
 import asyncio
 from elarian import Elarian
 
+from dotenv import load_dotenv
+load_dotenv()
+
 sms_channel = {
     'number': os.getenv('SMS_SHORT_CODE'),
     'channel': 'SMS'
@@ -30,7 +33,7 @@ client = Elarian(
 
 async def approve_loan(customer, amount):
     try:
-        print(f"Approving loan for {customer.customer_number['number']}")
+        print(f"Approving loan for {customer.get_number()['number']}")
         meta = await customer.get_metadata()
         name = meta['name']
         repayment_date = time.time() + 60
@@ -43,7 +46,7 @@ async def approve_loan(customer, amount):
             credit_party={
                 'customer': {
                     'channel_number': mpesa_channel,
-                    'customer_number': customer.customer_number
+                    'customer_number': customer.get_number()
                 }
             },
             value={
@@ -79,7 +82,7 @@ async def approve_loan(customer, amount):
 
 async def handle_payment(notif, customer, app_data, callback):
     try:
-        print(f"Processing payment from {customer.customer_number['number']}")
+        print(f"Processing payment from {customer.get_number()['number']}")
         amount = notif['value']['amount']
         meta = await customer.get_metadata()
         name = meta.get('name', 'Unknown Customer')
@@ -111,7 +114,7 @@ async def handle_payment(notif, customer, app_data, callback):
 
 async def handle_ussd(notif, customer, app_data, callback):
     try:
-        print(f"Processing ussd from {customer.customer_number['number']}")
+        print(f"Processing ussd from {customer.get_number()['number']}")
         ussd_input = notif['input']['text']
         screen = app_data.get('screen', 'home')
 

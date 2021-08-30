@@ -1,6 +1,8 @@
 import os
 import asyncio
 import random
+from dotenv import load_dotenv
+load_dotenv()
 
 loop = asyncio.get_event_loop()
 
