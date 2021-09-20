@@ -8,7 +8,7 @@
 
 ## Documentation
 
-Take a look at the [API docs here](http://docs.elarian.com).
+Take a look at the [API docs here](http://developers.elarian.com).
 
 
 ## Install
