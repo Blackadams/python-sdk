@@ -16,7 +16,7 @@ setup(
     keywords="elarian africastalking sms ussd voice customer payments",
     url="https://github.com/ElarianLtd/python-sdk",
     author="Elarian",
-    author_email="salama@elarian.com",
+    author_email="sbalekage@elarian.com",
     license="MIT",
     classifiers=[
         "License :: OSI Approved :: MIT License",
@@ -35,7 +35,7 @@ setup(
         'elarian.utils',
         'elarian.models',
         'reactivestreams',
-        'elarian.utils.generated',
+        'elarian.utils.generated'
     ],
     include_package_data=True,
     install_requires=[

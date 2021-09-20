@@ -1,4 +1,5 @@
 
+import json
 import ssl
 import asyncio
 import atexit
@@ -20,6 +21,7 @@ class Client(metaclass=ABCMeta):
         "lifetime": 60000,
         "keep_alive": 1000,
         "allow_notifications": True,
+        "reconnect_timeout": 60000
     }
 
     _org_id = None
@@ -31,8 +33,11 @@ class Client(metaclass=ABCMeta):
     _socket = None
     _connection = None
     _is_connected = False
+    _is_reconnect = False
     _loop = None
     _request_handler = _RequestHandler(None)
+    _host = "tcp.elarian.com"
+    _port = 443
 
     def __init__(self, org_id: str, api_key: str, app_id: str, events: list, options: dict = None):
         self._app_id = app_id
@@ -46,6 +51,9 @@ class Client(metaclass=ABCMeta):
         """Used to connect to Elarian."""
         self._request_handler.handle("pending")
 
+        self._host = host
+        self._port = port
+
         setup = AppConnectionMetadata()
         setup.org_id = self._org_id
         setup.app_id = self._app_id
@@ -53,12 +61,16 @@ class Client(metaclass=ABCMeta):
         setup.simplex_mode = not self._options['allow_notifications']
         setup.simulator_mode = self._is_simulator
 
+        metadata = json.dumps({
+            "agent": "python"
+        })
+
         self._loop = asyncio.get_event_loop()
         self._connection = await asyncio.open_connection(
-            port=port,
-            host=host,
+            port=self._port,
+            host=self._host,
             loop=self._loop,
-            server_hostname=host,
+            server_hostname=self._host,
             ssl=ssl.create_default_context(),
         )
         self._socket = RSocket(
@@ -67,8 +79,8 @@ class Client(metaclass=ABCMeta):
             server=False,
             loop=self._loop,
             data_encoding=b'application/octet-stream',
-            metadata_encoding=b'application/octet-stream',
-            setup_payload=Payload(data=setup.SerializeToString()),
+            metadata_encoding=b'application/json',
+            setup_payload=Payload(data=setup.SerializeToString(), metadata=bytearray(metadata, 'utf-8')),
             keep_alive_milliseconds=self._options['keep_alive'],
             max_lifetime_milliseconds=self._options['lifetime'],
             handler_factory=self._make_request_handler,
@@ -76,10 +88,11 @@ class Client(metaclass=ABCMeta):
         )
 
         self._is_connected = True
-        self._loop.create_task(self.__keep_running())
+        if self._is_reconnect == False:
+            self._loop.create_task(self.__keep_running())
+            atexit.register(self.__clean_up)
 
         self._request_handler.handle("connected")
-        atexit.register(self.__clean_up)
 
         return self
 
@@ -163,6 +176,14 @@ class Client(metaclass=ABCMeta):
     async def __keep_running(self):
         while self.is_connected():
             await asyncio.sleep(2)
+            if self.is_connected and (self._connection[1].transport is None or self._connection[1].transport.is_closing()):
+                self._is_reconnect = True
+                timeout = self._options['reconnect_timeout'] / 1000
+                print(f'Connection was closed, will attempt to reconnect in {timeout}s...')
+                await asyncio.sleep(timeout)
+                await self.connect()
+            else:
+                break
 
     async def _send_command(self, data):
         if not self.is_connected():

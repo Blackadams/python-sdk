@@ -1,6 +1,7 @@
 import pytest
 from elarian.simulator import Simulator
 from tests import (
+    host,
     loop,
     api_key,
     app_id,
@@ -14,7 +15,7 @@ from tests import (
 def client():
     """Create a connection to Simulator backend"""
     connection = Simulator(app_id=app_id, api_key=api_key, org_id=org_id)
-    client = loop.run_until_complete(connection.connect())
+    client = loop.run_until_complete(connection.connect(host=host))
     yield client
     loop.run_until_complete(connection.disconnect())
 

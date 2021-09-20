@@ -1,7 +1,7 @@
 import pytest
 import time
 from elarian.elarian import Elarian
-from tests import loop, api_key, app_id, org_id, sms_short_code, mpesa_paybill, purse_id
+from tests import loop, api_key, app_id, org_id, sms_short_code, mpesa_paybill, purse_id, host
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -14,7 +14,7 @@ def client():
 
 def test_connect(client):
     """Function to test the connection to Elarian backend"""
-    loop.run_until_complete(client.connect())
+    loop.run_until_complete(client.connect(host=host))
     assert client.is_connected()
 
 

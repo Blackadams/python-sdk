@@ -12,8 +12,8 @@ _sym_db = _symbol_database.Default()
 
 
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
-import common_model_pb2 as common__model__pb2
-import activity_model_pb2 as activity__model__pb2
+import elarian.utils.generated.common_model_pb2 as common__model__pb2
+import elarian.utils.generated.activity_model_pb2 as activity__model__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(

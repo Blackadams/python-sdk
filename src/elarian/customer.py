@@ -44,6 +44,7 @@ class Customer:
                 provider if provider is not None else 'CELLULAR'
             )
             self._customer_number = {"number": number, "provider": provider}
+            self._client._loop.create_task(self._create_customer())
 
         if self._customer_id is None and self._customer_number is None:
             raise RuntimeError("Either id or number is required")
@@ -53,6 +54,21 @@ class Customer:
 
     def get_number(self):
         return self._customer_id
+
+    async def _create_customer(self):
+        req = AppToServerCommand()
+        req.create_customer.customer_number.number = self._customer_number.get("number")
+        req.create_customer.customer_number.provider = get_enum_value(
+            CustomerNumberProvider,
+            self._customer_number.get("provider", "CELLULAR"),
+            "CUSTOMER_NUMBER_PROVIDER",
+        )
+        data = await self._send_command(req)
+        res = self._parse_reply(data)['update_customer_state']
+        if not res['status']:
+            raise RuntimeError(res['description'])
+        self._customer_id = res['customer_id']
+        return res
 
     async def get_state(self):
         """Used to get the current customer state."""

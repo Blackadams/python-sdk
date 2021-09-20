@@ -222,7 +222,6 @@ async def handle_reminder(notif, customer, app_data, callback):
         traceback.print_exc()
         print(f"Failed to process reminder {ex}")
 
-
 async def start():
     client.set_on_ussd_session(handle_ussd)
     client.set_on_reminder(handle_reminder)

@@ -6,6 +6,8 @@ load_dotenv()
 
 loop = asyncio.get_event_loop()
 
+host = os.getenv('HOST')
+port = os.getenv('PORT')
 org_id = os.getenv('ORG_ID')
 app_id = os.getenv('APP_ID')
 api_key = os.getenv('API_KEY')
