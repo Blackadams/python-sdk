@@ -171,7 +171,7 @@ class _RequestHandler(BaseRequestHandler):
 
                 notif['org_id'] = data['org_id']
                 notif['app_id'] = data['app_id']
-                notif['customer_id'] = customer.customer_id
+                notif['customer_id'] = customer.get_id()
                 notif['created_at'] = data['created_at']
 
             def callback(response=None, data_update=None):

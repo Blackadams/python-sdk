@@ -53,7 +53,7 @@ class Customer:
         return self._customer_id
 
     def get_number(self):
-        return self._customer_id
+        return self._customer_number
 
     async def _create_customer(self):
         req = AppToServerCommand()
@@ -615,7 +615,7 @@ class Customer:
             )
 
         data = await self._send_command(req)
-        res = self._parse_reply(data)['update_customer_state']
+        res = self._parse_reply(data)['update_customer_app_data']
 
         if not res['status']:
             raise RuntimeError(res['description'])

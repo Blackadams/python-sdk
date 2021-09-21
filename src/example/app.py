@@ -183,7 +183,7 @@ async def handle_ussd(notif, customer, app_data, callback):
 
 async def handle_reminder(notif, customer, app_data, callback):
     try:
-        print(f"Processing reminder for {customer.customer_id}")
+        print(f"Processing reminder for {customer.get_id()}")
         meta = await customer.get_metadata()
         name = meta['name']
         balance = meta['balance']
