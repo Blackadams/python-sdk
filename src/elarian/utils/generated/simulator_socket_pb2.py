@@ -13,9 +13,9 @@ _sym_db = _symbol_database.Default()
 
 from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
-import elarian.utils.generated.common_model_pb2 as common__model__pb2
-import elarian.utils.generated.messaging_model_pb2 as messaging__model__pb2
-import elarian.utils.generated.payment_model_pb2 as payment__model__pb2
+import common_model_pb2 as common__model__pb2
+import messaging_model_pb2 as messaging__model__pb2
+import payment_model_pb2 as payment__model__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
