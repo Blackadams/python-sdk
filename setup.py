@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="elarian",
-    version="0.0.6",
+    version="0.0.7",
     description="Official Elarian Python SDK",
     long_description=README,
     long_description_content_type="text/markdown",

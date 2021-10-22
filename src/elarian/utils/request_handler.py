@@ -133,17 +133,30 @@ class _RequestHandler(BaseRequestHandler):
                             CustomerNumberProvider,
                             customer_number['provider'],
                             'CUSTOMER_NUMBER_PROVIDER')
+
+                for part in  notif['parts']:
+                    if has_key('text', part):
+                        notif['text'] = part['text']
+                    if has_key('ussd', part):
+                        notif['input'] = part['ussd']
+                    if has_key('media', part):
+                        notif['media'] = part['media']
+                    if has_key('location', part):
+                        notif['location'] = part['location']
+                    if has_key('email', part):
+                        notif['email'] = part['email']
+                    if has_key('voice', part):
+                        notif['voice'] = part['voice']
+                
+                del notif['parts']    
+                
                 channel = notif['channel_number']['channel'].lower()
                 if channel == 'sms':
                     event = 'received_sms'
-                    notif['text'] = notif['parts'][0]['text']
-                    del notif['parts']
                 if channel == 'voice':
                     event = 'voice_call'
                 if channel == 'ussd':
                     event = 'ussd_session'
-                    notif['input'] = notif['parts'][0]['ussd']
-                    del notif['parts']
                 if channel == 'fb_messenger':
                     event = 'received_fb_messenger'
                 if channel == 'telegram':
