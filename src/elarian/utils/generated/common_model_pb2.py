@@ -22,7 +22,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x12\x63ommon_model.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"B\n\x0c\x44\x61taMapValue\x12\x14\n\nstring_val\x18\x02 \x01(\tH\x00\x12\x13\n\tbytes_val\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05value\"-\n\x04\x43\x61sh\x12\x15\n\rcurrency_code\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\"H\n\x0cIndexMapping\x12\x0b\n\x03key\x18\x01 \x01(\t\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"v\n\rCustomerIndex\x12\x35\n\x07mapping\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12.\n\nexpires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xa8\x01\n\x12\x41ppConnectionProps\x12\x15\n\rconnection_id\x18\x01 \x01(\t\x12\x33\n\x0f\x63onnection_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\nip_address\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x14\n\x0csimplex_mode\x18\x04 \x01(\x08\"\x93\x01\n\x0e\x43ustomerNumber\x12@\n\x08provider\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerNumberProvider\x12\x0e\n\x06number\x18\x02 \x01(\t\x12/\n\tpartition\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue*\xfd\x01\n\x16\x43ustomerNumberProvider\x12(\n$CUSTOMER_NUMBER_PROVIDER_UNSPECIFIED\x10\x00\x12%\n!CUSTOMER_NUMBER_PROVIDER_FACEBOOK\x10\x01\x12%\n!CUSTOMER_NUMBER_PROVIDER_CELLULAR\x10\x02\x12%\n!CUSTOMER_NUMBER_PROVIDER_TELEGRAM\x10\x03\x12 \n\x1c\x43USTOMER_NUMBER_PROVIDER_APP\x10\x04\x12\"\n\x1e\x43USTOMER_NUMBER_PROVIDER_EMAIL\x10\x05*\xf5\x01\n\x15\x43hannelNumberProvider\x12\'\n#CHANNEL_NUMBER_PROVIDER_UNSPECIFIED\x10\x00\x12\x1e\n\x1a\x43HANNEL_NUMBER_PROVIDER_AT\x10\x01\x12\"\n\x1e\x43HANNEL_NUMBER_PROVIDER_TWILIO\x10\x02\x12#\n\x1f\x43HANNEL_NUMBER_PROVIDER_MAILGUN\x10\x03\x12$\n CHANNEL_NUMBER_PROVIDER_FACEBOOK\x10\x04\x12$\n CHANNEL_NUMBER_PROVIDER_TELEGRAM\x10\x05*\xc8\x01\n\tMediaType\x12\x1a\n\x16MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\x14\n\x10MEDIA_TYPE_IMAGE\x10\x01\x12\x14\n\x10MEDIA_TYPE_AUDIO\x10\x02\x12\x14\n\x10MEDIA_TYPE_VIDEO\x10\x03\x12\x17\n\x13MEDIA_TYPE_DOCUMENT\x10\x04\x12\x14\n\x10MEDIA_TYPE_VOICE\x10\x05\x12\x16\n\x12MEDIA_TYPE_STICKER\x10\x06\x12\x16\n\x12MEDIA_TYPE_CONTACT\x10\x07*\x8f\x01\n\x16\x43ustomerEventDirection\x12(\n$CUSTOMER_EVENT_DIRECTION_UNSPECIFIED\x10\x00\x12$\n CUSTOMER_EVENT_DIRECTION_INBOUND\x10\x01\x12%\n!CUSTOMER_EVENT_DIRECTION_OUTBOUND\x10\x02*\x93\x01\n\x15\x43ustomerRequestOrigin\x12\'\n#CUSTOMER_REQUEST_ORIGIN_UNSPECIFIED\x10\x00\x12\'\n#CUSTOMER_REQUEST_ORIGIN_API_REQUEST\x10\x01\x12(\n$CUSTOMER_REQUEST_ORIGIN_CUSTOMER_TAG\x10\x02\x62\x06proto3'
+  serialized_pb=b'\n\x12\x63ommon_model.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"B\n\x0c\x44\x61taMapValue\x12\x14\n\nstring_val\x18\x02 \x01(\tH\x00\x12\x13\n\tbytes_val\x18\x03 \x01(\x0cH\x00\x42\x07\n\x05value\"-\n\x04\x43\x61sh\x12\x15\n\rcurrency_code\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\"H\n\x0cIndexMapping\x12\x0b\n\x03key\x18\x01 \x01(\t\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"v\n\rCustomerIndex\x12\x35\n\x07mapping\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12.\n\nexpires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xa8\x01\n\x12\x41ppConnectionProps\x12\x15\n\rconnection_id\x18\x01 \x01(\t\x12\x33\n\x0f\x63onnection_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\nip_address\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x14\n\x0csimplex_mode\x18\x04 \x01(\x08\"\x93\x01\n\x0e\x43ustomerNumber\x12@\n\x08provider\x18\x01 \x01(\x0e\x32..com.elarian.hera.proto.CustomerNumberProvider\x12\x0e\n\x06number\x18\x02 \x01(\t\x12/\n\tpartition\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue*\xfd\x01\n\x16\x43ustomerNumberProvider\x12(\n$CUSTOMER_NUMBER_PROVIDER_UNSPECIFIED\x10\x00\x12%\n!CUSTOMER_NUMBER_PROVIDER_FACEBOOK\x10\x01\x12%\n!CUSTOMER_NUMBER_PROVIDER_CELLULAR\x10\x02\x12%\n!CUSTOMER_NUMBER_PROVIDER_TELEGRAM\x10\x03\x12 \n\x1c\x43USTOMER_NUMBER_PROVIDER_APP\x10\x04\x12\"\n\x1e\x43USTOMER_NUMBER_PROVIDER_EMAIL\x10\x05*\xf5\x01\n\x15\x43hannelNumberProvider\x12\'\n#CHANNEL_NUMBER_PROVIDER_UNSPECIFIED\x10\x00\x12\x1e\n\x1a\x43HANNEL_NUMBER_PROVIDER_AT\x10\x01\x12\"\n\x1e\x43HANNEL_NUMBER_PROVIDER_TWILIO\x10\x02\x12#\n\x1f\x43HANNEL_NUMBER_PROVIDER_MAILGUN\x10\x03\x12$\n CHANNEL_NUMBER_PROVIDER_FACEBOOK\x10\x04\x12$\n CHANNEL_NUMBER_PROVIDER_TELEGRAM\x10\x05*\xc8\x01\n\tMediaType\x12\x1a\n\x16MEDIA_TYPE_UNSPECIFIED\x10\x00\x12\x14\n\x10MEDIA_TYPE_IMAGE\x10\x01\x12\x14\n\x10MEDIA_TYPE_AUDIO\x10\x02\x12\x14\n\x10MEDIA_TYPE_VIDEO\x10\x03\x12\x17\n\x13MEDIA_TYPE_DOCUMENT\x10\x04\x12\x14\n\x10MEDIA_TYPE_VOICE\x10\x05\x12\x16\n\x12MEDIA_TYPE_STICKER\x10\x06\x12\x16\n\x12MEDIA_TYPE_CONTACT\x10\x07*\x8f\x01\n\x16\x43ustomerEventDirection\x12(\n$CUSTOMER_EVENT_DIRECTION_UNSPECIFIED\x10\x00\x12$\n CUSTOMER_EVENT_DIRECTION_INBOUND\x10\x01\x12%\n!CUSTOMER_EVENT_DIRECTION_OUTBOUND\x10\x02*\xb7\x01\n\x15\x43ustomerRequestOrigin\x12\'\n#CUSTOMER_REQUEST_ORIGIN_UNSPECIFIED\x10\x00\x12\'\n#CUSTOMER_REQUEST_ORIGIN_API_REQUEST\x10\x01\x12(\n$CUSTOMER_REQUEST_ORIGIN_CUSTOMER_TAG\x10\x02\x12\"\n\x1e\x43USTOMER_REQUEST_ORIGIN_REPLAY\x10\x03\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
@@ -227,11 +227,16 @@ _CUSTOMERREQUESTORIGIN = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
+    _descriptor.EnumValueDescriptor(
+      name='CUSTOMER_REQUEST_ORIGIN_REPLAY', index=3, number=3,
+      serialized_options=None,
+      type=None,
+      create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
   serialized_start=1595,
-  serialized_end=1742,
+  serialized_end=1778,
 )
 _sym_db.RegisterEnumDescriptor(_CUSTOMERREQUESTORIGIN)
 
@@ -262,6 +267,7 @@ CUSTOMER_EVENT_DIRECTION_OUTBOUND = 2
 CUSTOMER_REQUEST_ORIGIN_UNSPECIFIED = 0
 CUSTOMER_REQUEST_ORIGIN_API_REQUEST = 1
 CUSTOMER_REQUEST_ORIGIN_CUSTOMER_TAG = 2
+CUSTOMER_REQUEST_ORIGIN_REPLAY = 3
 
 
 
