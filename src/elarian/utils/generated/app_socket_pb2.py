@@ -31,7 +31,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10\x61pp_socket.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x12\x63ommon_model.proto\x1a\x0f\x61pp_model.proto\x1a\x14identity_state.proto\x1a\x15messaging_model.proto\x1a\x15messaging_state.proto\x1a\x13payment_model.proto\x1a\x13payment_state.proto\x1a\x14\x61\x63tivity_state.proto\x1a\x14\x61\x63tivity_model.proto\"\xc6\x01\n\x15\x41ppConnectionMetadata\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\t\x12-\n\x07\x61pi_key\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\nauth_token\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x14\n\x0csimplex_mode\x18\x05 \x01(\x08\x12\x16\n\x0esimulator_mode\x18\x06 \x01(\x08\"\xf4\x13\n\x12\x41ppToServerCommand\x12O\n\x13generate_auth_token\x18\x01 \x01(\x0b\x32\x30.com.elarian.hera.proto.GenerateAuthTokenCommandH\x00\x12H\n\x0f\x63reate_customer\x18\x02 \x01(\x0b\x32-.com.elarian.hera.proto.CreateCustomerCommandH\x00\x12M\n\x12get_customer_state\x18\x03 \x01(\x0b\x32/.com.elarian.hera.proto.GetCustomerStateCommandH\x00\x12Q\n\x14\x61\x64opt_customer_state\x18\x04 \x01(\x0b\x32\x31.com.elarian.hera.proto.AdoptCustomerStateCommandH\x00\x12S\n\x15\x61\x64\x64_customer_reminder\x18\x05 \x01(\x0b\x32\x32.com.elarian.hera.proto.AddCustomerReminderCommandH\x00\x12Z\n\x19\x61\x64\x64_customer_reminder_tag\x18\x06 \x01(\x0b\x32\x35.com.elarian.hera.proto.AddCustomerReminderTagCommandH\x00\x12Y\n\x18\x63\x61ncel_customer_reminder\x18\x07 \x01(\x0b\x32\x35.com.elarian.hera.proto.CancelCustomerReminderCommandH\x00\x12`\n\x1c\x63\x61ncel_customer_reminder_tag\x18\x08 \x01(\x0b\x32\x38.com.elarian.hera.proto.CancelCustomerReminderTagCommandH\x00\x12O\n\x13update_customer_tag\x18\t \x01(\x0b\x32\x30.com.elarian.hera.proto.UpdateCustomerTagCommandH\x00\x12O\n\x13\x64\x65lete_customer_tag\x18\n \x01(\x0b\x32\x30.com.elarian.hera.proto.DeleteCustomerTagCommandH\x00\x12`\n\x1cupdate_customer_secondary_id\x18\x0b \x01(\x0b\x32\x38.com.elarian.hera.proto.UpdateCustomerSecondaryIdCommandH\x00\x12`\n\x1c\x64\x65lete_customer_secondary_id\x18\x0c \x01(\x0b\x32\x38.com.elarian.hera.proto.DeleteCustomerSecondaryIdCommandH\x00\x12Y\n\x18update_customer_metadata\x18\r \x01(\x0b\x32\x35.com.elarian.hera.proto.UpdateCustomerMetadataCommandH\x00\x12Y\n\x18\x64\x65lete_customer_metadata\x18\x0e \x01(\x0b\x32\x35.com.elarian.hera.proto.DeleteCustomerMetadataCommandH\x00\x12V\n\x17lease_customer_app_data\x18\x0f \x01(\x0b\x32\x33.com.elarian.hera.proto.LeaseCustomerAppDataCommandH\x00\x12X\n\x18update_customer_app_data\x18\x10 \x01(\x0b\x32\x34.com.elarian.hera.proto.UpdateCustomerAppDataCommandH\x00\x12X\n\x18\x64\x65lete_customer_app_data\x18\x11 \x01(\x0b\x32\x34.com.elarian.hera.proto.DeleteCustomerAppDataCommandH\x00\x12\x42\n\x0csend_message\x18\x12 \x01(\x0b\x32*.com.elarian.hera.proto.SendMessageCommandH\x00\x12I\n\x10send_message_tag\x18\x13 \x01(\x0b\x32-.com.elarian.hera.proto.SendMessageTagCommandH\x00\x12I\n\x10reply_to_message\x18\x14 \x01(\x0b\x32-.com.elarian.hera.proto.ReplyToMessageCommandH\x00\x12Y\n\x18update_messaging_consent\x18\x15 \x01(\x0b\x32\x35.com.elarian.hera.proto.UpdateMessagingConsentCommandH\x00\x12J\n\x10initiate_payment\x18\x16 \x01(\x0b\x32..com.elarian.hera.proto.InitiatePaymentCommandH\x00\x12L\n\x11\x63ustomer_activity\x18\x17 \x01(\x0b\x32/.com.elarian.hera.proto.CustomerActivityCommandH\x00\x12\x66\n\x1freplay_messaging_consent_update\x18\x18 \x01(\x0b\x32;.com.elarian.hera.proto.ReplayMessagingConsentUpdateCommandH\x00\x12W\n\x17replay_received_message\x18\x19 \x01(\x0b\x32\x34.com.elarian.hera.proto.ReplayReceivedMessageCommandH\x00\x12O\n\x13replay_sent_message\x18\x1a \x01(\x0b\x32\x30.com.elarian.hera.proto.ReplaySentMessageCommandH\x00\x12`\n\x1creplay_message_status_update\x18\x1b \x01(\x0b\x32\x38.com.elarian.hera.proto.ReplayMessageStatusUpdateCommandH\x00\x12\x64\n\x1ereplay_message_reaction_update\x18\x1c \x01(\x0b\x32:.com.elarian.hera.proto.ReplayMessageReactionUpdateCommandH\x00\x12Y\n\x18replay_messaging_session\x18\x1d \x01(\x0b\x32\x35.com.elarian.hera.proto.ReplayMessagingSessionCommandH\x00\x42\x07\n\x05\x65ntry\"\xb0\x06\n\x17\x41ppToServerCommandReply\x12M\n\x13generate_auth_token\x18\x01 \x01(\x0b\x32..com.elarian.hera.proto.GenerateAuthTokenReplyH\x00\x12K\n\x12get_customer_state\x18\x02 \x01(\x0b\x32-.com.elarian.hera.proto.GetCustomerStateReplyH\x00\x12Q\n\x15update_customer_state\x18\x03 \x01(\x0b\x32\x30.com.elarian.hera.proto.UpdateCustomerStateReplyH\x00\x12V\n\x18update_customer_app_data\x18\x04 \x01(\x0b\x32\x32.com.elarian.hera.proto.UpdateCustomerAppDataReplyH\x00\x12T\n\x17lease_customer_app_data\x18\x05 \x01(\x0b\x32\x31.com.elarian.hera.proto.LeaseCustomerAppDataReplyH\x00\x12@\n\x0csend_message\x18\x06 \x01(\x0b\x32(.com.elarian.hera.proto.SendMessageReplyH\x00\x12W\n\x18update_messaging_consent\x18\x07 \x01(\x0b\x32\x33.com.elarian.hera.proto.UpdateMessagingConsentReplyH\x00\x12H\n\x10initiate_payment\x18\x08 \x01(\x0b\x32,.com.elarian.hera.proto.InitiatePaymentReplyH\x00\x12>\n\x0btag_command\x18\t \x01(\x0b\x32\'.com.elarian.hera.proto.TagCommandReplyH\x00\x12J\n\x11\x63ustomer_activity\x18\n \x01(\x0b\x32-.com.elarian.hera.proto.CustomerActivityReplyH\x00\x42\x07\n\x05\x65ntry\"\x1a\n\x18GenerateAuthTokenCommand\"T\n\x16GenerateAuthTokenReply\x12\r\n\x05token\x18\x01 \x01(\t\x12+\n\x08lifetime\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\"X\n\x15\x43reateCustomerCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\"\xbd\x01\n\x17GetCustomerStateCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x42\n\n\x08\x63ustomer\"z\n\x15GetCustomerStateReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12<\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.CustomerStateReplyData\"\xa9\x02\n\x16\x43ustomerStateReplyData\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12=\n\x0eidentity_state\x18\x02 \x01(\x0b\x32%.com.elarian.hera.proto.IdentityState\x12?\n\x0fmessaging_state\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.MessagingState\x12;\n\rpayment_state\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.PaymentState\x12=\n\x0e\x61\x63tivity_state\x18\x05 \x01(\x0b\x32%.com.elarian.hera.proto.ActivityState\"\xec\x01\n\x19\x41\x64optCustomerStateCommand\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12\x1b\n\x11other_customer_id\x18\x02 \x01(\tH\x00\x12G\n\x15other_customer_number\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12\x42\n\x12other_secondary_id\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x42\x10\n\x0eother_customer\"\xfc\x01\n\x1a\x41\x64\x64\x43ustomerReminderCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12:\n\x08reminder\x18\x04 \x01(\x0b\x32(.com.elarian.hera.proto.CustomerReminderB\n\n\x08\x63ustomer\"\x8e\x01\n\x1d\x41\x64\x64\x43ustomerReminderTagCommand\x12\x31\n\x03tag\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12:\n\x08reminder\x18\x02 \x01(\x0b\x32(.com.elarian.hera.proto.CustomerReminder\"\xd0\x01\n\x1d\x43\x61ncelCustomerReminderCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x0b\n\x03key\x18\x04 \x01(\tB\n\n\x08\x63ustomer\"b\n CancelCustomerReminderTagCommand\x12\x31\n\x03tag\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12\x0b\n\x03key\x18\x02 \x01(\t\"\xf6\x01\n\x18UpdateCustomerTagCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x36\n\x07updates\x18\x04 \x03(\x0b\x32%.com.elarian.hera.proto.CustomerIndexB\n\n\x08\x63ustomer\"\xd1\x01\n\x18\x44\x65leteCustomerTagCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x11\n\tdeletions\x18\x04 \x03(\tB\n\n\x08\x63ustomer\"\xfe\x01\n UpdateCustomerSecondaryIdCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x36\n\x07updates\x18\x04 \x03(\x0b\x32%.com.elarian.hera.proto.CustomerIndexB\n\n\x08\x63ustomer\"\xff\x01\n DeleteCustomerSecondaryIdCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x37\n\tdeletions\x18\x04 \x03(\x0b\x32$.com.elarian.hera.proto.IndexMappingB\n\n\x08\x63ustomer\"\xee\x02\n\x1dUpdateCustomerMetadataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12S\n\x07updates\x18\x04 \x03(\x0b\x32\x42.com.elarian.hera.proto.UpdateCustomerMetadataCommand.UpdatesEntry\x1aT\n\x0cUpdatesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x33\n\x05value\x18\x02 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValue:\x02\x38\x01\x42\n\n\x08\x63ustomer\"\xd6\x01\n\x1d\x44\x65leteCustomerMetadataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x11\n\tdeletions\x18\x04 \x03(\tB\n\n\x08\x63ustomer\"r\n\x18UpdateCustomerStateReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xf8\x01\n\x1cUpdateCustomerAppDataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x34\n\x06update\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValueB\n\n\x08\x63ustomer\"\xc2\x01\n\x1c\x44\x65leteCustomerAppDataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x42\n\n\x08\x63ustomer\"t\n\x1aUpdateCustomerAppDataReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xc1\x01\n\x1bLeaseCustomerAppDataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x42\n\n\x08\x63ustomer\"\xa8\x01\n\x19LeaseCustomerAppDataReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x33\n\x05value\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValue\"\xd7\x01\n\x12SendMessageCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x07message\x18\x03 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"z\n\x15ReplyToMessageCommand\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12\x12\n\nmessage_id\x18\x02 \x01(\t\x12\x38\n\x07message\x18\x03 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"\xcc\x01\n\x15SendMessageTagCommand\x12\x31\n\x03tag\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x07message\x18\x03 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"\xfd\x01\n\x10SendMessageReply\x12=\n\x06status\x18\x01 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x30\n\nmessage_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\nsession_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0b\x63ustomer_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xe8\x01\n\x1dUpdateMessagingConsentCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06update\x18\x03 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentUpdate\"\xab\x01\n\x1bUpdateMessagingConsentReply\x12\x44\n\x06status\x18\x01 \x01(\x0e\x32\x34.com.elarian.hera.proto.MessagingConsentUpdateStatus\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xca\x01\n\x16InitiatePaymentCommand\x12@\n\x0b\x64\x65\x62it_party\x18\x01 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x02 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12+\n\x05value\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\x8b\x02\n\x14InitiatePaymentReply\x12\x35\n\x06status\x18\x01 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x34\n\x0etransaction_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x11\x64\x65\x62it_customer_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x38\n\x12\x63redit_customer_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"e\n\x0fTagCommandReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12-\n\x07work_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\x93\x02\n\x17\x43ustomerActivityCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x0e\n\x06source\x18\x02 \x01(\t\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12\x0b\n\x03key\x18\x04 \x01(\t\x12S\n\nproperties\x18\x05 \x03(\x0b\x32?.com.elarian.hera.proto.CustomerActivityCommand.PropertiesEntry\x1a\x31\n\x0fPropertiesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x9e\x02\n#ReplayMessagingConsentUpdateCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12>\n\x06update\x18\x04 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentUpdate\"\x8b\x04\n\x1cReplayReceivedMessageCommand\x12\x1b\n\x13provider_message_id\x18\x01 \x01(\t\x12\x39\n\x13provider_session_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12/\n\x0breceived_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12?\n\x0f\x63ustomer_number\x18\x04 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x05 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x05parts\x18\x06 \x03(\x0b\x32*.com.elarian.hera.proto.InboundMessageBody\x12\x31\n\x0bin_reply_to\x18\x07 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x08provider\x18\x08 \x01(\x0e\x32-.com.elarian.hera.proto.ChannelNumberProvider\x12*\n\x04\x63ost\x18\t \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xc1\x04\n\x18ReplaySentMessageCommand\x12\x1b\n\x13provider_message_id\x18\x01 \x01(\t\x12\x39\n\x13provider_session_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12+\n\x07sent_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12?\n\x0f\x63ustomer_number\x18\x04 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x05 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12?\n\x08provider\x18\x06 \x01(\x0e\x32-.com.elarian.hera.proto.ChannelNumberProvider\x12\x38\n\x07message\x18\x07 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\x12\x31\n\x0bin_reply_to\x18\x08 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\x06status\x18\t \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12*\n\x04\x63ost\x18\n \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xe3\x02\n ReplayMessageStatusUpdateCommand\x12\x1b\n\x13provider_message_id\x18\x01 \x01(\t\x12.\n\nupdated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12?\n\x0f\x63ustomer_number\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x04 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12=\n\x06status\x18\x05 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12*\n\x04\x63ost\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xb5\x02\n\"ReplayMessageReactionUpdateCommand\x12\x1b\n\x13provider_message_id\x18\x01 \x01(\t\x12.\n\nupdated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12?\n\x0f\x63ustomer_number\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x04 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x08reaction\x18\x05 \x01(\x0e\x32\'.com.elarian.hera.proto.MessageReaction\"\x95\x03\n\x1dReplayMessagingSessionCommand\x12\x1b\n\x13provider_session_id\x18\x01 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12.\n\nstarted_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x08\x64uration\x18\x05 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x45\n\nend_reason\x18\x06 \x01(\x0e\x32\x31.com.elarian.hera.proto.MessagingSessionEndReason\x12*\n\x04\x63ost\x18\x07 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"o\n\x15\x43ustomerActivityReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xb6\x01\n\x17ServerToAppNotification\x12K\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\x37.com.elarian.hera.proto.ServerToAppCustomerNotificationH\x00\x12\x45\n\x05purse\x18\x02 \x01(\x0b\x32\x34.com.elarian.hera.proto.ServerToAppPurseNotificationH\x00\x42\x07\n\x05\x65ntry\"\xce\t\n\x1fServerToAppCustomerNotification\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x03 \x01(\t\x12\x36\n\x08\x61pp_data\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValue\x12.\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12@\n\x08reminder\x18\x06 \x01(\x0b\x32,.com.elarian.hera.proto.ReminderNotificationH\x00\x12`\n\x19messaging_session_started\x18\x07 \x01(\x0b\x32;.com.elarian.hera.proto.MessagingSessionStartedNotificationH\x00\x12`\n\x19messaging_session_renewed\x18\x08 \x01(\x0b\x32;.com.elarian.hera.proto.MessagingSessionRenewedNotificationH\x00\x12\\\n\x17messaging_session_ended\x18\t \x01(\x0b\x32\x39.com.elarian.hera.proto.MessagingSessionEndedNotificationH\x00\x12^\n\x18messaging_consent_update\x18\n \x01(\x0b\x32:.com.elarian.hera.proto.MessagingConsentUpdateNotificationH\x00\x12O\n\x10received_message\x18\x0b \x01(\x0b\x32\x33.com.elarian.hera.proto.ReceivedMessageNotificationH\x00\x12K\n\x0emessage_status\x18\x0c \x01(\x0b\x32\x31.com.elarian.hera.proto.MessageStatusNotificationH\x00\x12X\n\x15sent_message_reaction\x18\r \x01(\x0b\x32\x37.com.elarian.hera.proto.SentMessageReactionNotificationH\x00\x12O\n\x10received_payment\x18\x0e \x01(\x0b\x32\x33.com.elarian.hera.proto.ReceivedPaymentNotificationH\x00\x12K\n\x0epayment_status\x18\x0f \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentStatusNotificationH\x00\x12X\n\x15wallet_payment_status\x18\x10 \x01(\x0b\x32\x37.com.elarian.hera.proto.WalletPaymentStatusNotificationH\x00\x12Q\n\x11\x63ustomer_activity\x18\x11 \x01(\x0b\x32\x34.com.elarian.hera.proto.CustomerActivityNotificationH\x00\x42\x07\n\x05\x65ntry\"\xd6\x01\n\x1cServerToAppPurseNotification\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\t\x12\x10\n\x08purse_id\x18\x03 \x01(\t\x12.\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12K\n\x0epayment_status\x18\x05 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentStatusNotificationH\x00\x42\x07\n\x05\x65ntry\"C\n\rAppDataUpdate\x12\x32\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValue\"\x94\x01\n\x1cServerToAppNotificationReply\x12:\n\x0b\x64\x61ta_update\x18\x01 \x01(\x0b\x32%.com.elarian.hera.proto.AppDataUpdate\x12\x38\n\x07message\x18\x02 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"\xb5\x01\n\x14ReminderNotification\x12:\n\x08reminder\x18\x01 \x01(\x0b\x32(.com.elarian.hera.proto.CustomerReminder\x12\x32\n\x03tag\x18\x02 \x01(\x0b\x32%.com.elarian.hera.proto.CustomerIndex\x12-\n\x07work_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xf2\x01\n#MessagingSessionStartedNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xf2\x01\n#MessagingSessionRenewedNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xb0\x02\n!MessagingSessionEndedNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12+\n\x08\x64uration\x18\x04 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x41\n\x06reason\x18\x05 \x01(\x0e\x32\x31.com.elarian.hera.proto.MessagingSessionEndReason\"\xb3\x02\n\"MessagingConsentUpdateNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06update\x18\x03 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentUpdate\x12\x44\n\x06status\x18\x04 \x01(\x0e\x32\x34.com.elarian.hera.proto.MessagingConsentUpdateStatus\"\xda\x02\n\x1bReceivedMessageNotification\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x05parts\x18\x04 \x03(\x0b\x32*.com.elarian.hera.proto.InboundMessageBody\x12\x30\n\nsession_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0bin_reply_to\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"n\n\x19MessageStatusNotification\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12=\n\x06status\x18\x02 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\"\xf9\x01\n\x1fSentMessageReactionNotification\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x08reaction\x18\x04 \x01(\x0e\x32\'.com.elarian.hera.proto.MessageReaction\"\xb2\x02\n\x1bReceivedPaymentNotification\x12\x10\n\x08purse_id\x18\x01 \x01(\t\x12\x16\n\x0etransaction_id\x18\x02 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x44\n\x0e\x63hannel_number\x18\x04 \x01(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\x12+\n\x05value\x18\x05 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x35\n\x06status\x18\x06 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"j\n\x19PaymentStatusNotification\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x35\n\x06status\x18\x02 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"\x83\x01\n\x1fWalletPaymentStatusNotification\x12\x11\n\twallet_id\x18\x01 \x01(\t\x12\x16\n\x0etransaction_id\x18\x02 \x01(\t\x12\x35\n\x06status\x18\x03 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"\xbf\x01\n\x1c\x43ustomerActivityNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x0e\n\x06source\x18\x02 \x01(\t\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12:\n\x08\x61\x63tivity\x18\x04 \x01(\x0b\x32(.com.elarian.hera.proto.CustomerActivityb\x06proto3'
+  serialized_pb=b'\n\x10\x61pp_socket.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x12\x63ommon_model.proto\x1a\x0f\x61pp_model.proto\x1a\x14identity_state.proto\x1a\x15messaging_model.proto\x1a\x15messaging_state.proto\x1a\x13payment_model.proto\x1a\x13payment_state.proto\x1a\x14\x61\x63tivity_state.proto\x1a\x14\x61\x63tivity_model.proto\"\xc6\x01\n\x15\x41ppConnectionMetadata\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\t\x12-\n\x07\x61pi_key\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\nauth_token\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x14\n\x0csimplex_mode\x18\x05 \x01(\x08\x12\x16\n\x0esimulator_mode\x18\x06 \x01(\x08\"\x9e\x15\n\x12\x41ppToServerCommand\x12O\n\x13generate_auth_token\x18\x01 \x01(\x0b\x32\x30.com.elarian.hera.proto.GenerateAuthTokenCommandH\x00\x12H\n\x0f\x63reate_customer\x18\x02 \x01(\x0b\x32-.com.elarian.hera.proto.CreateCustomerCommandH\x00\x12M\n\x12get_customer_state\x18\x03 \x01(\x0b\x32/.com.elarian.hera.proto.GetCustomerStateCommandH\x00\x12Q\n\x14\x61\x64opt_customer_state\x18\x04 \x01(\x0b\x32\x31.com.elarian.hera.proto.AdoptCustomerStateCommandH\x00\x12S\n\x15\x61\x64\x64_customer_reminder\x18\x05 \x01(\x0b\x32\x32.com.elarian.hera.proto.AddCustomerReminderCommandH\x00\x12Z\n\x19\x61\x64\x64_customer_reminder_tag\x18\x06 \x01(\x0b\x32\x35.com.elarian.hera.proto.AddCustomerReminderTagCommandH\x00\x12Y\n\x18\x63\x61ncel_customer_reminder\x18\x07 \x01(\x0b\x32\x35.com.elarian.hera.proto.CancelCustomerReminderCommandH\x00\x12`\n\x1c\x63\x61ncel_customer_reminder_tag\x18\x08 \x01(\x0b\x32\x38.com.elarian.hera.proto.CancelCustomerReminderTagCommandH\x00\x12O\n\x13update_customer_tag\x18\t \x01(\x0b\x32\x30.com.elarian.hera.proto.UpdateCustomerTagCommandH\x00\x12O\n\x13\x64\x65lete_customer_tag\x18\n \x01(\x0b\x32\x30.com.elarian.hera.proto.DeleteCustomerTagCommandH\x00\x12`\n\x1cupdate_customer_secondary_id\x18\x0b \x01(\x0b\x32\x38.com.elarian.hera.proto.UpdateCustomerSecondaryIdCommandH\x00\x12`\n\x1c\x64\x65lete_customer_secondary_id\x18\x0c \x01(\x0b\x32\x38.com.elarian.hera.proto.DeleteCustomerSecondaryIdCommandH\x00\x12Y\n\x18update_customer_metadata\x18\r \x01(\x0b\x32\x35.com.elarian.hera.proto.UpdateCustomerMetadataCommandH\x00\x12Y\n\x18\x64\x65lete_customer_metadata\x18\x0e \x01(\x0b\x32\x35.com.elarian.hera.proto.DeleteCustomerMetadataCommandH\x00\x12V\n\x17lease_customer_app_data\x18\x0f \x01(\x0b\x32\x33.com.elarian.hera.proto.LeaseCustomerAppDataCommandH\x00\x12X\n\x18update_customer_app_data\x18\x10 \x01(\x0b\x32\x34.com.elarian.hera.proto.UpdateCustomerAppDataCommandH\x00\x12X\n\x18\x64\x65lete_customer_app_data\x18\x11 \x01(\x0b\x32\x34.com.elarian.hera.proto.DeleteCustomerAppDataCommandH\x00\x12\x42\n\x0csend_message\x18\x12 \x01(\x0b\x32*.com.elarian.hera.proto.SendMessageCommandH\x00\x12I\n\x10send_message_tag\x18\x13 \x01(\x0b\x32-.com.elarian.hera.proto.SendMessageTagCommandH\x00\x12I\n\x10reply_to_message\x18\x14 \x01(\x0b\x32-.com.elarian.hera.proto.ReplyToMessageCommandH\x00\x12Y\n\x18update_messaging_consent\x18\x15 \x01(\x0b\x32\x35.com.elarian.hera.proto.UpdateMessagingConsentCommandH\x00\x12J\n\x10initiate_payment\x18\x16 \x01(\x0b\x32..com.elarian.hera.proto.InitiatePaymentCommandH\x00\x12L\n\x11\x63ustomer_activity\x18\x17 \x01(\x0b\x32/.com.elarian.hera.proto.CustomerActivityCommandH\x00\x12\x66\n\x1freplay_messaging_consent_update\x18\x18 \x01(\x0b\x32;.com.elarian.hera.proto.ReplayMessagingConsentUpdateCommandH\x00\x12W\n\x17replay_received_message\x18\x19 \x01(\x0b\x32\x34.com.elarian.hera.proto.ReplayReceivedMessageCommandH\x00\x12O\n\x13replay_sent_message\x18\x1a \x01(\x0b\x32\x30.com.elarian.hera.proto.ReplaySentMessageCommandH\x00\x12`\n\x1creplay_message_status_update\x18\x1b \x01(\x0b\x32\x38.com.elarian.hera.proto.ReplayMessageStatusUpdateCommandH\x00\x12\x64\n\x1ereplay_message_reaction_update\x18\x1c \x01(\x0b\x32:.com.elarian.hera.proto.ReplayMessageReactionUpdateCommandH\x00\x12Y\n\x18replay_messaging_session\x18\x1d \x01(\x0b\x32\x35.com.elarian.hera.proto.ReplayMessagingSessionCommandH\x00\x12\x46\n\x0ereplay_payment\x18\x1e \x01(\x0b\x32,.com.elarian.hera.proto.ReplayPaymentCommandH\x00\x12`\n\x1creplay_payment_status_update\x18\x1f \x01(\x0b\x32\x38.com.elarian.hera.proto.ReplayPaymentStatusUpdateCommandH\x00\x42\x07\n\x05\x65ntry\"\xf6\x06\n\x17\x41ppToServerCommandReply\x12M\n\x13generate_auth_token\x18\x01 \x01(\x0b\x32..com.elarian.hera.proto.GenerateAuthTokenReplyH\x00\x12K\n\x12get_customer_state\x18\x02 \x01(\x0b\x32-.com.elarian.hera.proto.GetCustomerStateReplyH\x00\x12Q\n\x15update_customer_state\x18\x03 \x01(\x0b\x32\x30.com.elarian.hera.proto.UpdateCustomerStateReplyH\x00\x12V\n\x18update_customer_app_data\x18\x04 \x01(\x0b\x32\x32.com.elarian.hera.proto.UpdateCustomerAppDataReplyH\x00\x12T\n\x17lease_customer_app_data\x18\x05 \x01(\x0b\x32\x31.com.elarian.hera.proto.LeaseCustomerAppDataReplyH\x00\x12@\n\x0csend_message\x18\x06 \x01(\x0b\x32(.com.elarian.hera.proto.SendMessageReplyH\x00\x12W\n\x18update_messaging_consent\x18\x07 \x01(\x0b\x32\x33.com.elarian.hera.proto.UpdateMessagingConsentReplyH\x00\x12H\n\x10initiate_payment\x18\x08 \x01(\x0b\x32,.com.elarian.hera.proto.InitiatePaymentReplyH\x00\x12>\n\x0btag_command\x18\t \x01(\x0b\x32\'.com.elarian.hera.proto.TagCommandReplyH\x00\x12J\n\x11\x63ustomer_activity\x18\n \x01(\x0b\x32-.com.elarian.hera.proto.CustomerActivityReplyH\x00\x12\x44\n\x0ereplay_payment\x18\x0b \x01(\x0b\x32*.com.elarian.hera.proto.ReplayPaymentReplyH\x00\x42\x07\n\x05\x65ntry\"\x1a\n\x18GenerateAuthTokenCommand\"T\n\x16GenerateAuthTokenReply\x12\r\n\x05token\x18\x01 \x01(\t\x12+\n\x08lifetime\x18\x02 \x01(\x0b\x32\x19.google.protobuf.Duration\"X\n\x15\x43reateCustomerCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\"\xbd\x01\n\x17GetCustomerStateCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x42\n\n\x08\x63ustomer\"z\n\x15GetCustomerStateReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12<\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.CustomerStateReplyData\"\xa9\x02\n\x16\x43ustomerStateReplyData\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12=\n\x0eidentity_state\x18\x02 \x01(\x0b\x32%.com.elarian.hera.proto.IdentityState\x12?\n\x0fmessaging_state\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.MessagingState\x12;\n\rpayment_state\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.PaymentState\x12=\n\x0e\x61\x63tivity_state\x18\x05 \x01(\x0b\x32%.com.elarian.hera.proto.ActivityState\"\xec\x01\n\x19\x41\x64optCustomerStateCommand\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12\x1b\n\x11other_customer_id\x18\x02 \x01(\tH\x00\x12G\n\x15other_customer_number\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12\x42\n\x12other_secondary_id\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x42\x10\n\x0eother_customer\"\xfc\x01\n\x1a\x41\x64\x64\x43ustomerReminderCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12:\n\x08reminder\x18\x04 \x01(\x0b\x32(.com.elarian.hera.proto.CustomerReminderB\n\n\x08\x63ustomer\"\x8e\x01\n\x1d\x41\x64\x64\x43ustomerReminderTagCommand\x12\x31\n\x03tag\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12:\n\x08reminder\x18\x02 \x01(\x0b\x32(.com.elarian.hera.proto.CustomerReminder\"\xd0\x01\n\x1d\x43\x61ncelCustomerReminderCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x0b\n\x03key\x18\x04 \x01(\tB\n\n\x08\x63ustomer\"b\n CancelCustomerReminderTagCommand\x12\x31\n\x03tag\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12\x0b\n\x03key\x18\x02 \x01(\t\"\xf6\x01\n\x18UpdateCustomerTagCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x36\n\x07updates\x18\x04 \x03(\x0b\x32%.com.elarian.hera.proto.CustomerIndexB\n\n\x08\x63ustomer\"\xd1\x01\n\x18\x44\x65leteCustomerTagCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x11\n\tdeletions\x18\x04 \x03(\tB\n\n\x08\x63ustomer\"\xfe\x01\n UpdateCustomerSecondaryIdCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x36\n\x07updates\x18\x04 \x03(\x0b\x32%.com.elarian.hera.proto.CustomerIndexB\n\n\x08\x63ustomer\"\xff\x01\n DeleteCustomerSecondaryIdCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x37\n\tdeletions\x18\x04 \x03(\x0b\x32$.com.elarian.hera.proto.IndexMappingB\n\n\x08\x63ustomer\"\xee\x02\n\x1dUpdateCustomerMetadataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12S\n\x07updates\x18\x04 \x03(\x0b\x32\x42.com.elarian.hera.proto.UpdateCustomerMetadataCommand.UpdatesEntry\x1aT\n\x0cUpdatesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x33\n\x05value\x18\x02 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValue:\x02\x38\x01\x42\n\n\x08\x63ustomer\"\xd6\x01\n\x1d\x44\x65leteCustomerMetadataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x11\n\tdeletions\x18\x04 \x03(\tB\n\n\x08\x63ustomer\"r\n\x18UpdateCustomerStateReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xf8\x01\n\x1cUpdateCustomerAppDataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x12\x34\n\x06update\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValueB\n\n\x08\x63ustomer\"\xc2\x01\n\x1c\x44\x65leteCustomerAppDataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x42\n\n\x08\x63ustomer\"t\n\x1aUpdateCustomerAppDataReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xc1\x01\n\x1bLeaseCustomerAppDataCommand\x12\x15\n\x0b\x63ustomer_id\x18\x01 \x01(\tH\x00\x12\x41\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumberH\x00\x12<\n\x0csecondary_id\x18\x03 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMappingH\x00\x42\n\n\x08\x63ustomer\"\xa8\x01\n\x19LeaseCustomerAppDataReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x33\n\x05value\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValue\"\xd7\x01\n\x12SendMessageCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x07message\x18\x03 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"z\n\x15ReplyToMessageCommand\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12\x12\n\nmessage_id\x18\x02 \x01(\t\x12\x38\n\x07message\x18\x03 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"\xcc\x01\n\x15SendMessageTagCommand\x12\x31\n\x03tag\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.IndexMapping\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x38\n\x07message\x18\x03 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"\xfd\x01\n\x10SendMessageReply\x12=\n\x06status\x18\x01 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x30\n\nmessage_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x30\n\nsession_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0b\x63ustomer_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xe8\x01\n\x1dUpdateMessagingConsentCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06update\x18\x03 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentUpdate\"\xab\x01\n\x1bUpdateMessagingConsentReply\x12\x44\n\x06status\x18\x01 \x01(\x0e\x32\x34.com.elarian.hera.proto.MessagingConsentUpdateStatus\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xca\x01\n\x16InitiatePaymentCommand\x12@\n\x0b\x64\x65\x62it_party\x18\x01 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x02 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12+\n\x05value\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\x8b\x02\n\x14InitiatePaymentReply\x12\x35\n\x06status\x18\x01 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x34\n\x0etransaction_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x11\x64\x65\x62it_customer_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x38\n\x12\x63redit_customer_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xd0\x02\n\x14ReplayPaymentCommand\x12\x1f\n\x17provider_transaction_id\x18\x01 \x01(\t\x12.\n\ncreated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12@\n\x0b\x64\x65\x62it_party\x18\x03 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x04 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x35\n\x06status\x18\x05 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12+\n\x05value\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xeb\x01\n ReplayPaymentStatusUpdateCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x1f\n\x17provider_transaction_id\x18\x02 \x01(\t\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x35\n\x06status\x18\x04 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"\xe2\x01\n\x12ReplayPaymentReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x34\n\x0etransaction_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x37\n\x11\x64\x65\x62it_customer_id\x18\x04 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x38\n\x12\x63redit_customer_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"e\n\x0fTagCommandReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12-\n\x07work_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\x93\x02\n\x17\x43ustomerActivityCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x0e\n\x06source\x18\x02 \x01(\t\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12\x0b\n\x03key\x18\x04 \x01(\t\x12S\n\nproperties\x18\x05 \x03(\x0b\x32?.com.elarian.hera.proto.CustomerActivityCommand.PropertiesEntry\x1a\x31\n\x0fPropertiesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x9e\x02\n#ReplayMessagingConsentUpdateCommand\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12.\n\nupdated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12>\n\x06update\x18\x04 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentUpdate\"\x8b\x04\n\x1cReplayReceivedMessageCommand\x12\x1b\n\x13provider_message_id\x18\x01 \x01(\t\x12\x39\n\x13provider_session_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12/\n\x0breceived_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12?\n\x0f\x63ustomer_number\x18\x04 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x05 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x05parts\x18\x06 \x03(\x0b\x32*.com.elarian.hera.proto.InboundMessageBody\x12\x31\n\x0bin_reply_to\x18\x07 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12?\n\x08provider\x18\x08 \x01(\x0e\x32-.com.elarian.hera.proto.ChannelNumberProvider\x12*\n\x04\x63ost\x18\t \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xc1\x04\n\x18ReplaySentMessageCommand\x12\x1b\n\x13provider_message_id\x18\x01 \x01(\t\x12\x39\n\x13provider_session_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12+\n\x07sent_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12?\n\x0f\x63ustomer_number\x18\x04 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x05 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12?\n\x08provider\x18\x06 \x01(\x0e\x32-.com.elarian.hera.proto.ChannelNumberProvider\x12\x38\n\x07message\x18\x07 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\x12\x31\n\x0bin_reply_to\x18\x08 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12=\n\x06status\x18\t \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12*\n\x04\x63ost\x18\n \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xe3\x02\n ReplayMessageStatusUpdateCommand\x12\x1b\n\x13provider_message_id\x18\x01 \x01(\t\x12.\n\nupdated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12?\n\x0f\x63ustomer_number\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x04 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12=\n\x06status\x18\x05 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\x12*\n\x04\x63ost\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xb5\x02\n\"ReplayMessageReactionUpdateCommand\x12\x1b\n\x13provider_message_id\x18\x01 \x01(\t\x12.\n\nupdated_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12?\n\x0f\x63ustomer_number\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x04 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x08reaction\x18\x05 \x01(\x0e\x32\'.com.elarian.hera.proto.MessageReaction\"\x95\x03\n\x1dReplayMessagingSessionCommand\x12\x1b\n\x13provider_session_id\x18\x01 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12.\n\nstarted_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x08\x64uration\x18\x05 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x45\n\nend_reason\x18\x06 \x01(\x0e\x32\x31.com.elarian.hera.proto.MessagingSessionEndReason\x12*\n\x04\x63ost\x18\x07 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"o\n\x15\x43ustomerActivityReply\x12\x0e\n\x06status\x18\x01 \x01(\x08\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x31\n\x0b\x63ustomer_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xb6\x01\n\x17ServerToAppNotification\x12K\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\x37.com.elarian.hera.proto.ServerToAppCustomerNotificationH\x00\x12\x45\n\x05purse\x18\x02 \x01(\x0b\x32\x34.com.elarian.hera.proto.ServerToAppPurseNotificationH\x00\x42\x07\n\x05\x65ntry\"\xce\t\n\x1fServerToAppCustomerNotification\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\t\x12\x13\n\x0b\x63ustomer_id\x18\x03 \x01(\t\x12\x36\n\x08\x61pp_data\x18\x04 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValue\x12.\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12@\n\x08reminder\x18\x06 \x01(\x0b\x32,.com.elarian.hera.proto.ReminderNotificationH\x00\x12`\n\x19messaging_session_started\x18\x07 \x01(\x0b\x32;.com.elarian.hera.proto.MessagingSessionStartedNotificationH\x00\x12`\n\x19messaging_session_renewed\x18\x08 \x01(\x0b\x32;.com.elarian.hera.proto.MessagingSessionRenewedNotificationH\x00\x12\\\n\x17messaging_session_ended\x18\t \x01(\x0b\x32\x39.com.elarian.hera.proto.MessagingSessionEndedNotificationH\x00\x12^\n\x18messaging_consent_update\x18\n \x01(\x0b\x32:.com.elarian.hera.proto.MessagingConsentUpdateNotificationH\x00\x12O\n\x10received_message\x18\x0b \x01(\x0b\x32\x33.com.elarian.hera.proto.ReceivedMessageNotificationH\x00\x12K\n\x0emessage_status\x18\x0c \x01(\x0b\x32\x31.com.elarian.hera.proto.MessageStatusNotificationH\x00\x12X\n\x15sent_message_reaction\x18\r \x01(\x0b\x32\x37.com.elarian.hera.proto.SentMessageReactionNotificationH\x00\x12O\n\x10received_payment\x18\x0e \x01(\x0b\x32\x33.com.elarian.hera.proto.ReceivedPaymentNotificationH\x00\x12K\n\x0epayment_status\x18\x0f \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentStatusNotificationH\x00\x12X\n\x15wallet_payment_status\x18\x10 \x01(\x0b\x32\x37.com.elarian.hera.proto.WalletPaymentStatusNotificationH\x00\x12Q\n\x11\x63ustomer_activity\x18\x11 \x01(\x0b\x32\x34.com.elarian.hera.proto.CustomerActivityNotificationH\x00\x42\x07\n\x05\x65ntry\"\xd6\x01\n\x1cServerToAppPurseNotification\x12\x0e\n\x06org_id\x18\x01 \x01(\t\x12\x0e\n\x06\x61pp_id\x18\x02 \x01(\t\x12\x10\n\x08purse_id\x18\x03 \x01(\t\x12.\n\ncreated_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12K\n\x0epayment_status\x18\x05 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentStatusNotificationH\x00\x42\x07\n\x05\x65ntry\"C\n\rAppDataUpdate\x12\x32\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32$.com.elarian.hera.proto.DataMapValue\"\x94\x01\n\x1cServerToAppNotificationReply\x12:\n\x0b\x64\x61ta_update\x18\x01 \x01(\x0b\x32%.com.elarian.hera.proto.AppDataUpdate\x12\x38\n\x07message\x18\x02 \x01(\x0b\x32\'.com.elarian.hera.proto.OutboundMessage\"\xb5\x01\n\x14ReminderNotification\x12:\n\x08reminder\x18\x01 \x01(\x0b\x32(.com.elarian.hera.proto.CustomerReminder\x12\x32\n\x03tag\x18\x02 \x01(\x0b\x32%.com.elarian.hera.proto.CustomerIndex\x12-\n\x07work_id\x18\x03 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xf2\x01\n#MessagingSessionStartedNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xf2\x01\n#MessagingSessionRenewedNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12.\n\nexpires_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\xb0\x02\n!MessagingSessionEndedNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12+\n\x08\x64uration\x18\x04 \x01(\x0b\x32\x19.google.protobuf.Duration\x12\x41\n\x06reason\x18\x05 \x01(\x0e\x32\x31.com.elarian.hera.proto.MessagingSessionEndReason\"\xb3\x02\n\"MessagingConsentUpdateNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12>\n\x06update\x18\x03 \x01(\x0e\x32..com.elarian.hera.proto.MessagingConsentUpdate\x12\x44\n\x06status\x18\x04 \x01(\x0e\x32\x34.com.elarian.hera.proto.MessagingConsentUpdateStatus\"\xda\x02\n\x1bReceivedMessageNotification\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x05parts\x18\x04 \x03(\x0b\x32*.com.elarian.hera.proto.InboundMessageBody\x12\x30\n\nsession_id\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12\x31\n\x0bin_reply_to\x18\x06 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"n\n\x19MessageStatusNotification\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12=\n\x06status\x18\x02 \x01(\x0e\x32-.com.elarian.hera.proto.MessageDeliveryStatus\"\xf9\x01\n\x1fSentMessageReactionNotification\x12\x12\n\nmessage_id\x18\x01 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x02 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x46\n\x0e\x63hannel_number\x18\x03 \x01(\x0b\x32..com.elarian.hera.proto.MessagingChannelNumber\x12\x39\n\x08reaction\x18\x04 \x01(\x0e\x32\'.com.elarian.hera.proto.MessageReaction\"\xb2\x02\n\x1bReceivedPaymentNotification\x12\x10\n\x08purse_id\x18\x01 \x01(\t\x12\x16\n\x0etransaction_id\x18\x02 \x01(\t\x12?\n\x0f\x63ustomer_number\x18\x03 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x44\n\x0e\x63hannel_number\x18\x04 \x01(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\x12+\n\x05value\x18\x05 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x35\n\x06status\x18\x06 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"j\n\x19PaymentStatusNotification\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12\x35\n\x06status\x18\x02 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"\x83\x01\n\x1fWalletPaymentStatusNotification\x12\x11\n\twallet_id\x18\x01 \x01(\t\x12\x16\n\x0etransaction_id\x18\x02 \x01(\t\x12\x35\n\x06status\x18\x03 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\"\xbf\x01\n\x1c\x43ustomerActivityNotification\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x0e\n\x06source\x18\x02 \x01(\t\x12\x12\n\nsession_id\x18\x03 \x01(\t\x12:\n\x08\x61\x63tivity\x18\x04 \x01(\x0b\x32(.com.elarian.hera.proto.CustomerActivityb\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_duration__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,common__model__pb2.DESCRIPTOR,app__model__pb2.DESCRIPTOR,identity__state__pb2.DESCRIPTOR,messaging__model__pb2.DESCRIPTOR,messaging__state__pb2.DESCRIPTOR,payment__model__pb2.DESCRIPTOR,payment__state__pb2.DESCRIPTOR,activity__state__pb2.DESCRIPTOR,activity__model__pb2.DESCRIPTOR,])
 
@@ -316,6 +316,20 @@ _APPTOSERVERCOMMAND = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='replay_payment', full_name='com.elarian.hera.proto.AppToServerCommand.replay_payment', index=29,
+      number=30, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='replay_payment_status_update', full_name='com.elarian.hera.proto.AppToServerCommand.replay_payment_status_update', index=30,
+      number=31, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -334,7 +348,7 @@ _APPTOSERVERCOMMAND = _descriptor.Descriptor(
     fields=[]),
   ],
   serialized_start=534,
-  serialized_end=3082,
+  serialized_end=3252,
 )
 
 
@@ -416,6 +430,13 @@ _APPTOSERVERCOMMANDREPLY = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='replay_payment', full_name='com.elarian.hera.proto.AppToServerCommandReply.replay_payment', index=10,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -433,8 +454,8 @@ _APPTOSERVERCOMMANDREPLY = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=3085,
-  serialized_end=3901,
+  serialized_start=3255,
+  serialized_end=4141,
 )
 
 
@@ -458,8 +479,8 @@ _GENERATEAUTHTOKENCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3903,
-  serialized_end=3929,
+  serialized_start=4143,
+  serialized_end=4169,
 )
 
 
@@ -497,8 +518,8 @@ _GENERATEAUTHTOKENREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3931,
-  serialized_end=4015,
+  serialized_start=4171,
+  serialized_end=4255,
 )
 
 
@@ -529,8 +550,8 @@ _CREATECUSTOMERCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4017,
-  serialized_end=4105,
+  serialized_start=4257,
+  serialized_end=4345,
 )
 
 
@@ -580,8 +601,8 @@ _GETCUSTOMERSTATECOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=4108,
-  serialized_end=4297,
+  serialized_start=4348,
+  serialized_end=4537,
 )
 
 
@@ -626,8 +647,8 @@ _GETCUSTOMERSTATEREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4299,
-  serialized_end=4421,
+  serialized_start=4539,
+  serialized_end=4661,
 )
 
 
@@ -686,8 +707,8 @@ _CUSTOMERSTATEREPLYDATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4424,
-  serialized_end=4721,
+  serialized_start=4664,
+  serialized_end=4961,
 )
 
 
@@ -744,8 +765,8 @@ _ADOPTCUSTOMERSTATECOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=4724,
-  serialized_end=4960,
+  serialized_start=4964,
+  serialized_end=5200,
 )
 
 
@@ -802,8 +823,8 @@ _ADDCUSTOMERREMINDERCOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=4963,
-  serialized_end=5215,
+  serialized_start=5203,
+  serialized_end=5455,
 )
 
 
@@ -841,8 +862,8 @@ _ADDCUSTOMERREMINDERTAGCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5218,
-  serialized_end=5360,
+  serialized_start=5458,
+  serialized_end=5600,
 )
 
 
@@ -899,8 +920,8 @@ _CANCELCUSTOMERREMINDERCOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=5363,
-  serialized_end=5571,
+  serialized_start=5603,
+  serialized_end=5811,
 )
 
 
@@ -938,8 +959,8 @@ _CANCELCUSTOMERREMINDERTAGCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5573,
-  serialized_end=5671,
+  serialized_start=5813,
+  serialized_end=5911,
 )
 
 
@@ -996,8 +1017,8 @@ _UPDATECUSTOMERTAGCOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=5674,
-  serialized_end=5920,
+  serialized_start=5914,
+  serialized_end=6160,
 )
 
 
@@ -1054,8 +1075,8 @@ _DELETECUSTOMERTAGCOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=5923,
-  serialized_end=6132,
+  serialized_start=6163,
+  serialized_end=6372,
 )
 
 
@@ -1112,8 +1133,8 @@ _UPDATECUSTOMERSECONDARYIDCOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=6135,
-  serialized_end=6389,
+  serialized_start=6375,
+  serialized_end=6629,
 )
 
 
@@ -1170,8 +1191,8 @@ _DELETECUSTOMERSECONDARYIDCOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=6392,
-  serialized_end=6647,
+  serialized_start=6632,
+  serialized_end=6887,
 )
 
 
@@ -1209,8 +1230,8 @@ _UPDATECUSTOMERMETADATACOMMAND_UPDATESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6920,
-  serialized_end=7004,
+  serialized_start=7160,
+  serialized_end=7244,
 )
 
 _UPDATECUSTOMERMETADATACOMMAND = _descriptor.Descriptor(
@@ -1266,8 +1287,8 @@ _UPDATECUSTOMERMETADATACOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=6650,
-  serialized_end=7016,
+  serialized_start=6890,
+  serialized_end=7256,
 )
 
 
@@ -1324,8 +1345,8 @@ _DELETECUSTOMERMETADATACOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=7019,
-  serialized_end=7233,
+  serialized_start=7259,
+  serialized_end=7473,
 )
 
 
@@ -1370,8 +1391,8 @@ _UPDATECUSTOMERSTATEREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7235,
-  serialized_end=7349,
+  serialized_start=7475,
+  serialized_end=7589,
 )
 
 
@@ -1428,8 +1449,8 @@ _UPDATECUSTOMERAPPDATACOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=7352,
-  serialized_end=7600,
+  serialized_start=7592,
+  serialized_end=7840,
 )
 
 
@@ -1479,8 +1500,8 @@ _DELETECUSTOMERAPPDATACOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=7603,
-  serialized_end=7797,
+  serialized_start=7843,
+  serialized_end=8037,
 )
 
 
@@ -1525,8 +1546,8 @@ _UPDATECUSTOMERAPPDATAREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7799,
-  serialized_end=7915,
+  serialized_start=8039,
+  serialized_end=8155,
 )
 
 
@@ -1576,8 +1597,8 @@ _LEASECUSTOMERAPPDATACOMMAND = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=7918,
-  serialized_end=8111,
+  serialized_start=8158,
+  serialized_end=8351,
 )
 
 
@@ -1629,8 +1650,8 @@ _LEASECUSTOMERAPPDATAREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8114,
-  serialized_end=8282,
+  serialized_start=8354,
+  serialized_end=8522,
 )
 
 
@@ -1675,8 +1696,8 @@ _SENDMESSAGECOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8285,
-  serialized_end=8500,
+  serialized_start=8525,
+  serialized_end=8740,
 )
 
 
@@ -1721,8 +1742,8 @@ _REPLYTOMESSAGECOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8502,
-  serialized_end=8624,
+  serialized_start=8742,
+  serialized_end=8864,
 )
 
 
@@ -1767,8 +1788,8 @@ _SENDMESSAGETAGCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8627,
-  serialized_end=8831,
+  serialized_start=8867,
+  serialized_end=9071,
 )
 
 
@@ -1827,8 +1848,8 @@ _SENDMESSAGEREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8834,
-  serialized_end=9087,
+  serialized_start=9074,
+  serialized_end=9327,
 )
 
 
@@ -1873,8 +1894,8 @@ _UPDATEMESSAGINGCONSENTCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9090,
-  serialized_end=9322,
+  serialized_start=9330,
+  serialized_end=9562,
 )
 
 
@@ -1919,8 +1940,8 @@ _UPDATEMESSAGINGCONSENTREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9325,
-  serialized_end=9496,
+  serialized_start=9565,
+  serialized_end=9736,
 )
 
 
@@ -1965,8 +1986,8 @@ _INITIATEPAYMENTCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9499,
-  serialized_end=9701,
+  serialized_start=9739,
+  serialized_end=9941,
 )
 
 
@@ -2025,8 +2046,188 @@ _INITIATEPAYMENTREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9704,
-  serialized_end=9971,
+  serialized_start=9944,
+  serialized_end=10211,
+)
+
+
+_REPLAYPAYMENTCOMMAND = _descriptor.Descriptor(
+  name='ReplayPaymentCommand',
+  full_name='com.elarian.hera.proto.ReplayPaymentCommand',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='provider_transaction_id', full_name='com.elarian.hera.proto.ReplayPaymentCommand.provider_transaction_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='created_at', full_name='com.elarian.hera.proto.ReplayPaymentCommand.created_at', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='debit_party', full_name='com.elarian.hera.proto.ReplayPaymentCommand.debit_party', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='credit_party', full_name='com.elarian.hera.proto.ReplayPaymentCommand.credit_party', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='com.elarian.hera.proto.ReplayPaymentCommand.status', index=4,
+      number=5, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='com.elarian.hera.proto.ReplayPaymentCommand.value', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=10214,
+  serialized_end=10550,
+)
+
+
+_REPLAYPAYMENTSTATUSUPDATECOMMAND = _descriptor.Descriptor(
+  name='ReplayPaymentStatusUpdateCommand',
+  full_name='com.elarian.hera.proto.ReplayPaymentStatusUpdateCommand',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='customer_number', full_name='com.elarian.hera.proto.ReplayPaymentStatusUpdateCommand.customer_number', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='provider_transaction_id', full_name='com.elarian.hera.proto.ReplayPaymentStatusUpdateCommand.provider_transaction_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='updated_at', full_name='com.elarian.hera.proto.ReplayPaymentStatusUpdateCommand.updated_at', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='com.elarian.hera.proto.ReplayPaymentStatusUpdateCommand.status', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=10553,
+  serialized_end=10788,
+)
+
+
+_REPLAYPAYMENTREPLY = _descriptor.Descriptor(
+  name='ReplayPaymentReply',
+  full_name='com.elarian.hera.proto.ReplayPaymentReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='com.elarian.hera.proto.ReplayPaymentReply.status', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='description', full_name='com.elarian.hera.proto.ReplayPaymentReply.description', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='transaction_id', full_name='com.elarian.hera.proto.ReplayPaymentReply.transaction_id', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='debit_customer_id', full_name='com.elarian.hera.proto.ReplayPaymentReply.debit_customer_id', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='credit_customer_id', full_name='com.elarian.hera.proto.ReplayPaymentReply.credit_customer_id', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=10791,
+  serialized_end=11017,
 )
 
 
@@ -2071,8 +2272,8 @@ _TAGCOMMANDREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9973,
-  serialized_end=10074,
+  serialized_start=11019,
+  serialized_end=11120,
 )
 
 
@@ -2110,8 +2311,8 @@ _CUSTOMERACTIVITYCOMMAND_PROPERTIESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=10303,
-  serialized_end=10352,
+  serialized_start=11349,
+  serialized_end=11398,
 )
 
 _CUSTOMERACTIVITYCOMMAND = _descriptor.Descriptor(
@@ -2169,8 +2370,8 @@ _CUSTOMERACTIVITYCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=10077,
-  serialized_end=10352,
+  serialized_start=11123,
+  serialized_end=11398,
 )
 
 
@@ -2222,8 +2423,8 @@ _REPLAYMESSAGINGCONSENTUPDATECOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=10355,
-  serialized_end=10641,
+  serialized_start=11401,
+  serialized_end=11687,
 )
 
 
@@ -2310,8 +2511,8 @@ _REPLAYRECEIVEDMESSAGECOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=10644,
-  serialized_end=11167,
+  serialized_start=11690,
+  serialized_end=12213,
 )
 
 
@@ -2405,8 +2606,8 @@ _REPLAYSENTMESSAGECOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=11170,
-  serialized_end=11747,
+  serialized_start=12216,
+  serialized_end=12793,
 )
 
 
@@ -2472,8 +2673,8 @@ _REPLAYMESSAGESTATUSUPDATECOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=11750,
-  serialized_end=12105,
+  serialized_start=12796,
+  serialized_end=13151,
 )
 
 
@@ -2532,8 +2733,8 @@ _REPLAYMESSAGEREACTIONUPDATECOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=12108,
-  serialized_end=12417,
+  serialized_start=13154,
+  serialized_end=13463,
 )
 
 
@@ -2606,8 +2807,8 @@ _REPLAYMESSAGINGSESSIONCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=12420,
-  serialized_end=12825,
+  serialized_start=13466,
+  serialized_end=13871,
 )
 
 
@@ -2652,8 +2853,8 @@ _CUSTOMERACTIVITYREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=12827,
-  serialized_end=12938,
+  serialized_start=13873,
+  serialized_end=13984,
 )
 
 
@@ -2696,8 +2897,8 @@ _SERVERTOAPPNOTIFICATION = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=12941,
-  serialized_end=13123,
+  serialized_start=13987,
+  serialized_end=14169,
 )
 
 
@@ -2845,8 +3046,8 @@ _SERVERTOAPPCUSTOMERNOTIFICATION = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=13126,
-  serialized_end=14356,
+  serialized_start=14172,
+  serialized_end=15402,
 )
 
 
@@ -2910,8 +3111,8 @@ _SERVERTOAPPPURSENOTIFICATION = _descriptor.Descriptor(
       create_key=_descriptor._internal_create_key,
     fields=[]),
   ],
-  serialized_start=14359,
-  serialized_end=14573,
+  serialized_start=15405,
+  serialized_end=15619,
 )
 
 
@@ -2942,8 +3143,8 @@ _APPDATAUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=14575,
-  serialized_end=14642,
+  serialized_start=15621,
+  serialized_end=15688,
 )
 
 
@@ -2981,8 +3182,8 @@ _SERVERTOAPPNOTIFICATIONREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=14645,
-  serialized_end=14793,
+  serialized_start=15691,
+  serialized_end=15839,
 )
 
 
@@ -3027,8 +3228,8 @@ _REMINDERNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=14796,
-  serialized_end=14977,
+  serialized_start=15842,
+  serialized_end=16023,
 )
 
 
@@ -3080,8 +3281,8 @@ _MESSAGINGSESSIONSTARTEDNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=14980,
-  serialized_end=15222,
+  serialized_start=16026,
+  serialized_end=16268,
 )
 
 
@@ -3133,8 +3334,8 @@ _MESSAGINGSESSIONRENEWEDNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=15225,
-  serialized_end=15467,
+  serialized_start=16271,
+  serialized_end=16513,
 )
 
 
@@ -3193,8 +3394,8 @@ _MESSAGINGSESSIONENDEDNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=15470,
-  serialized_end=15774,
+  serialized_start=16516,
+  serialized_end=16820,
 )
 
 
@@ -3246,8 +3447,8 @@ _MESSAGINGCONSENTUPDATENOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=15777,
-  serialized_end=16084,
+  serialized_start=16823,
+  serialized_end=17130,
 )
 
 
@@ -3313,8 +3514,8 @@ _RECEIVEDMESSAGENOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=16087,
-  serialized_end=16433,
+  serialized_start=17133,
+  serialized_end=17479,
 )
 
 
@@ -3352,8 +3553,8 @@ _MESSAGESTATUSNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=16435,
-  serialized_end=16545,
+  serialized_start=17481,
+  serialized_end=17591,
 )
 
 
@@ -3405,8 +3606,8 @@ _SENTMESSAGEREACTIONNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=16548,
-  serialized_end=16797,
+  serialized_start=17594,
+  serialized_end=17843,
 )
 
 
@@ -3472,8 +3673,8 @@ _RECEIVEDPAYMENTNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=16800,
-  serialized_end=17106,
+  serialized_start=17846,
+  serialized_end=18152,
 )
 
 
@@ -3511,8 +3712,8 @@ _PAYMENTSTATUSNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=17108,
-  serialized_end=17214,
+  serialized_start=18154,
+  serialized_end=18260,
 )
 
 
@@ -3557,8 +3758,8 @@ _WALLETPAYMENTSTATUSNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=17217,
-  serialized_end=17348,
+  serialized_start=18263,
+  serialized_end=18394,
 )
 
 
@@ -3610,8 +3811,8 @@ _CUSTOMERACTIVITYNOTIFICATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=17351,
-  serialized_end=17542,
+  serialized_start=18397,
+  serialized_end=18588,
 )
 
 _APPCONNECTIONMETADATA.fields_by_name['api_key'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
@@ -3645,6 +3846,8 @@ _APPTOSERVERCOMMAND.fields_by_name['replay_sent_message'].message_type = _REPLAY
 _APPTOSERVERCOMMAND.fields_by_name['replay_message_status_update'].message_type = _REPLAYMESSAGESTATUSUPDATECOMMAND
 _APPTOSERVERCOMMAND.fields_by_name['replay_message_reaction_update'].message_type = _REPLAYMESSAGEREACTIONUPDATECOMMAND
 _APPTOSERVERCOMMAND.fields_by_name['replay_messaging_session'].message_type = _REPLAYMESSAGINGSESSIONCOMMAND
+_APPTOSERVERCOMMAND.fields_by_name['replay_payment'].message_type = _REPLAYPAYMENTCOMMAND
+_APPTOSERVERCOMMAND.fields_by_name['replay_payment_status_update'].message_type = _REPLAYPAYMENTSTATUSUPDATECOMMAND
 _APPTOSERVERCOMMAND.oneofs_by_name['entry'].fields.append(
   _APPTOSERVERCOMMAND.fields_by_name['generate_auth_token'])
 _APPTOSERVERCOMMAND.fields_by_name['generate_auth_token'].containing_oneof = _APPTOSERVERCOMMAND.oneofs_by_name['entry']
@@ -3732,6 +3935,12 @@ _APPTOSERVERCOMMAND.fields_by_name['replay_message_reaction_update'].containing_
 _APPTOSERVERCOMMAND.oneofs_by_name['entry'].fields.append(
   _APPTOSERVERCOMMAND.fields_by_name['replay_messaging_session'])
 _APPTOSERVERCOMMAND.fields_by_name['replay_messaging_session'].containing_oneof = _APPTOSERVERCOMMAND.oneofs_by_name['entry']
+_APPTOSERVERCOMMAND.oneofs_by_name['entry'].fields.append(
+  _APPTOSERVERCOMMAND.fields_by_name['replay_payment'])
+_APPTOSERVERCOMMAND.fields_by_name['replay_payment'].containing_oneof = _APPTOSERVERCOMMAND.oneofs_by_name['entry']
+_APPTOSERVERCOMMAND.oneofs_by_name['entry'].fields.append(
+  _APPTOSERVERCOMMAND.fields_by_name['replay_payment_status_update'])
+_APPTOSERVERCOMMAND.fields_by_name['replay_payment_status_update'].containing_oneof = _APPTOSERVERCOMMAND.oneofs_by_name['entry']
 _APPTOSERVERCOMMANDREPLY.fields_by_name['generate_auth_token'].message_type = _GENERATEAUTHTOKENREPLY
 _APPTOSERVERCOMMANDREPLY.fields_by_name['get_customer_state'].message_type = _GETCUSTOMERSTATEREPLY
 _APPTOSERVERCOMMANDREPLY.fields_by_name['update_customer_state'].message_type = _UPDATECUSTOMERSTATEREPLY
@@ -3742,6 +3951,7 @@ _APPTOSERVERCOMMANDREPLY.fields_by_name['update_messaging_consent'].message_type
 _APPTOSERVERCOMMANDREPLY.fields_by_name['initiate_payment'].message_type = _INITIATEPAYMENTREPLY
 _APPTOSERVERCOMMANDREPLY.fields_by_name['tag_command'].message_type = _TAGCOMMANDREPLY
 _APPTOSERVERCOMMANDREPLY.fields_by_name['customer_activity'].message_type = _CUSTOMERACTIVITYREPLY
+_APPTOSERVERCOMMANDREPLY.fields_by_name['replay_payment'].message_type = _REPLAYPAYMENTREPLY
 _APPTOSERVERCOMMANDREPLY.oneofs_by_name['entry'].fields.append(
   _APPTOSERVERCOMMANDREPLY.fields_by_name['generate_auth_token'])
 _APPTOSERVERCOMMANDREPLY.fields_by_name['generate_auth_token'].containing_oneof = _APPTOSERVERCOMMANDREPLY.oneofs_by_name['entry']
@@ -3772,6 +3982,9 @@ _APPTOSERVERCOMMANDREPLY.fields_by_name['tag_command'].containing_oneof = _APPTO
 _APPTOSERVERCOMMANDREPLY.oneofs_by_name['entry'].fields.append(
   _APPTOSERVERCOMMANDREPLY.fields_by_name['customer_activity'])
 _APPTOSERVERCOMMANDREPLY.fields_by_name['customer_activity'].containing_oneof = _APPTOSERVERCOMMANDREPLY.oneofs_by_name['entry']
+_APPTOSERVERCOMMANDREPLY.oneofs_by_name['entry'].fields.append(
+  _APPTOSERVERCOMMANDREPLY.fields_by_name['replay_payment'])
+_APPTOSERVERCOMMANDREPLY.fields_by_name['replay_payment'].containing_oneof = _APPTOSERVERCOMMANDREPLY.oneofs_by_name['entry']
 _GENERATEAUTHTOKENREPLY.fields_by_name['lifetime'].message_type = google_dot_protobuf_dot_duration__pb2._DURATION
 _CREATECUSTOMERCOMMAND.fields_by_name['customer_number'].message_type = common__model__pb2._CUSTOMERNUMBER
 _GETCUSTOMERSTATECOMMAND.fields_by_name['customer_number'].message_type = common__model__pb2._CUSTOMERNUMBER
@@ -3960,6 +4173,17 @@ _INITIATEPAYMENTREPLY.fields_by_name['status'].enum_type = payment__model__pb2._
 _INITIATEPAYMENTREPLY.fields_by_name['transaction_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _INITIATEPAYMENTREPLY.fields_by_name['debit_customer_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _INITIATEPAYMENTREPLY.fields_by_name['credit_customer_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
+_REPLAYPAYMENTCOMMAND.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_REPLAYPAYMENTCOMMAND.fields_by_name['debit_party'].message_type = payment__model__pb2._PAYMENTCOUNTERPARTY
+_REPLAYPAYMENTCOMMAND.fields_by_name['credit_party'].message_type = payment__model__pb2._PAYMENTCOUNTERPARTY
+_REPLAYPAYMENTCOMMAND.fields_by_name['status'].enum_type = payment__model__pb2._PAYMENTSTATUS
+_REPLAYPAYMENTCOMMAND.fields_by_name['value'].message_type = common__model__pb2._CASH
+_REPLAYPAYMENTSTATUSUPDATECOMMAND.fields_by_name['customer_number'].message_type = common__model__pb2._CUSTOMERNUMBER
+_REPLAYPAYMENTSTATUSUPDATECOMMAND.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_REPLAYPAYMENTSTATUSUPDATECOMMAND.fields_by_name['status'].enum_type = payment__model__pb2._PAYMENTSTATUS
+_REPLAYPAYMENTREPLY.fields_by_name['transaction_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
+_REPLAYPAYMENTREPLY.fields_by_name['debit_customer_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
+_REPLAYPAYMENTREPLY.fields_by_name['credit_customer_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _TAGCOMMANDREPLY.fields_by_name['work_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 _CUSTOMERACTIVITYCOMMAND_PROPERTIESENTRY.containing_type = _CUSTOMERACTIVITYCOMMAND
 _CUSTOMERACTIVITYCOMMAND.fields_by_name['customer_number'].message_type = common__model__pb2._CUSTOMERNUMBER
@@ -4135,6 +4359,9 @@ DESCRIPTOR.message_types_by_name['UpdateMessagingConsentCommand'] = _UPDATEMESSA
 DESCRIPTOR.message_types_by_name['UpdateMessagingConsentReply'] = _UPDATEMESSAGINGCONSENTREPLY
 DESCRIPTOR.message_types_by_name['InitiatePaymentCommand'] = _INITIATEPAYMENTCOMMAND
 DESCRIPTOR.message_types_by_name['InitiatePaymentReply'] = _INITIATEPAYMENTREPLY
+DESCRIPTOR.message_types_by_name['ReplayPaymentCommand'] = _REPLAYPAYMENTCOMMAND
+DESCRIPTOR.message_types_by_name['ReplayPaymentStatusUpdateCommand'] = _REPLAYPAYMENTSTATUSUPDATECOMMAND
+DESCRIPTOR.message_types_by_name['ReplayPaymentReply'] = _REPLAYPAYMENTREPLY
 DESCRIPTOR.message_types_by_name['TagCommandReply'] = _TAGCOMMANDREPLY
 DESCRIPTOR.message_types_by_name['CustomerActivityCommand'] = _CUSTOMERACTIVITYCOMMAND
 DESCRIPTOR.message_types_by_name['ReplayMessagingConsentUpdateCommand'] = _REPLAYMESSAGINGCONSENTUPDATECOMMAND
@@ -4408,6 +4635,27 @@ InitiatePaymentReply = _reflection.GeneratedProtocolMessageType('InitiatePayment
   # @@protoc_insertion_point(class_scope:com.elarian.hera.proto.InitiatePaymentReply)
   })
 _sym_db.RegisterMessage(InitiatePaymentReply)
+
+ReplayPaymentCommand = _reflection.GeneratedProtocolMessageType('ReplayPaymentCommand', (_message.Message,), {
+  'DESCRIPTOR' : _REPLAYPAYMENTCOMMAND,
+  '__module__' : 'app_socket_pb2'
+  # @@protoc_insertion_point(class_scope:com.elarian.hera.proto.ReplayPaymentCommand)
+  })
+_sym_db.RegisterMessage(ReplayPaymentCommand)
+
+ReplayPaymentStatusUpdateCommand = _reflection.GeneratedProtocolMessageType('ReplayPaymentStatusUpdateCommand', (_message.Message,), {
+  'DESCRIPTOR' : _REPLAYPAYMENTSTATUSUPDATECOMMAND,
+  '__module__' : 'app_socket_pb2'
+  # @@protoc_insertion_point(class_scope:com.elarian.hera.proto.ReplayPaymentStatusUpdateCommand)
+  })
+_sym_db.RegisterMessage(ReplayPaymentStatusUpdateCommand)
+
+ReplayPaymentReply = _reflection.GeneratedProtocolMessageType('ReplayPaymentReply', (_message.Message,), {
+  'DESCRIPTOR' : _REPLAYPAYMENTREPLY,
+  '__module__' : 'app_socket_pb2'
+  # @@protoc_insertion_point(class_scope:com.elarian.hera.proto.ReplayPaymentReply)
+  })
+_sym_db.RegisterMessage(ReplayPaymentReply)
 
 TagCommandReply = _reflection.GeneratedProtocolMessageType('TagCommandReply', (_message.Message,), {
   'DESCRIPTOR' : _TAGCOMMANDREPLY,
