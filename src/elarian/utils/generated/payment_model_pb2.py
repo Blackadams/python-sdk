@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x13payment_model.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x12\x63ommon_model.proto\"_\n\x14PaymentChannelNumber\x12\x37\n\x07\x63hannel\x18\x01 \x01(\x0e\x32&.com.elarian.hera.proto.PaymentChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"\xa9\x01\n\x19PendingPaymentTransaction\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12/\n\tconverted\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xc4\x02\n\x0ePaymentBalance\x12\x15\n\rcurrency_code\x18\x01 \x01(\t\x12/\n\tavailable\x18\x02 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12,\n\x06\x61\x63tual\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x44\n\x07pending\x18\x04 \x03(\x0b\x32\x33.com.elarian.hera.proto.PaymentBalance.PendingEntry\x12\x13\n\x0bsequence_nr\x18\x05 \x01(\x03\x1a\x61\n\x0cPendingEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12@\n\x05value\x18\x02 \x01(\x0b\x32\x31.com.elarian.hera.proto.PendingPaymentTransaction:\x02\x38\x01\",\n\x18PaymentPurseCounterParty\x12\x10\n\x08purse_id\x18\x01 \x01(\t\"C\n\x19PaymentWalletCounterParty\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12\x11\n\twallet_id\x18\x02 \x01(\t\"\xa4\x01\n\x1bPaymentCustomerCounterParty\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x44\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\"\xbf\x01\n\x1aPaymentChannelCounterParty\x12\x37\n\x07\x63hannel\x18\x01 \x01(\x0e\x32&.com.elarian.hera.proto.PaymentChannel\x12\x14\n\x0c\x63hannel_code\x18\x02 \x01(\x05\x12\x0e\n\x06source\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x04 \x01(\t\x12-\n\x07\x61\x63\x63ount\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xb6\x02\n\x13PaymentCounterParty\x12\x41\n\x05purse\x18\x01 \x01(\x0b\x32\x30.com.elarian.hera.proto.PaymentPurseCounterPartyH\x00\x12\x43\n\x06wallet\x18\x02 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentWalletCounterPartyH\x00\x12G\n\x08\x63ustomer\x18\x03 \x01(\x0b\x32\x33.com.elarian.hera.proto.PaymentCustomerCounterPartyH\x00\x12\x45\n\x07\x63hannel\x18\x04 \x01(\x0b\x32\x32.com.elarian.hera.proto.PaymentChannelCounterPartyH\x00\x42\x07\n\x05party\"\xe2\x03\n\x12PaymentTransaction\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12,\n\x06\x61pp_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12@\n\x0b\x64\x65\x62it_party\x18\x04 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x05 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12+\n\x05value\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x35\n\x06status\x18\x07 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12.\n\ncreated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x17provider_transaction_id\x18\n \x01(\x0b\x32\x1c.google.protobuf.StringValue*l\n\x0ePaymentChannel\x12\x1f\n\x1bPAYMENT_CHANNEL_UNSPECIFIED\x10\x00\x12\x1c\n\x18PAYMENT_CHANNEL_CELLULAR\x10\x01\x12\x1b\n\x17PAYMENT_CHANNEL_AIRTIME\x10\x02*\xbf\x05\n\rPaymentStatus\x12\x1e\n\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x00\x12\x19\n\x15PAYMENT_STATUS_QUEUED\x10\x64\x12\'\n#PAYMENT_STATUS_PENDING_CONFIRMATION\x10\x65\x12%\n!PAYMENT_STATUS_PENDING_VALIDATION\x10\x66\x12\x1c\n\x18PAYMENT_STATUS_VALIDATED\x10g\x12#\n\x1ePAYMENT_STATUS_INVALID_REQUEST\x10\xc8\x01\x12!\n\x1cPAYMENT_STATUS_NOT_SUPPORTED\x10\xc9\x01\x12&\n!PAYMENT_STATUS_INSUFFICIENT_FUNDS\x10\xca\x01\x12%\n PAYMENT_STATUS_APPLICATION_ERROR\x10\xcb\x01\x12\x1f\n\x1aPAYMENT_STATUS_NOT_ALLOWED\x10\xcc\x01\x12%\n PAYMENT_STATUS_DUPLICATE_REQUEST\x10\xcd\x01\x12!\n\x1cPAYMENT_STATUS_INVALID_PURSE\x10\xce\x01\x12\"\n\x1dPAYMENT_STATUS_INVALID_WALLET\x10\xcf\x01\x12.\n)PAYMENT_STATUS_DECOMMISSIONED_CUSTOMER_ID\x10\xab\x02\x12\x1b\n\x16PAYMENT_STATUS_SUCCESS\x10\xac\x02\x12\x1a\n\x15PAYMENT_STATUS_FAILED\x10\x90\x03\x12\x1d\n\x18PAYMENT_STATUS_THROTTLED\x10\x91\x03\x12\x1b\n\x16PAYMENT_STATUS_EXPIRED\x10\x92\x03\x12\x1c\n\x17PAYMENT_STATUS_REJECTED\x10\x93\x03\x12\x1c\n\x17PAYMENT_STATUS_REVERSED\x10\xf4\x03\x62\x06proto3'
+  serialized_pb=b'\n\x13payment_model.proto\x12\x16\x63om.elarian.hera.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x12\x63ommon_model.proto\"_\n\x14PaymentChannelNumber\x12\x37\n\x07\x63hannel\x18\x01 \x01(\x0e\x32&.com.elarian.hera.proto.PaymentChannel\x12\x0e\n\x06number\x18\x02 \x01(\t\"\xa9\x01\n\x19PendingPaymentTransaction\x12.\n\ncreated_at\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12+\n\x05value\x18\x02 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12/\n\tconverted\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\"\xc4\x02\n\x0ePaymentBalance\x12\x15\n\rcurrency_code\x18\x01 \x01(\t\x12/\n\tavailable\x18\x02 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12,\n\x06\x61\x63tual\x18\x03 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x44\n\x07pending\x18\x04 \x03(\x0b\x32\x33.com.elarian.hera.proto.PaymentBalance.PendingEntry\x12\x13\n\x0bsequence_nr\x18\x05 \x01(\x03\x1a\x61\n\x0cPendingEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12@\n\x05value\x18\x02 \x01(\x0b\x32\x31.com.elarian.hera.proto.PendingPaymentTransaction:\x02\x38\x01\",\n\x18PaymentPurseCounterParty\x12\x10\n\x08purse_id\x18\x01 \x01(\t\"C\n\x19PaymentWalletCounterParty\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\t\x12\x11\n\twallet_id\x18\x02 \x01(\t\"\xa4\x01\n\x1bPaymentCustomerCounterParty\x12?\n\x0f\x63ustomer_number\x18\x01 \x01(\x0b\x32&.com.elarian.hera.proto.CustomerNumber\x12\x44\n\x0e\x63hannel_number\x18\x02 \x01(\x0b\x32,.com.elarian.hera.proto.PaymentChannelNumber\"\xbf\x01\n\x1aPaymentChannelCounterParty\x12\x37\n\x07\x63hannel\x18\x01 \x01(\x0e\x32&.com.elarian.hera.proto.PaymentChannel\x12\x14\n\x0c\x63hannel_code\x18\x02 \x01(\x05\x12\x0e\n\x06source\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65stination\x18\x04 \x01(\t\x12-\n\x07\x61\x63\x63ount\x18\x05 \x01(\x0b\x32\x1c.google.protobuf.StringValue\"\xb6\x02\n\x13PaymentCounterParty\x12\x41\n\x05purse\x18\x01 \x01(\x0b\x32\x30.com.elarian.hera.proto.PaymentPurseCounterPartyH\x00\x12\x43\n\x06wallet\x18\x02 \x01(\x0b\x32\x31.com.elarian.hera.proto.PaymentWalletCounterPartyH\x00\x12G\n\x08\x63ustomer\x18\x03 \x01(\x0b\x32\x33.com.elarian.hera.proto.PaymentCustomerCounterPartyH\x00\x12\x45\n\x07\x63hannel\x18\x04 \x01(\x0b\x32\x32.com.elarian.hera.proto.PaymentChannelCounterPartyH\x00\x42\x07\n\x05party\"\x93\x04\n\x12PaymentTransaction\x12\x16\n\x0etransaction_id\x18\x01 \x01(\t\x12,\n\x06\x61pp_id\x18\x02 \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12@\n\x0b\x64\x65\x62it_party\x18\x04 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12\x41\n\x0c\x63redit_party\x18\x05 \x01(\x0b\x32+.com.elarian.hera.proto.PaymentCounterParty\x12+\n\x05value\x18\x06 \x01(\x0b\x32\x1c.com.elarian.hera.proto.Cash\x12\x35\n\x06status\x18\x07 \x01(\x0e\x32%.com.elarian.hera.proto.PaymentStatus\x12.\n\ncreated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12=\n\x17provider_transaction_id\x18\n \x01(\x0b\x32\x1c.google.protobuf.StringValue\x12/\n\tnarration\x18\x0b \x01(\x0b\x32\x1c.google.protobuf.StringValue*l\n\x0ePaymentChannel\x12\x1f\n\x1bPAYMENT_CHANNEL_UNSPECIFIED\x10\x00\x12\x1c\n\x18PAYMENT_CHANNEL_CELLULAR\x10\x01\x12\x1b\n\x17PAYMENT_CHANNEL_AIRTIME\x10\x02*\xbf\x05\n\rPaymentStatus\x12\x1e\n\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x00\x12\x19\n\x15PAYMENT_STATUS_QUEUED\x10\x64\x12\'\n#PAYMENT_STATUS_PENDING_CONFIRMATION\x10\x65\x12%\n!PAYMENT_STATUS_PENDING_VALIDATION\x10\x66\x12\x1c\n\x18PAYMENT_STATUS_VALIDATED\x10g\x12#\n\x1ePAYMENT_STATUS_INVALID_REQUEST\x10\xc8\x01\x12!\n\x1cPAYMENT_STATUS_NOT_SUPPORTED\x10\xc9\x01\x12&\n!PAYMENT_STATUS_INSUFFICIENT_FUNDS\x10\xca\x01\x12%\n PAYMENT_STATUS_APPLICATION_ERROR\x10\xcb\x01\x12\x1f\n\x1aPAYMENT_STATUS_NOT_ALLOWED\x10\xcc\x01\x12%\n PAYMENT_STATUS_DUPLICATE_REQUEST\x10\xcd\x01\x12!\n\x1cPAYMENT_STATUS_INVALID_PURSE\x10\xce\x01\x12\"\n\x1dPAYMENT_STATUS_INVALID_WALLET\x10\xcf\x01\x12.\n)PAYMENT_STATUS_DECOMMISSIONED_CUSTOMER_ID\x10\xab\x02\x12\x1b\n\x16PAYMENT_STATUS_SUCCESS\x10\xac\x02\x12\x1a\n\x15PAYMENT_STATUS_FAILED\x10\x90\x03\x12\x1d\n\x18PAYMENT_STATUS_THROTTLED\x10\x91\x03\x12\x1b\n\x16PAYMENT_STATUS_EXPIRED\x10\x92\x03\x12\x1c\n\x17PAYMENT_STATUS_REJECTED\x10\x93\x03\x12\x1c\n\x17PAYMENT_STATUS_REVERSED\x10\xf4\x03\x62\x06proto3'
   ,
   dependencies=[google_dot_protobuf_dot_wrappers__pb2.DESCRIPTOR,google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,common__model__pb2.DESCRIPTOR,])
 
@@ -52,8 +52,8 @@ _PAYMENTCHANNEL = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2002,
-  serialized_end=2110,
+  serialized_start=2051,
+  serialized_end=2159,
 )
 _sym_db.RegisterEnumDescriptor(_PAYMENTCHANNEL)
 
@@ -168,8 +168,8 @@ _PAYMENTSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=2113,
-  serialized_end=2816,
+  serialized_start=2162,
+  serialized_end=2865,
 )
 _sym_db.RegisterEnumDescriptor(_PAYMENTSTATUS)
 
@@ -682,6 +682,13 @@ _PAYMENTTRANSACTION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='narration', full_name='com.elarian.hera.proto.PaymentTransaction.narration', index=9,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -695,7 +702,7 @@ _PAYMENTTRANSACTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1518,
-  serialized_end=2000,
+  serialized_end=2049,
 )
 
 _PAYMENTCHANNELNUMBER.fields_by_name['channel'].enum_type = _PAYMENTCHANNEL
@@ -735,6 +742,7 @@ _PAYMENTTRANSACTION.fields_by_name['status'].enum_type = _PAYMENTSTATUS
 _PAYMENTTRANSACTION.fields_by_name['created_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _PAYMENTTRANSACTION.fields_by_name['updated_at'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _PAYMENTTRANSACTION.fields_by_name['provider_transaction_id'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
+_PAYMENTTRANSACTION.fields_by_name['narration'].message_type = google_dot_protobuf_dot_wrappers__pb2._STRINGVALUE
 DESCRIPTOR.message_types_by_name['PaymentChannelNumber'] = _PAYMENTCHANNELNUMBER
 DESCRIPTOR.message_types_by_name['PendingPaymentTransaction'] = _PENDINGPAYMENTTRANSACTION
 DESCRIPTOR.message_types_by_name['PaymentBalance'] = _PAYMENTBALANCE
