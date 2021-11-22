@@ -74,7 +74,7 @@ def test_initiate_payment(client):
 
     response = loop.run_until_complete(
         client.initiate_payment(
-            value=cash, debit_party=debit_from, credit_party=credit_to
+            value=cash, debit_party=debit_from, credit_party=credit_to, narration="test test"
         )
     )
     assert all(

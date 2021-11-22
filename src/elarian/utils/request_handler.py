@@ -107,7 +107,7 @@ class _RequestHandler(BaseRequestHandler):
             if event == 'message_status':
                 notif['status'] = get_enum_string(MessageDeliveryStatus, notif['status'], 'MESSAGE_DELIVERY_STATUS')
 
-            if event in ['payment_status', 'wallet_payment_status', 'received_payment']:
+            if event in ['payment_status', 'received_payment']:
                 notif['status'] = get_enum_string(PaymentStatus, notif['status'], 'PAYMENT_STATUS')
 
                 if has_key('channel_number', notif):

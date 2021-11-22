@@ -51,7 +51,6 @@ class Elarian(Client):
                 "sent_message_reaction",
                 "received_payment",
                 "payment_status",
-                "wallet_payment_status",
                 "customer_activity",
             ],
             options,
@@ -169,13 +168,6 @@ class Elarian(Client):
         """
         return self._on("payment_status", handler)
 
-    def set_on_wallet_payment_status(self, handler):
-        """Set the handler for wallet payments status notifications.
-
-        :param handler: Dedicated handler function
-        """
-        return self._on("wallet_payment_status", handler)
-
     def set_on_customer_activity(self, handler):
         """Set the handler for customer activity notifications.
 
@@ -252,13 +244,14 @@ class Elarian(Client):
         return res
 
     async def initiate_payment(
-        self, debit_party: dict, credit_party: dict, value: dict
+        self, debit_party: dict, credit_party: dict, value: dict, narration: str
     ):
         """Initiate a payment transaction.
 
         :param debit_party: Dictionary containing the details of the customer the money is coming from
         :param credit_party: Dictionary containing the details of the customer the money is going to
         :param value: Dictionary containing the amount and currency
+        :param narration: String containing the payment narration/description
         """
         req = AppToServerCommand()
 
@@ -348,6 +341,7 @@ class Elarian(Client):
 
         req.initiate_payment.value.amount = value["amount"]
         req.initiate_payment.value.currency_code = value["currency_code"]
+        req.initiate_payment.narration = narration
         data = await self._send_command(req)
         res = self._parse_reply(data, to_json=True)['initiate_payment']
         res['status'] = get_enum_string(PaymentStatus, res['status'], 'PAYMENT_STATUS')

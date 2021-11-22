@@ -52,7 +52,8 @@ async def approve_loan(customer, amount):
             value={
                 'amount': amount,
                 'currency_code': 'KES'
-            }
+            },
+            narration='loan approved'
         )
 
         if res['status'] != 'SUCCESS' and res['status'] != 'PENDING_CONFIRMATION':

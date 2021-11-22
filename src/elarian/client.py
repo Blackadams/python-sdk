@@ -79,7 +79,7 @@ class Client(metaclass=ABCMeta):
             server=False,
             loop=self._loop,
             data_encoding=b'application/octet-stream',
-            metadata_encoding=b'application/json',
+            metadata_encoding=b'application/octet-stream',
             setup_payload=Payload(data=setup.SerializeToString(), metadata=bytearray(metadata, 'utf-8')),
             keep_alive_milliseconds=self._options['keep_alive'],
             max_lifetime_milliseconds=self._options['lifetime'],
